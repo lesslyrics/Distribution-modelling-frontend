@@ -58,6 +58,7 @@
     <addaction name="actionModel"/>
     <addaction name="separator"/>
     <addaction name="actionPval"/>
+    <addaction name="actionHi"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -73,6 +74,7 @@
    </attribute>
    <addaction name="actionModel"/>
    <addaction name="actionPval"/>
+    <addaction name="actionHi"/>
   </widget>
   <action name="actionModel">
    <property name="text">
@@ -82,6 +84,11 @@
   <action name="actionPval">
    <property name="text">
     <string>P-value</string>
+   </property>
+  </action>
+  <action name="actionHi">
+   <property name="text">
+    <string>Acknowledgment</string>
    </property>
   </action>
  </widget>

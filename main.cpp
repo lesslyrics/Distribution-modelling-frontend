@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
-    w.setWindowTitle("Lesson 4. Drawer.");
+    w.setWindowTitle("Distribution modelling");
     w.setMinimumSize(215, 170);
 
     w.resize(565, 520);

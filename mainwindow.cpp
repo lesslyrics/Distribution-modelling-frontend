@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "dialog.h"
+#include "intro.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
 
@@ -29,6 +30,16 @@ void MainWindow::on_actionPval_triggered() {
         ui->renderarea->getRectColor() = color;
         ui->renderarea->getMenu() = Menu::Color;
     }
+}
+
+
+void MainWindow::on_actionHi_triggered() {
+
+      auto dialog = new Intro(this);
+
+      dialog->show();
+      dialog->raise();
+      dialog->activateWindow();
 }
 
 MainWindow::~MainWindow() {

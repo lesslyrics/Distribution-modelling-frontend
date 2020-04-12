@@ -18,13 +18,13 @@ void RenderArea::paintEventColor(QPainter &painter) {
 
 /* Heading drawing */
 void RenderArea::paintHeadingEvent(QPainter &painter) {
-    QFont *font = new QFont("vemana2000bold", 14);
+    QFont *font = new QFont("vemana2000bold", 12);
     QPen pen;
     auto x = this->width();
-    pen.setColor(Qt::red);
-    painter.setFont(*font);
-    painter.setPen(pen);
-    painter.drawText(x / 4, 40, "Welcome to the Drawer v1.0");
+//    pen.setColor(Qt::red);
+//    painter.setFont(*font);
+//    painter.setPen(pen);
+//    painter.drawText(x / 4, 40, "Press menu buttons to start");
 }
 
 void RenderArea::paintEvent(QPaintEvent *event) {

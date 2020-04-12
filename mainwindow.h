@@ -22,6 +22,8 @@ private slots:
 
     void on_actionPval_triggered();
 
+    void on_actionHi_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
