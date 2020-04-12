@@ -17,12 +17,27 @@ add_executable(dialogs
         dialog.h
         dialog.ui
         dialogs.pro
+        intro.cpp
+        intro.h
+        intro.ui
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
         renderarea.cpp
-        renderarea.h)
+        renderarea.h
+        Model/Model.cpp
+        Model/Model.h
+        Model/HypogeomModel.cpp
+        Model/HypogeomModel.h
+        Model/BernoulliMethod.cpp
+        Model/BernoulliMethod.h
+        Model/InverseFunctionMethod.cpp
+        Model/InverseFunctionMethod.h
+        Model/HyperGeomTheoretical.cpp
+        Model/HyperGeomTheoretical.h
+        Model/probdist.cpp
+        Model/probdist.h)
 
 target_link_libraries(dialogs Qt5::Widgets)
 target_link_libraries(dialogs Qt5::Core)

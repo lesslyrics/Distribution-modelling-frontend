@@ -25,7 +25,7 @@ protected:
 
 private slots:
 
-    void on_radioButtonBlue_toggled(bool checked);
+    void on_radioButtonBern_toggled(bool checked);
 
 private:
     int line_width;

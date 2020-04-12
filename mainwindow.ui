@@ -59,6 +59,8 @@
     <addaction name="separator"/>
     <addaction name="actionPval"/>
     <addaction name="actionHi"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
@@ -75,6 +77,7 @@
    <addaction name="actionModel"/>
    <addaction name="actionPval"/>
     <addaction name="actionHi"/>
+	<addaction name="actionExit"/>
   </widget>
   <action name="actionModel">
    <property name="text">
@@ -89,6 +92,11 @@
   <action name="actionHi">
    <property name="text">
     <string>Acknowledgment</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
    </property>
   </action>
  </widget>

@@ -20,9 +20,9 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
 }
 
 /* not able to change width if blue is selected */
-//void Dialog::on_radioButtonBlue_toggled(bool checked) {
-//    this->ui->lineEditSize->setDisabled(checked);
-//}
+void Dialog::on_radioButtonBern_toggled(bool checked) {
+    this->ui->lineEditSize->setDisabled(checked);
+}
 
 /* parameters setting */
 void Dialog::done(int r) {

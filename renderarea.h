@@ -4,8 +4,8 @@
 #include <QWidget>
 
 enum class Menu {
-    Format,
-    Color
+    Model,
+    Pval
 };
 
 class RenderArea : public QWidget {
