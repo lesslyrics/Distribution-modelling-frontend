@@ -8,6 +8,11 @@ enum class Menu {
     Pval
 };
 
+enum class ModellingType{
+    Bern,
+    Inv
+};
+
 class RenderArea : public QWidget {
 Q_OBJECT
 
@@ -30,9 +35,9 @@ private:
 
     void paintEventColor(QPainter &painter);
 
-    void paintEventFormat(QPainter &painter);
-
     void paintHeadingEvent(QPainter &painter);
+
+    void paintEventModel(QPainter &painter);
 };
 
 #endif // RENDERAREA_H

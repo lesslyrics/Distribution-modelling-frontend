@@ -1,14 +1,31 @@
 #include "renderarea.h"
 #include <QPainter>
+#include <GL/glut.h>
+#include <GL/gl.h>// or glew header, gl3w header,...
+#include <array>
+
 #include "Model/Model.h"
+#include "UI/Histogram.h"
+
 RenderArea::RenderArea(QWidget *parent)
         : QWidget(parent) {}
 
-/*Format - line drawing*/
-void RenderArea::paintEventFormat(QPainter &painter) {
-    painter.setPen(QPen(rect_color, line_width));
-    painter.drawLine(100, 200, 100, 400);
+
+void RenderArea::paintEventModel(QPainter &painter) {
+//    painter.setPen(QPen(rect_color, sample_size));
+//    painter.drawLine(100, 200, 100, 400);
+
+    float value[] = {100.0, 150.0, 130.0, 90.0, 70.0, 100.};
+    int len = sizeof(value)/sizeof(*value);
+    auto x = this->width();
+    auto y = this->height();
+    createHistogram(len, value, x, y, painter);
+
+//    createCoordinate();
+
 }
+
+
 
 /*Color - rectangle drawing*/
 void RenderArea::paintEventColor(QPainter &painter) {
@@ -35,7 +52,7 @@ void RenderArea::paintEvent(QPaintEvent *event) {
     paintHeadingEvent(painter);
     switch (menu) {
         case Menu::Model:
-            paintEventFormat(painter);
+            paintEventModel(painter);
             break;
         case Menu::Pval:
             paintEventColor(painter);

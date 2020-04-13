@@ -16,7 +16,14 @@ public:
 
     QColor &getRectColor() { return rect_color; }
 
-    int &getLineWidth() { return line_width; }
+    int &getSampleSize() { return sample_size; }
+
+    int &getParamA() { return a; }
+
+    int &getParamB() { return b; }
+
+    int &getParamK() { return k; }
+
 
     ~Dialog();
 
@@ -28,7 +35,11 @@ private slots:
     void on_radioButtonBern_toggled(bool checked);
 
 private:
-    int line_width;
+    int a;
+    int b;
+    int k;
+    int trials;
+    int sample_size;
     QColor rect_color;
     Ui::Dialog *ui;
 

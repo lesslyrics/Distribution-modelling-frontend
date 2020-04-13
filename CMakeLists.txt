@@ -9,8 +9,13 @@ set(CMAKE_AUTORCC ON)
 
 include_directories(.)
 
+
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
+
 
 add_executable(dialogs
         dialog.cpp
@@ -37,7 +42,12 @@ add_executable(dialogs
         Model/HyperGeomTheoretical.cpp
         Model/HyperGeomTheoretical.h
         Model/probdist.cpp
-        Model/probdist.h)
+        Model/probdist.h
+        UI/Histogram.cpp
+        UI/Histogram.h)
+
+
+target_link_libraries(dialogs ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
 target_link_libraries(dialogs Qt5::Widgets)
 target_link_libraries(dialogs Qt5::Core)

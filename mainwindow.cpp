@@ -18,7 +18,7 @@ void MainWindow::on_actionModel_triggered() {
 
     if (modelDialog->exec() == QDialog::Accepted) {
         ui->renderarea->getMenu() = Menu::Model;
-        ui->renderarea->getLineWidth() = modelDialog->getLineWidth();
+        ui->renderarea->getLineWidth() = modelDialog->getSampleSize();
         ui->renderarea->getRectColor() = modelDialog->getRectColor();
         auto k = model();
         std::cout << "k = " << k;

@@ -20,23 +20,6 @@ const int k = 4; // were taken
 const int TRIALS = 10000; // number of trials for p-value distribution
 
 
-
-/**
- * method for input parameters handling
- */
-/*
-void enter_parameters(int &a, int &b, int &k, int &N){
-    std::cout << "Number of white balls a: ";
-    std::cin >> a;
-    std::cout << std::endl << "Number of black balls b: ";
-    std::cin >> b;
-    std::cout << std::endl << "Number of taken balls k: ";
-    std::cin >> k;
-    std::cout << std::endl << "Number of trials NT: ";
-    std::cin >> N;
-
-}*/
-
 /**
  * method to calculate chi-square value
  * @param h_freq
@@ -127,15 +110,6 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p) {
                 hist_p[j - 1]++;
         }
     }
-//    std::cout << "p-values: ";
-//    for (int l = 0; l < TRIALS; ++l) {
-//        std::cout << p[l];
-//    }
-
-//    for (int i = 1; i < 11; ++i) {
-//        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << hist_p[i - 1] - NORM << std::endl;
-//        co += hist_p[i - 1];
-//    }
 
     for (int j = 1; j <= 10; ++j){
         hist_p[j] = (double)(hist_p[j - 1] + hist_p[j]);
@@ -146,14 +120,9 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p) {
     std::cout << std::endl << std::endl;
 
     for (int i = 1; i < 11; ++i){
-//        if ( ((double)hist_p[i - 1]) / TRIALS >   0.4 &&  ((double)hist_p[i - 1]) / TRIALS < 0.5)
-//            std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << 0.39634 << std::endl;
-//
-//        else
         std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ TRIALS << std::endl;
 
     }
-    // std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1]  - NORM )/ TRIALS << std::endl;
 
 
 }
@@ -189,21 +158,6 @@ func model() -> int {
             h_freq[i] = h[i] * NT / 100;
         }
 
-
-        //printing
-//        std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
-//                  << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)" <<
-//                            std::setw(30) << "Obs - Exp (n_i - n*p_i)"  << std::setw(30) << "Obs - Exp Alt (n_i - n*p_i)" << std::endl;
-//        std::cout << "white balls\n";
-//        for (int i = 0; i != a + 1; ++i) { //
-//            double e1 = double(h1[i]) * 100 / double(NT);
-//            double e2 = double(h2[i]) * 100 / double(NT);
-//            std::cout << i << std::setw(30) << h[i] << std::setw(30) << h_freq[i] << std::setw(30) << e1
-//                      << std::setw(30) << h1[i] << std::setw(30) << h1[i] - h_freq[i] << std::setw(30) << h2[i] - h_freq[i]  << '\n';
-//        }
-
-//        std::cout << "\nAfter merging:\n \n";
-
         merge_sample(h_freq, h, h1, h2);
         chi_sq = calculate_chi(h_freq, h, h1, df );
         chi_sq_alt = calculate_chi(h_freq, h, h2, df );
@@ -214,18 +168,6 @@ func model() -> int {
         p_val = 0;
         CHI(1, df, chi_sq_alt, p_val);
         p_alt[l] = p_val;
-
-//        boost::math::chi_squared mydist(df);
-//        p_val = boost::math::cdf(mydist,chi_sq);
-//        p[l] = p_val;
-//        p_val = boost::math::cdf(mydist,chi_sq_alt);
-//        p[l] = p_val;
-//        p_alt[l] = p_val;
-
-
-
-//        std::cout << "df = " << df << std::endl << "chi_sq = " << chi_sq << std::endl << "chi_sq alt = " << chi_sq_alt << std::endl;
-//        std::cout << "p = " << p[l] << std::endl << "p_alt = " << p_alt[l] << std::endl;
 
         std::fill(h.begin(), h.end(), 0);
         std::fill(h1.begin(), h1.end(), 0);
