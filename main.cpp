@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
         w.setWindowTitle("Distribution modelling");
         w.setMinimumSize(215, 170);
 
-        w.resize(565, 520);
+        w.resize(800, 620);
 
         w.show();
         return a.exec();

@@ -30,11 +30,15 @@ int HypogeomModel::generateRandomValue(int a, int b, int k) {
 }
 
 
-std::vector<int> HypogeomModel::generateHist(int a, int b, int k) {
-    int q;
-    for (int j = 0; j != NT; ++j) {
-        q = generateRandomValue(a, b, k);
-        h[q]++; // count
-    }
+//std::vector<int> HypogeomModel::generateHist(int a, int b, int k) {
+//    int q;
+//    for (int j = 0; j != NT; ++j) {
+//        q = generateRandomValue(a, b, k);
+//        h[q]++; // count
+//    }
+//}
+
+double HypogeomModel::createDist(int trials, int a, int b, int k, int nt, double &p_fin, std::vector<double> &exp_freq){
+    return 0;
 }
 

@@ -4,7 +4,6 @@
 #include "ui_mainwindow.h"
 #include <QColorDialog>
 #include <iostream>
-#include "Model/Model.h"
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 }
@@ -14,14 +13,29 @@ void MainWindow::on_actionModel_triggered() {
     auto width = this->ui->renderarea->getLineWidth();
     auto color = this->ui->renderarea->getRectColor();
     auto modelDialog = new Dialog(width, color, this);
+    double chi_tmp = 0;
+    auto exp_freq = std::vector<double>(0, 0); // histograms
 
 
     if (modelDialog->exec() == QDialog::Accepted) {
+        modelDialog->activateModel(chi_tmp, exp_freq);
+
         ui->renderarea->getMenu() = Menu::Model;
-        ui->renderarea->getLineWidth() = modelDialog->getSampleSize();
+        ui->renderarea->getSampleSize() = modelDialog->getSampleSize();
         ui->renderarea->getRectColor() = modelDialog->getRectColor();
-        auto k = model();
-        std::cout << "k = " << k;
+        ui->renderarea->getChi() = modelDialog->getChi();
+
+        ModelType temp  =modelDialog->getModelType();
+        if (temp == ModelType::Bern)
+            ui->renderarea->getModelType() = ModellingType::Bern;
+        else if (temp == ModelType::Inv)
+            ui->renderarea->getModelType() = ModellingType::Inv;
+
+//        ui->renderarea->getChi() = modelDialog->activateModel(chi_tmp, 0, exp_freq);
+        ui->renderarea->getP() =    modelDialog->getP();
+        ui->renderarea->getExpFreq() =  exp_freq;
+
+
 
     }
 }

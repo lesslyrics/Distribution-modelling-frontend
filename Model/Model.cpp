@@ -4,19 +4,19 @@
 #include "HyperGeomTheoretical.h"
 #include <vector>
 #include "probdist.h"
+#include "Model.h"
 
 #include <boost/math/distributions/chi_squared.hpp>
-#define func auto
 /**
  * hyperparameters
  */
 const int NORM = 250;
 
 const int FREQ = 5;
-const int NT = 50; // number of trials for distribution
-const int a = 6; // white balls
-const int b = 5; // black balls
-const int k = 4; // were taken
+//const int NT = 500; // number of trials for distribution
+//const int a = 12; // white balls
+//const int b = 10; // black balls
+//const int k = 8; // were taken
 const int TRIALS = 10000; // number of trials for p-value distribution
 
 
@@ -29,19 +29,12 @@ const int TRIALS = 10000; // number of trials for p-value distribution
  * @param df
  * @return
  */
-double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df) {
-    // printing
-//    std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
-//              << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)"
-//              << std::setw(30) << "Obs - Exp (n_i - n*p_i)"  << std::endl;
-//    std::cout << "white balls\n";
+double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df, int a, int nt) {
     double chi_sq = 0;
     df = -1;
     for (int i = 0; i != a + 1; ++i) { //
         if (h_freq[i] != -1) {
-            double e1 = double(h1[i]) * 100 / double(NT);
-//            std::cout << i << std::setw(30) << h[i] << std::setw(30) << h_freq[i] << std::setw(30) << e1
-//                      << std::setw(30) << h1[i] << std::setw(30) << h1[i] - h_freq[i]  << '\n';
+            double e1 = double(h1[i]) * 100 / double(nt);
             chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
             df++;
         }
@@ -127,66 +120,48 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p) {
 
 }
 
-func model() -> int {
+auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq, int a, int b, int k) -> double {
 
-    auto p = std::vector<double>(TRIALS, 0); // histograms
-    auto p_alt = std::vector<double>(TRIALS , 0); // histograms
-
-    std::vector<int>  h1 (a + 1, 0); // histograms
-    std::vector<int>  h2 (a + 1, 0);
-    std::vector<double>  h (a + 1, 0);
-    std::vector<double>  h_freq (a + 1, 0);
-
-    BernoulliMethod model1(a);
-    InverseFunctionMethod model2(a);
-    HyperGeomTheoretical model_t;
-    double chi_sq;
-    double chi_sq_alt;
-    int q1, q2;
-    int df = 0;
-
-    for (int l = 0; l < TRIALS; ++l) {
-        for (int j = 0; j != NT; ++j) {
-            q1 = model1.generateRandomValue(a, b, k);
-            q2 = model1.generateRandomValue(5, 5, 4);
-            h1[q1]++; // count
-            h2[q2]++;
-            //std::cout << "q1 " << q1 << std::endl;
+    double p = 0;
+    switch ( type ) {
+        case ModelType::Bern : {
+            BernoulliMethod model(a);
+            chi = model.createDist(trials, a, b, k, nt, p, exp_freq);
+            break;
         }
-        for (int i = 0; i != a + 1; ++i) {
-            h[i] = model_t.hyperGeomTheor(a + b, a, k, i);
-            h_freq[i] = h[i] * NT / 100;
+        case ModelType::Inv : {
+            std::cout << "I AM HERE " << std::endl;
+
+            InverseFunctionMethod model(a);
+            chi = model.createDist(trials, a, b, k, nt, p, exp_freq);
+            break;
         }
-
-        merge_sample(h_freq, h, h1, h2);
-        chi_sq = calculate_chi(h_freq, h, h1, df );
-        chi_sq_alt = calculate_chi(h_freq, h, h2, df );
-
-        double p_val = 0;
-        CHI(1, df, chi_sq, p_val);
-        p[l] = p_val;
-        p_val = 0;
-        CHI(1, df, chi_sq_alt, p_val);
-        p_alt[l] = p_val;
-
-        std::fill(h.begin(), h.end(), 0);
-        std::fill(h1.begin(), h1.end(), 0);
-        std::fill(h2.begin(), h2.end(), 0);
-        std::fill(h_freq.begin(), h_freq.end(), 0);
-
+        default:
+            return 1;
     }
 
-    std::cout << "Ho: The data is consistent with a Hypergeometric distribution (6, 5, 4)." << std::endl
+    std::cout << "chi_sq: " << chi << std::endl;
+    std::cout << "p: " << p << std::endl;
+
+    std::cout << std::endl << "exp[0]: " << exp_freq[0] << std::endl;
+    std::cout << std::endl << "exp[1]: " << exp_freq[1] << std::endl;
+    std::cout << std::endl << "exp[2]: " << exp_freq[2] << std::endl;
+
+    std::cout << std::endl << "size main" << exp_freq.size() << std::endl;
+
+
+    std::cout << "Ho: The data is consistent with a Hypergeometric distribution  "<< a << ' ' << b << ' ' << k << std::endl
               << "Ha: The data is consistent with a Hypergeometric distribution (5, 5, 4)" << std::endl;
 
     auto hist_p = std::vector<int>(11, 0); // histograms
     std::cout << std::endl << "p-value distribution for type 1 error: " << std::endl;
-    std::cout << std::endl << "p-value rep: " << TRIALS << std::endl;
+    std::cout << std::endl << "p-value rep: " << trials << std::endl;
 
-    show_p(hist_p, p);
-    std::fill(hist_p.begin(), hist_p.end(), 0);
-    std::cout << std::endl << "p-value distribution for power: " << std::endl;
-    show_p(hist_p, p_alt);
 
-    return 0;
+//    show_p(hist_p, p);
+//    std::fill(hist_p.begin(), hist_p.end(), 0);
+//    std::cout << std::endl << "p-value distribution for power: " << std::endl;
+//    show_p(hist_p, p_alt);
+
+    return p;
 }

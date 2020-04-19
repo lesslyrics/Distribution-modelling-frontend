@@ -3,8 +3,8 @@
 #include <GL/glut.h>
 #include <GL/gl.h>// or glew header, gl3w header,...
 #include <array>
+#include <iostream>
 
-#include "Model/Model.h"
 #include "UI/Histogram.h"
 
 RenderArea::RenderArea(QWidget *parent)
@@ -15,13 +15,12 @@ void RenderArea::paintEventModel(QPainter &painter) {
 //    painter.setPen(QPen(rect_color, sample_size));
 //    painter.drawLine(100, 200, 100, 400);
 
-    float value[] = {100.0, 150.0, 130.0, 90.0, 70.0, 100.};
-    int len = sizeof(value)/sizeof(*value);
     auto x = this->width();
     auto y = this->height();
-    createHistogram(len, value, x, y, painter);
 
-//    createCoordinate();
+
+    createHistogram(sample_size, model_type, x, y, chi, p, exp_freq, painter);
+
 
 }
 
@@ -50,6 +49,8 @@ void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
     paintHeadingEvent(painter);
+
+
     switch (menu) {
         case Menu::Model:
             paintEventModel(painter);

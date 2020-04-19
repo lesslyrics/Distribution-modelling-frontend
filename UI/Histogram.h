@@ -7,10 +7,12 @@
 
 
 #include <QtGui/QPainter>
+#include <Model/Model.h>
+#include <renderarea.h>
 
-    void createBox(float, float, float, float, QPainter &painter);
+void createBox(float, float, float, float, QPainter &painter);
 
-    void createHistogram(int len, float *data, int win_w, int win_h, QPainter &painter);
+    void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, double chi, double p, std::vector<double> &exp_freq, QPainter &painter);
 
 
 #endif //DIALOGS_HISTOGRAM_H

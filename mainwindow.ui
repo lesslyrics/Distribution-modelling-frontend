@@ -76,12 +76,12 @@
    </attribute>
    <addaction name="actionModel"/>
    <addaction name="actionPval"/>
-    <addaction name="actionHi"/>
-	<addaction name="actionExit"/>
+   <addaction name="actionHi"/>
+   <addaction name="actionExit"/>
   </widget>
   <action name="actionModel">
    <property name="text">
-    <string>Model</string>
+    <string>Generate Sample</string>
    </property>
   </action>
   <action name="actionPval">

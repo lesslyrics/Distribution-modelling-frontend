@@ -2,7 +2,13 @@
 #include "InverseFunctionMethod.h"
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
-#define func auto
+
+
+enum class ModelType{
+    Bern,
+    Inv
+};
+
 
 /**
  * method to calculate chi-square value
@@ -13,8 +19,7 @@
  * @param df
  * @return
  */
-double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df);
-
+double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df, int a, int nt);
 
 /**
  * method to perform sample merging based on pivot
@@ -32,4 +37,4 @@ void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vect
  */
 void show_p(std::vector<int> &hist_p, std::vector<double> &p);
 
-func model() -> int;
+auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq, int a, int b, int k) -> double;

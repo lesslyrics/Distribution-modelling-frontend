@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <Model/Model.h>
 
 
 namespace Ui {
@@ -18,12 +19,37 @@ public:
 
     int &getSampleSize() { return sample_size; }
 
-    int &getParamA() { return a; }
+//    double &generateModel(){
+//        ModelType type = ModelType::Bern;
+//        double p = 0;
+//        switch ( type ) {
+//            case ModelType::Bern : {
+//                BernoulliMethod mod(a);
+//                chi = mod.createDist(trials, a, b, k, p, exp_freq);
+//                break;
+//            }
+//            case ModelType::Inv : {
+//                InverseFunctionMethod model(a);
+//                chi = model.createDist(trials, a, b, k, p, exp_freq);
+//                break;
+//            }
+//        }
+//
+//    }
 
-    int &getParamB() { return b; }
+    void activateModel(double &chi_tmp, std::vector<double> &expr_freq) {
+        p = model(modelType, 1, sample_size, chi_tmp, expr_freq, a, b, k);
+        chi = chi_tmp;
+    }
 
-    int &getParamK() { return k; }
+    double &getP() { return p;}
 
+    double &getChi() { return chi;}
+
+    ModelType &getModelType() { return modelType; }
+
+
+//
 
     ~Dialog();
 
@@ -38,7 +64,12 @@ private:
     int a;
     int b;
     int k;
+    std::vector<double> exp_freq;
+    double p = 0;
+    double chi = 0;
     int trials;
+    ModelType modelType;
+
     int sample_size;
     QColor rect_color;
     Ui::Dialog *ui;

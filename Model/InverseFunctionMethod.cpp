@@ -14,7 +14,7 @@ long long int InverseFunctionMethod::findFactorial(int num){
 }
 
 /**
- * method to generate random values using inverse function method
+ * method to activateModel random values using inverse function method
  * @param a
  * @param b
  * @param k

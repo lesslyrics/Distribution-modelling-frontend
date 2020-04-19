@@ -14,4 +14,5 @@ public:
 
     int generateRandomValue(int a, int b, int k) override;
 
+    double createDist(int trials, int a, int b, int k, int nt, double &p_fin, std::vector<double> &exp_freq) override;
 };
