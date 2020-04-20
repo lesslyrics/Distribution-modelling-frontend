@@ -33,7 +33,8 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
     return phi;
 }
 
- double BernoulliMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin, std::vector<double> &exp_freq) {
+ double BernoulliMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
+         std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist) {
 
     HyperGeomTheoretical model_t;
     double chi_sq;
@@ -67,18 +68,18 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
         merge_sample(h_freq, h, h1, h2);
 
         //printing
-        std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
-                  << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)" <<
-                  std::setw(30) << "Obs - Exp (n_i - n*p_i)" << std::setw(30) << "Obs - Exp Alt (n_i - n*p_i)"
-                  << std::endl;
-        std::cout << "white balls\n";
+//        std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
+//                  << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)" <<
+//                  std::setw(30) << "Obs - Exp (n_i - n*p_i)" << std::setw(30) << "Obs - Exp Alt (n_i - n*p_i)"
+//                  << std::endl;
+//        std::cout << "white balls\n";
 
         for (int i = 0; i != a + 1; ++i) { //
             double e1 = double(h1[i]) * 100 / double(nt);
             double e2 = double(h2[i]) * 100 / double(nt);
-            std::cout << i << std::setw(30) << h[i] << std::setw(30) << h_freq[i] << std::setw(30) << e1
-                      << std::setw(30) << h1[i] << std::setw(30) << h1[i] - h_freq[i] << std::setw(30)
-                      << h2[i] - h_freq[i] << '\n';
+//            std::cout << i << std::setw(30) << h[i] << std::setw(30) << h_freq[i] << std::setw(30) << e1
+//                      << std::setw(30) << h1[i] << std::setw(30) << h1[i] - h_freq[i] << std::setw(30)
+//                      << h2[i] - h_freq[i] << '\n';
         }
 
         for (double & i : h_freq)
@@ -86,10 +87,18 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
                 exp_freq.push_back(i);
             }
 
-        for (int i = 0; i < exp_freq.size(); i++)
-        std::cout << std::endl << "a[ " << i << "]: " << exp_freq[i] << std::endl;
+        for (int i = 0; i != a + 1; i++)
+            if (h_freq[i] > 0){
+                act_freq.push_back(h1[i]);
+            }
 
-    std::cout << std::endl << "size " << exp_freq.size() << std::endl;
+//        for (int i = 0; i < act_freq.size(); i++)
+//            std::cout << std::endl << "act[ " << i << "]: " << act_freq[i] << std::endl;
+//
+//        for (int i = 0; i < exp_freq.size(); i++)
+//        std::cout << std::endl << "exp[ " << i << "]: " << exp_freq[i] << std::endl;
+//
+//    std::cout << std::endl << "size " << exp_freq.size() << std::endl;
 
 
         chi_sq = calculate_chi(h_freq, h, h1, df, a, nt);
@@ -108,7 +117,13 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
         std::fill(h2.begin(), h2.end(), 0);
         std::fill(h_freq.begin(), h_freq.end(), 0);
 
-        std::cout << std::endl << "size bern " << exp_freq.size() << std::endl;
+
+//        std::cout << std::endl << "size bern " << exp_freq.size() << std::endl;
+
+        for (double & i : p)
+            if (i > 0){
+                p_dist.push_back(i);
+            }
 
         this->chi_sqrt = chi_sq;
         this->p_value = p_fin;

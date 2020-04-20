@@ -37,6 +37,14 @@ public:
 
     std::vector<double> &getExpFreq() { return exp_freq; }
 
+    std::vector<double> &getActFreq() { return act_freq; }
+
+    std::vector<double> &getPDist() { return p_dist; }
+
+
+    int &getTrials() { return trials; }
+
+
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -54,10 +62,14 @@ private:
 
     ModellingType model_type;
 
+    int trials;
+
     std::vector<double> exp_freq;
+    std::vector<double> act_freq;
+    std::vector<double> p_dist;
 
 
-    void paintEventColor(QPainter &painter);
+    void paintEventPval(QPainter &painter);
 
     void paintHeadingEvent(QPainter &painter);
 

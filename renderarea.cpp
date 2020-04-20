@@ -4,6 +4,7 @@
 #include <GL/gl.h>// or glew header, gl3w header,...
 #include <array>
 #include <iostream>
+#include <UI/Plot.h>
 
 #include "UI/Histogram.h"
 
@@ -18,18 +19,18 @@ void RenderArea::paintEventModel(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
 
-
-    createHistogram(sample_size, model_type, x, y, chi, p, exp_freq, painter);
-
+    createHistogram(sample_size, model_type, x, y, chi, p, exp_freq, act_freq, painter);
 
 }
 
 
 
 /*Color - rectangle drawing*/
-void RenderArea::paintEventColor(QPainter &painter) {
-    painter.setBrush(rect_color);
-    painter.drawRect(200, 200, 200, 200);
+void RenderArea::paintEventPval(QPainter &painter) {
+    auto x = this->width();
+    auto y = this->height();
+
+    createPlot(sample_size, p_dist, x, y, trials, painter);
 }
 
 /* Heading drawing */
@@ -56,7 +57,7 @@ void RenderArea::paintEvent(QPaintEvent *event) {
             paintEventModel(painter);
             break;
         case Menu::Pval:
-            paintEventColor(painter);
+            paintEventPval(painter);
             break;
     }
 

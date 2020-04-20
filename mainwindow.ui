@@ -83,20 +83,44 @@
    <property name="text">
     <string>Generate Sample</string>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
   </action>
   <action name="actionPval">
    <property name="text">
     <string>P-value</string>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
   </action>
   <action name="actionHi">
    <property name="text">
     <string>Acknowledgment</string>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
   </action>
  </widget>

@@ -2,12 +2,7 @@
 #include "InverseFunctionMethod.h"
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
-
-
-enum class ModelType{
-    Bern,
-    Inv
-};
+#include "ModelType.h"
 
 
 /**
@@ -35,6 +30,9 @@ void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vect
  * @param hist_p
  * @param p
  */
-void show_p(std::vector<int> &hist_p, std::vector<double> &p);
+void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials);
 
-auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq, int a, int b, int k) -> double;
+auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b, int k) -> double;
+
+auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+        std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b, int k) -> double;

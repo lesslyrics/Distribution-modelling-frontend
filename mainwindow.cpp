@@ -2,6 +2,7 @@
 #include "dialog.h"
 #include "intro.h"
 #include "ui_mainwindow.h"
+#include "pwindow.h"
 #include <QColorDialog>
 #include <iostream>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -15,11 +16,16 @@ void MainWindow::on_actionModel_triggered() {
     auto modelDialog = new Dialog(width, color, this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
+    auto act_freq = std::vector<double>(0, 0); // histograms
+    auto p_dist = std::vector<double>(0, 0); // histograms
+
+
+    modelDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
 
 
     if (modelDialog->exec() == QDialog::Accepted) {
-        modelDialog->activateModel(chi_tmp, exp_freq);
 
+        modelDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist);
         ui->renderarea->getMenu() = Menu::Model;
         ui->renderarea->getSampleSize() = modelDialog->getSampleSize();
         ui->renderarea->getRectColor() = modelDialog->getRectColor();
@@ -34,19 +40,42 @@ void MainWindow::on_actionModel_triggered() {
 //        ui->renderarea->getChi() = modelDialog->activateModel(chi_tmp, 0, exp_freq);
         ui->renderarea->getP() =    modelDialog->getP();
         ui->renderarea->getExpFreq() =  exp_freq;
-
-
+        ui->renderarea->getActFreq() =  act_freq;
 
     }
 }
 
 /* If Color was chosen - draw a rectangle */
 void MainWindow::on_actionPval_triggered() {
-    auto col = ui->renderarea->getRectColor();
-    auto color = QColorDialog::getColor(col, this, "Select color", QColorDialog::DontUseNativeDialog);
-    if (color.isValid()) {
-        ui->renderarea->getRectColor() = color;
+
+    auto width = this->ui->renderarea->getLineWidth();
+    auto color = this->ui->renderarea->getRectColor();
+    auto pvalDialog = new PWindow(width, color, this);
+    double chi_tmp = 0;
+    auto exp_freq = std::vector<double>(0, 0); // histograms
+    auto act_freq = std::vector<double>(0, 0); // histograms
+    auto p_dist = std::vector<double>(0, 0); // histograms
+
+
+    pvalDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
+
+
+    if (pvalDialog->exec() == QDialog::Accepted) {
+        pvalDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist);
+
         ui->renderarea->getMenu() = Menu::Pval;
+        ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
+        ui->renderarea->getRectColor() = pvalDialog->getRectColor();
+        ui->renderarea->getChi() = pvalDialog->getChi();
+        ui->renderarea->getTrials() = pvalDialog->getTrials();
+
+        ui->renderarea->getP() =    pvalDialog->getP();
+        ui->renderarea->getExpFreq() =  exp_freq;
+        ui->renderarea->getActFreq() =  act_freq;
+        ui->renderarea->getPDist() =  p_dist;
+
+
+
     }
 }
 

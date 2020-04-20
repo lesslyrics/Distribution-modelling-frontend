@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
         w.setMinimumSize(215, 170);
 
         w.resize(800, 620);
+        w.setStyleSheet("background-color: rgb(20, 23, 23); color:white;");
 
         w.show();
         return a.exec();

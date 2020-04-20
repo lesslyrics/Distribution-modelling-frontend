@@ -31,6 +31,9 @@ add_executable(dialogs
         mainwindow.ui
         renderarea.cpp
         renderarea.h
+        pwindow.cpp
+        pwindow.h
+        pwindow.ui
         Model/Model.cpp
         Model/Model.h
         Model/HypogeomModel.cpp
@@ -44,7 +47,9 @@ add_executable(dialogs
         Model/probdist.cpp
         Model/probdist.h
         UI/Histogram.cpp
-        UI/Histogram.h)
+        UI/Histogram.h
+        UI/Plot.cpp
+        UI/Plot.h Model/ModelType.h)
 
 
 target_link_libraries(dialogs ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})

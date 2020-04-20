@@ -37,8 +37,8 @@ public:
 //
 //    }
 
-    void activateModel(double &chi_tmp, std::vector<double> &expr_freq) {
-        p = model(modelType, 1, sample_size, chi_tmp, expr_freq, a, b, k);
+    void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq, std::vector<double> &p_dist) {
+        p = model(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, a, b, k);
         chi = chi_tmp;
     }
 
@@ -65,6 +65,8 @@ private:
     int b;
     int k;
     std::vector<double> exp_freq;
+    std::vector<double> act_freq;
+
     double p = 0;
     double chi = 0;
     int trials;
