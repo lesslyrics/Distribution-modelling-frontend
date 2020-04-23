@@ -3,14 +3,11 @@
 //
 
 #include <iostream>
-#include <iomanip>
 #include "BernoulliMethod.h"
-#include "InverseFunctionMethod.h"
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
 #include "Model.h"
 
-//const int NT = 50; // number of trials for distribution
 
 /**
  * method to activateModel random values using Bernoulli distribution
@@ -34,7 +31,7 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 }
 
  double BernoulliMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
-         std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist) {
+         std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
 
     HyperGeomTheoretical model_t;
     double chi_sq;
@@ -82,6 +79,10 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 //                      << h2[i] - h_freq[i] << '\n';
         }
 
+        exp_freq.clear();
+        act_freq.clear();
+
+
         for (double & i : h_freq)
             if (i > 0){
                 exp_freq.push_back(i);
@@ -119,11 +120,21 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 
 
 //        std::cout << std::endl << "size bern " << exp_freq.size() << std::endl;
-
+        p_dist.clear();
         for (double & i : p)
             if (i > 0){
                 p_dist.push_back(i);
             }
+
+        p_dist_alt.clear();
+        for (double & i : p_alt)
+            if (i > 0){
+                p_dist_alt.push_back(i);
+            }
+
+//        for(int i = 0; i < p_dist.size(); i++)
+//            std::cout << "pushed " << i << ' ' << p_dist[i] << std::endl;
+
 
         this->chi_sqrt = chi_sq;
         this->p_value = p_fin;

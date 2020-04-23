@@ -74,6 +74,8 @@ void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, 
 
     /** draw histogram **/
     for (i = 0; i < 13; i++) {
+        painter.drawLine( win_w / 18, 10 * win_h / 11 - i * step * 10 + 3,  win_w / 18, 10 * win_h / 11 - i * step * 10 - 3);
+
         painter.drawText(win_w / 18, 10 * win_h / 11 - i * step * 10, QString::number(i * step));
     }
     painter.setPen(pen);

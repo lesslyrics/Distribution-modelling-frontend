@@ -14,5 +14,7 @@ public:
 
     int generateRandomValue(int a, int b, int k) override;
 
-    double createDist(int trials, int a, int b, int k, int nt, double &p_fin, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist) override;
+    double createDist(int trials, int a, int b, int k, int nt, double &p_fin,
+                                       std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) override;
+    ~BernoulliMethod()= default;;
 };

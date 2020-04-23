@@ -30,8 +30,6 @@ public:
 
     int &getTrials() { return trials;}
 
-
-
     ~PWindow();
 
 protected:

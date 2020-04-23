@@ -71,8 +71,6 @@ private:
 
     void paintEventPval(QPainter &painter);
 
-    void paintHeadingEvent(QPainter &painter);
-
     void paintEventModel(QPainter &painter);
 };
 

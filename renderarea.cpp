@@ -33,24 +33,10 @@ void RenderArea::paintEventPval(QPainter &painter) {
     createPlot(sample_size, p_dist, x, y, trials, painter);
 }
 
-/* Heading drawing */
-void RenderArea::paintHeadingEvent(QPainter &painter) {
-    QFont *font = new QFont("vemana2000bold", 12);
-    QPen pen;
-    auto x = this->width();
-//
-//    pen.setColor(Qt::red);
-//    painter.setFont(*font);
-//    painter.setPen(pen);
-   // painter.drawText(x / 4, 40, s);
-
-}
 
 void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    paintHeadingEvent(painter);
-
 
     switch (menu) {
         case Menu::Model:

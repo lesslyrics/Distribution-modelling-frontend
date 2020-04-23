@@ -24,7 +24,7 @@ public:
 
 //    std::vector<int> generateHist(int a, int b, int k);
 
-    virtual double createDist(int trials, int a, int b, int k, int nt,  double &p_fin,
-            std::vector<double> &exp_freq,std::vector<double> &act_freq, std::vector<double> &p_dist);
+    virtual double createDist(int trials, int a, int b, int k, int nt, double &p_fin,
+                                                std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt);
 
 };

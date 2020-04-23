@@ -9,16 +9,9 @@
 #include <boost/math/distributions/chi_squared.hpp>
 /**
  * hyperparameters
- */
-const int NORM = 250;
+ * */
 
 const int FREQ = 5;
-//const int NT = 500; // number of trials for distribution
-//const int a = 12; // white balls
-//const int b = 10; // black balls
-//const int k = 8; // were taken
-const int TRIALS = 10000; // number of trials for p-value distribution
-
 
 /**
  * method to calculate chi-square value
@@ -97,7 +90,7 @@ void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vect
  * @param p
  */
 void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
-    for (int i = 0; i < TRIALS; ++i) {
+    for (int i = 0; i < trials; ++i) {
         for (int j = 1; j <= 10; ++j) {
             if (p[i] < (double)j / 10.0 && p[i] > (double)(j - 1) / 10)
                 hist_p[j - 1]++;
@@ -124,7 +117,7 @@ auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
 }
 
 auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-        std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b, int k) -> double {
+        std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
 
     double p = 0;
     switch ( type ) {
@@ -147,17 +140,19 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     std::cout << "chi_sq: " << chi << std::endl;
     std::cout << "p: " << p << std::endl;
 
-    std::cout << std::endl << "exp[0]: " << exp_freq[0] << std::endl;
-    std::cout << std::endl << "exp[1]: " << exp_freq[1] << std::endl;
-    std::cout << std::endl << "exp[2]: " << exp_freq[2] << std::endl;
-
-    std::cout << std::endl << "size main" << exp_freq.size() << std::endl;
+//    std::cout << std::endl << "exp[0]: " << exp_freq[0] << std::endl;
+//    std::cout << std::endl << "exp[1]: " << exp_freq[1] << std::endl;
+//    std::cout << std::endl << "exp[2]: " << exp_freq[2] << std::endl;
+//
+//    std::cout << std::endl << "size main" << exp_freq.size() << std::endl;
 
 
     std::cout << "Ho: The data is consistent with a Hypergeometric distribution  "<< a << ' ' << b << ' ' << k << std::endl
               << "Ha: The data is consistent with a Hypergeometric distribution (5, 5, 4)" << std::endl;
 
     auto hist_p = std::vector<int>(11, 0); // histograms
+    auto hist_p_alt = std::vector<int>(11, 0); // histograms
+
     std::cout << std::endl << "p-value distribution for type 1 error: " << std::endl;
     std::cout << std::endl << "p-value rep: " << trials << std::endl;
 
@@ -181,8 +176,27 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     }
 
     std::fill(hist_p.begin(), hist_p.end(), 0);
-//    std::cout << std::endl << "p-value distribution for power: " << std::endl;
-//    show_p(hist_p, p_alt);
+
+
+    show_p(hist_p_alt, p_dist_alt, trials);
+    std::cout << std::endl << std::endl;
+
+    for (int i = 1; i < 11; ++i){
+        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
+
+    }
+    p_dist.clear();
+    for(int i = 1; i < hist_p.size(); i++)
+        p_dist.push_back(((double)hist_p[i - 1])/ trials);
+
+    std::cout << std::endl;
+
+    for (int i = 0; i < 10; ++i){
+        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist[i] << std::endl;
+
+    }
+
+    std::fill(hist_p.begin(), hist_p.end(), 0);
 
     return p;
 }

@@ -14,15 +14,12 @@
 void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_h, int trials, QPainter &painter){
 
     double *p = &p_dist[0];
-
-    float win_width = (float) win_w / LIMIT_X;
-    float x, width = WIDTH;
     int i;
     QFont *font = new QFont("Courier", 12);
     QPen pen;//
-//
-//    for (int i = 0; i < p_dist.size(); i++)
-//        std::cout << "hh " << i << " " << p_dist[i] << std::endl;
+
+    for (int i = 0; i < p_dist.size(); i++)
+        std::cout << "hh " << i << " " << p_dist[i] << std::endl;
 
     /**Parameters description**/
     int length = p_dist.size();
@@ -36,7 +33,6 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
     pen.setColor("palegreen");
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3 + 100, 200, "Actual");
-
 
 
     pen.setColor("lightsalmon");
@@ -62,46 +58,32 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
     painter.setPen(pen);
     painter.drawLine(win_w / 11, 10 * win_h / 11,  win_w / 11 + step_x * 10 , 10 * win_h / 11 - step_y * 10);
 
-
-    /** draw histogram **/
-//    for (i = 0; i < 11; i++) {
-//        painter.drawText(win_w / 18, 10 * win_h / 11 - i * step * 10, QString::number(i * step));
-//    }
     painter.setPen(pen);
-//    painter.drawText(3 * win_w / 25, 105 * win_h / 110, QString::number(0));
 
+    /*Draw plot*/
     pen.setWidth(2);
     pen.setColor("palegreen");
     painter.setPen(pen);
-    for (i = 1; i < length; i++) {
-        //numbers on the y-axes
-        painter.drawLine( win_w / 11 - 3, 10 * win_h / 11 - (i-1) * step_y,  win_w / 11 + 3, 10 * win_h / 11 - (i-1) * step_y);
-        painter.drawText(win_w / 11 - 40, 10 * win_h / 11 - (i-1) * step_y, QString::number((double)(i - 1)/10));
-        //numbers on the x-axes
-        painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - 3);
-        painter.drawText(win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 20, QString::number((double)(i - 1)/10));
 
-        painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - (i-1) * step_y * p[i-1],  win_w / 11 + i * step_x, 10 * win_h / 11 - i * step_y * p[i]);
+
+    painter.drawLine( win_w / 11 , 10 * win_h / 11,  win_w / 11 + step_x, 10 * win_h / 11 -  2 * step_y * p[2]);
+//    std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i+1) * step_y * p[i+1] << std::endl;
+
+    for (i = 2; i < length-1; i++) {
+        if (i == length - 2) {
+            painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i+1) * step_y * p[i] );
+//            std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i-1) * step_y * p[i-1] << std::endl;
+        }
+        else{
+            painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i+1) * step_y * p[i+1] );
+//            std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i-1) * step_y * p[i-1] / (double(i-1)/10) << std::endl;
+        }
     }
 
-    //numbers on the y-axes
-    painter.drawLine( win_w / 11 - 3, 10 * win_h / 11 - (i-1) * step_y,  win_w / 11 + 3, 10 * win_h / 11 - (i-1) * step_y);
-    painter.drawText(win_w / 11 - 40, 10 * win_h / 11 - (i-1) * step_y, QString::number((double)(i - 1)/10));
+    painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i-1],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i] );
+    painter.drawLine( win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i+1) * step_x, 10 * win_h / 11 -  (i+1) * step_y );
 
-    //numbers on the y-axes
-    painter.drawLine( win_w / 11 - 3, 10 * win_h / 11 - (i) * step_y,  win_w / 11 + 3, 10 * win_h / 11 - (i) * step_y);
-    painter.drawText(win_w / 11 - 40, 10 * win_h / 11 - (i) * step_y, QString::number((double)(i)/10));
-
-    painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - 3);
-    painter.drawText(win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 20, QString::number((double)(i - 1)/10));
-
-    painter.drawLine( win_w / 11 + (i) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i) * step_x, 10 * win_h / 11 - 3);
-    painter.drawText(win_w / 11 + (i) * step_x, 10 * win_h / 11 + 20, QString::number((double)(i)/10));
-
-    painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - (i-1) * step_y * p[i-1],  win_w / 11 + i * step_x, 10 * win_h / 11 - i * step_y * 1);
-
-
-
+    drawMinors(i, win_w, win_h, trials, step_x, step_y, length, painter);
 
     /** draw x and y axes **/
     pen.setWidth(2);
@@ -110,5 +92,16 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11, 10 * win_h / 11 - step_y * 10);
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
 
+}
 
+void drawMinors(int i,int win_w, int win_h, int trials, int step_x, int step_y, int length, QPainter &painter){
+
+    for (i = 1; i < length + 2; i++) {
+        //numbers on the y-axes
+        painter.drawLine( win_w / 11 - 3, 10 * win_h / 11 - (i-1) * step_y,  win_w / 11 + 3, 10 * win_h / 11 - (i-1) * step_y);
+        painter.drawText(win_w / 11 - 40, 10 * win_h / 11 - (i-1) * step_y, QString::number((double)(i - 1)/10));
+        //numbers on the x-axes
+        painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - 3);
+        painter.drawText(win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 20, QString::number((double)(i - 1)/10));
+    }
 }

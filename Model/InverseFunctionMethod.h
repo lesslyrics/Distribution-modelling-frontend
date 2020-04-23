@@ -16,6 +16,7 @@ public:
 
     static long long int findFactorial(int num);
 
+    ~InverseFunctionMethod()= default;;
 
 };
 
