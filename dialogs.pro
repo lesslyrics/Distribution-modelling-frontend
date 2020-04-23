@@ -30,20 +30,23 @@ SOURCES += \
     dialog.cpp \
     renderarea.cpp \
     intro.cpp \
-    pwindow.cpp
+    pwindow.cpp \
+    custom.cpp
 
 HEADERS += \
         mainwindow.h \
     dialog.h \
     renderarea.h \
     intro.h \
-    pwindow.h
+    pwindow.h \
+    custom.h
 
 FORMS += \
         mainwindow.ui \
     dialog.ui \
     intro.ui \
-    pwindow.ui
+    pwindow.ui \
+    custom.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

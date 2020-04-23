@@ -3,6 +3,7 @@
 #include "intro.h"
 #include "ui_mainwindow.h"
 #include "pwindow.h"
+#include "custom.h"
 #include <QColorDialog>
 #include <iostream>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -78,6 +79,52 @@ void MainWindow::on_actionPval_triggered() {
         ui->renderarea->getPDistAlt() =  p_dist_alt;
 
         ui->renderarea->getPType() =   pvalDialog->getPType();
+
+
+    }
+}
+
+
+/* If Color was chosen - draw a rectangle */
+void MainWindow::on_actionCustom_triggered() {
+
+    auto width = this->ui->renderarea->getLineWidth();
+    auto color = this->ui->renderarea->getRectColor();
+    auto customDialog = new Custom(width, color, this);
+    double chi_tmp = 0;
+    auto exp_freq = std::vector<double>(0, 0); // histograms
+    auto act_freq = std::vector<double>(0, 0); // histograms
+    auto p_dist = std::vector<double>(0, 0); // histograms
+    auto p_dist_alt = std::vector<double>(0, 0); // histograms
+
+
+    customDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
+
+
+    if (customDialog->exec() == QDialog::Accepted) {
+        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+
+        ui->renderarea->getMenu() = Menu::Custom;
+        ui->renderarea->getRectColor() = customDialog->getRectColor();
+        ui->renderarea->getChi() = customDialog->getChi();
+
+        ui->renderarea->getP() =    customDialog->getP();
+        ui->renderarea->getExpFreq() =  exp_freq;
+        ui->renderarea->getActFreq() =  act_freq;
+        ui->renderarea->getPDist() =  p_dist;
+        ui->renderarea->getPDistAlt() =  p_dist_alt;
+
+        ui->renderarea->getTrials() = 10000;
+        ui->renderarea->getPType() =  PType::Power;
+        ui->renderarea->getAlpha() = customDialog->getAlpha();
+
+        ui->renderarea->getSampleSizeMin() = customDialog->getSampleSizeMin();
+        ui->renderarea->getSampleSizeMed() = customDialog->getSampleSizeMed();
+        ui->renderarea->getSampleSizeMax() = customDialog->getSampleSizeMax();
+
+        ui->renderarea->getA() = customDialog->getA();
+        ui->renderarea->getB() = customDialog->getB();
+        ui->renderarea->getK() = customDialog->getK();
 
 
     }

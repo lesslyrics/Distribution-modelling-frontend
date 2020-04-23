@@ -22,6 +22,9 @@ add_executable(dialogs
         dialog.h
         dialog.ui
         dialogs.pro
+        custom.h
+        custom.cpp
+        custom.ui
         intro.cpp
         intro.h
         intro.ui

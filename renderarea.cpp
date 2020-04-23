@@ -25,15 +25,27 @@ void RenderArea::paintEventModel(QPainter &painter) {
 }
 
 
-
-/*Color - rectangle drawing*/
 void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
     auto x = this->width();
     auto y = this->height();
+    QString color = "palegreen";
 
-    createPlot(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type);
+    drawParams(sample_size, x, trials, painter, p_type );
+    createPlot(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
 
 }
+
+/*Color - rectangle drawing*/
+void RenderArea::paintEventCustom(QPainter &painter) {
+    auto x = this->width();
+    auto y = this->height();
+    QString color = "palegreen";
+    drawParamsCustom(a, b, k, sample_size_min, sample_size_med, sample_size_max, x, trials, painter);
+    createCustom(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+    drawAlpha(alpha, x, y, painter);
+
+}
+
 
 
 void RenderArea::paintEvent(QPaintEvent *event) {
@@ -46,6 +58,9 @@ void RenderArea::paintEvent(QPaintEvent *event) {
             break;
         case Menu::Pval:
             paintEventPval(painter, p_type);
+            break;
+        case Menu::Custom:
+            paintEventCustom(painter);
             break;
     }
 

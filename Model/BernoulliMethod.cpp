@@ -8,7 +8,9 @@
 #include "probdist.h"
 #include "Model.h"
 
-
+const int a_alt = 5;
+const int b_alt = 5;
+const int k_alt = 4;
 /**
  * method to activateModel random values using Bernoulli distribution
  * @param a
@@ -52,7 +54,7 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
     for (int l = 0; l < trials; ++l) {
         for (int j = 0; j != nt; ++j) {
             q1 = model.generateRandomValue(a, b, k);
-            q2 = model.generateRandomValue(5, 5, 4);
+            q2 = model.generateRandomValue(a_alt, b_alt, k_alt);
             h1[q1]++; // count
             h2[q2]++;
             //std::cout << "q1 " << q1 << std::endl;

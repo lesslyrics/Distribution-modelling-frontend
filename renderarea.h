@@ -6,7 +6,8 @@
 
 enum class Menu {
     Model,
-    Pval
+    Pval,
+    Custom
 };
 
 enum class ModellingType{
@@ -47,6 +48,16 @@ public:
 
     int &getTrials() { return trials; }
 
+    int &getSampleSizeMin() { return sample_size_min; }
+    int &getSampleSizeMed() { return sample_size_med; }
+    int &getSampleSizeMax() { return sample_size_max; }
+
+    double &getAlpha() { return alpha; }
+    int &getA() { return a; }
+    int &getB() { return b; }
+    int &getK() { return k; }
+
+
 
 
 protected:
@@ -56,6 +67,13 @@ private:
     Menu menu;
     QColor rect_color = Qt::white;
     int sample_size = 1;
+    int a;
+    int b;
+    int k;
+
+    int sample_size_min = 10;
+    int sample_size_med = 100;
+    int sample_size_max = 1000;
 
     int line_width;
 
@@ -69,6 +87,8 @@ private:
 
     int trials;
 
+    double alpha;
+
     std::vector<double> exp_freq;
     std::vector<double> act_freq;
     std::vector<double> p_dist;
@@ -78,6 +98,10 @@ private:
     void paintEventPval(QPainter &painter, PType p_type);
 
     void paintEventModel(QPainter &painter);
+
+    void paintEventCustom(QPainter &painter);
+
+
 };
 
 #endif // RENDERAREA_H
