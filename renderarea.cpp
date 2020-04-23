@@ -5,6 +5,7 @@
 #include <array>
 #include <iostream>
 #include <UI/Plot.h>
+#include <Model/PType.h>
 
 #include "UI/Histogram.h"
 
@@ -26,11 +27,12 @@ void RenderArea::paintEventModel(QPainter &painter) {
 
 
 /*Color - rectangle drawing*/
-void RenderArea::paintEventPval(QPainter &painter) {
+void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
     auto x = this->width();
     auto y = this->height();
 
-    createPlot(sample_size, p_dist, x, y, trials, painter);
+    createPlot(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type);
+
 }
 
 
@@ -43,7 +45,7 @@ void RenderArea::paintEvent(QPaintEvent *event) {
             paintEventModel(painter);
             break;
         case Menu::Pval:
-            paintEventPval(painter);
+            paintEventPval(painter, p_type);
             break;
     }
 

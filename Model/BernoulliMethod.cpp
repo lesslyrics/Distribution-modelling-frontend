@@ -128,12 +128,9 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 
         p_dist_alt.clear();
         for (double & i : p_alt)
-            if (i > 0){
+            if (i > 0) {
                 p_dist_alt.push_back(i);
             }
-
-//        for(int i = 0; i < p_dist.size(); i++)
-//            std::cout << "pushed " << i << ' ' << p_dist[i] << std::endl;
 
 
         this->chi_sqrt = chi_sq;

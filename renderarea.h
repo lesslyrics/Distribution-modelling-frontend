@@ -2,6 +2,7 @@
 #define RENDERAREA_H
 
 #include <QWidget>
+#include <Model/PType.h>
 
 enum class Menu {
     Model,
@@ -32,6 +33,7 @@ public:
 
     ModellingType &getModelType() { return model_type; }
 
+    PType &getPType() { return p_type; }
 
     QColor &getRectColor() { return rect_color; }
 
@@ -41,6 +43,7 @@ public:
 
     std::vector<double> &getPDist() { return p_dist; }
 
+    std::vector<double> &getPDistAlt() { return p_dist_alt; }
 
     int &getTrials() { return trials; }
 
@@ -62,14 +65,17 @@ private:
 
     ModellingType model_type;
 
+    PType p_type;
+
     int trials;
 
     std::vector<double> exp_freq;
     std::vector<double> act_freq;
     std::vector<double> p_dist;
+    std::vector<double> p_dist_alt;
 
 
-    void paintEventPval(QPainter &painter);
+    void paintEventPval(QPainter &painter, PType p_type);
 
     void paintEventModel(QPainter &painter);
 };

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <Model/Model.h>
+#include <Model/PType.h>
 
 namespace Ui {
 class PWindow;
@@ -19,8 +20,9 @@ public:
 
     int &getSampleSize() { return sample_size; }
 
-    void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq, std::vector<double> &p_dist) {
-        p = model(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, a, b, k);
+    void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
+            std::vector<double> &actu_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+        p = model(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
         chi = chi_tmp;
     }
 
@@ -29,6 +31,9 @@ public:
     double &getChi() { return chi;}
 
     int &getTrials() { return trials;}
+
+    PType &getPType() { return p_type; }
+
 
     ~PWindow();
 
@@ -45,6 +50,9 @@ private:
     std::vector<double> exp_freq;
     std::vector<double> act_freq;
     std::vector<double> p_dist;
+    std::vector<double> p_dist_alt;
+
+    PType p_type;
 
 
     double p = 0;

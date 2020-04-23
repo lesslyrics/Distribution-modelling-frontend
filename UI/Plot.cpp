@@ -5,15 +5,22 @@
 #include <vector>
 #include <QtGui/QPainter>
 #include <iostream>
+#include <QPen>
+#include <Model/PType.h>
 #include "Plot.h"
 #define WIDTH 20.0
 #define LIMIT_X 300
 #define MOVE 100
 
 
-void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_h, int trials, QPainter &painter){
+void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt, int win_w, int win_h, int trials, QPainter &painter, PType p_type){
 
-    double *p = &p_dist[0];
+    double *p;
+    if (p_type == PType::Power)
+       p = &p_dist_alt[0];
+    else
+       p = &p_dist[0];
+
     int i;
     QFont *font = new QFont("Courier", 12);
     QPen pen;//
@@ -29,6 +36,8 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
     painter.drawText(2 * win_w / 3, 40, "Sample size:");
     painter.drawText(2 * win_w / 3, 80, "P-value trials:");
     painter.drawText(2 * win_w / 3, 120, "Should follow:");
+    painter.drawText(2 * win_w / 3, 160, "Distibution for:");
+
 
     pen.setColor("palegreen");
     painter.setPen(pen);
@@ -40,6 +49,11 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
     painter.drawText(2 * win_w / 3 + 120, 40, QString::number(sample_size));
     painter.drawText(2 * win_w / 3 + 150, 80, QString::number(trials));
     painter.drawText(2 * win_w / 3 + 140, 120, "Uniform");
+    if (p_type == PType::Power)
+        painter.drawText(2 * win_w / 3 + 160, 160, "Power");
+    else
+        painter.drawText(2 * win_w / 3 + 160, 160, "T.1 Error");
+
 
     painter.drawText(2 * win_w / 3 + 100, 220, "Expected");
 
@@ -54,47 +68,38 @@ void createPlot(int sample_size, std::vector<double> p_dist, int win_w, int win_
 
     /** draw expected **/
     pen.setWidth(2);
+    pen.setStyle(Qt::DashLine);
+
     pen.setColor("lightsalmon");
     painter.setPen(pen);
     painter.drawLine(win_w / 11, 10 * win_h / 11,  win_w / 11 + step_x * 10 , 10 * win_h / 11 - step_y * 10);
 
-    painter.setPen(pen);
 
     /*Draw plot*/
     pen.setWidth(2);
+    pen.setStyle(Qt::SolidLine);
+
     pen.setColor("palegreen");
     painter.setPen(pen);
 
+    if (p_type == PType::Power)
+        drawForPower(i, win_w, win_h, step_x, step_y, length, p, painter);
+    else
+        drawForError(i, win_w, win_h, step_x, step_y, length, p, painter);
 
-    painter.drawLine( win_w / 11 , 10 * win_h / 11,  win_w / 11 + step_x, 10 * win_h / 11 -  2 * step_y * p[2]);
-//    std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i+1) * step_y * p[i+1] << std::endl;
-
-    for (i = 2; i < length-1; i++) {
-        if (i == length - 2) {
-            painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i+1) * step_y * p[i] );
-//            std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i-1) * step_y * p[i-1] << std::endl;
-        }
-        else{
-            painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i+1) * step_y * p[i+1] );
-//            std::cout << "STEP:  " << (i) * step_y << " VALUE: " <<   (i-1) * step_y * p[i-1] / (double(i-1)/10) << std::endl;
-        }
-    }
-
-    painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i-1],  win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i] );
-    painter.drawLine( win_w / 11 + (i) * step_x, 10 * win_h / 11 -  (i) * step_y * p[i],  win_w / 11 + (i+1) * step_x, 10 * win_h / 11 -  (i+1) * step_y );
-
-    drawMinors(i, win_w, win_h, trials, step_x, step_y, length, painter);
+    drawMinors(i, win_w, win_h, step_x, step_y, length, painter);
 
     /** draw x and y axes **/
     pen.setWidth(2);
     pen.setColor("white");
+
     painter.setPen(pen);
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11, 10 * win_h / 11 - step_y * 10);
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
 
 }
 
-void drawMinors(int i,int win_w, int win_h, int trials, int step_x, int step_y, int length, QPainter &painter){
+void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter){
 
     for (i = 1; i < length + 2; i++) {
         //numbers on the y-axes
@@ -104,4 +109,31 @@ void drawMinors(int i,int win_w, int win_h, int trials, int step_x, int step_y, 
         painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - 3);
         painter.drawText(win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 20, QString::number((double)(i - 1)/10));
     }
+}
+
+
+void drawForPower(int i, int win_w, int win_h, double step_x, double step_y, int length, const double* p, QPainter &painter){
+
+    double height = 10 * step_y;
+
+    for (i = 0; i < length - 1; i++){
+        painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height * p[i + 1] );
+    }
+    painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height );
+
+
+}
+
+void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int length, double* p, QPainter &painter){
+
+    double height = 10 * step_y;
+    i = 0;
+    painter.drawLine( win_w / 11 , 10 * win_h / 11 ,  win_w / 11 + step_x, 10 * win_h / 11 - height * p[i]);
+
+    for (i = 1; i < length - 1; i++){
+        painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i - 1] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height * p[i] );
+    }
+    painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i - 1] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height );
+
+
 }

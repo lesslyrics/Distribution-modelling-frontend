@@ -109,10 +109,10 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
 
 
 auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
-           std::vector<double> &act_freq,std::vector<double> &p_dist, int a, int b, int k) -> double {
+           std::vector<double> &act_freq,std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
 
     return model(ModelType::Bern, trials, nt, chi, exp_freq,
-            act_freq,p_dist, a,  b, k);
+            act_freq,p_dist, p_dist_alt, a,  b, k);
 
 }
 
@@ -123,14 +123,14 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     switch ( type ) {
         case ModelType::Bern : {
             BernoulliMethod model(a);
-            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist);
+            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
             break;
         }
         case ModelType::Inv : {
             std::cout << "I AM HERE " << std::endl;
 
             InverseFunctionMethod model(a);
-            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist);
+            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
             break;
         }
         default:
@@ -160,43 +160,43 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     show_p(hist_p, p_dist, trials);
     std::cout << std::endl << std::endl;
 
-    for (int i = 1; i < 11; ++i){
-        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
-
-    }
+//    for (int i = 1; i < 11; ++i){
+//        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
+//
+//    }
     p_dist.clear();
     for(int i = 1; i < hist_p.size(); i++)
         p_dist.push_back(((double)hist_p[i - 1])/ trials);
 
     std::cout << std::endl;
-
-    for (int i = 0; i < 10; ++i){
-        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist[i] << std::endl;
-
-    }
+//
+//    for (int i = 0; i < 10; ++i){
+//        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist[i] << std::endl;
+//
+//    }
 
     std::fill(hist_p.begin(), hist_p.end(), 0);
-
+//----------------
 
     show_p(hist_p_alt, p_dist_alt, trials);
     std::cout << std::endl << std::endl;
 
     for (int i = 1; i < 11; ++i){
-        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
+        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p_alt[i - 1])/ trials << std::endl;
 
     }
-    p_dist.clear();
-    for(int i = 1; i < hist_p.size(); i++)
-        p_dist.push_back(((double)hist_p[i - 1])/ trials);
+    p_dist_alt.clear();
+    for(int i = 1; i < hist_p_alt.size(); i++)
+        p_dist_alt.push_back(((double)hist_p_alt[i - 1])/ trials);
 
-    std::cout << std::endl;
+    std::cout << "POWER" << std::endl;
 
     for (int i = 0; i < 10; ++i){
-        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist[i] << std::endl;
+        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist_alt[i] << std::endl;
 
     }
 
-    std::fill(hist_p.begin(), hist_p.end(), 0);
+    std::fill(hist_p_alt.begin(), hist_p_alt.end(), 0);
 
     return p;
 }

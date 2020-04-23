@@ -19,26 +19,9 @@ public:
 
     int &getSampleSize() { return sample_size; }
 
-//    double &generateModel(){
-//        ModelType type = ModelType::Bern;
-//        double p = 0;
-//        switch ( type ) {
-//            case ModelType::Bern : {
-//                BernoulliMethod mod(a);
-//                chi = mod.createDist(trials, a, b, k, p, exp_freq);
-//                break;
-//            }
-//            case ModelType::Inv : {
-//                InverseFunctionMethod model(a);
-//                chi = model.createDist(trials, a, b, k, p, exp_freq);
-//                break;
-//            }
-//        }
-//
-//    }
-
-    void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq, std::vector<double> &p_dist) {
-        p = model(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, a, b, k);
+    void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
+            std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+        p = model(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
         chi = chi_tmp;
     }
 

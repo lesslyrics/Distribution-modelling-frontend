@@ -49,7 +49,7 @@ add_executable(dialogs
         UI/Histogram.cpp
         UI/Histogram.h
         UI/Plot.cpp
-        UI/Plot.h Model/ModelType.h)
+        UI/Plot.h Model/ModelType.h Model/PType.h)
 
 
 target_link_libraries(dialogs ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
