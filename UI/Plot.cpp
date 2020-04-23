@@ -35,32 +35,32 @@ void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double>
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3, 40, "Sample size:");
     painter.drawText(2 * win_w / 3, 80, "P-value trials:");
-    painter.drawText(2 * win_w / 3, 120, "Should follow:");
-    painter.drawText(2 * win_w / 3, 160, "Distibution for:");
+    painter.drawText(2 * win_w / 3, 120, "Alternative:");
+    painter.drawText(2 * win_w / 3, 200, "Distibution for:");
 
 
     pen.setColor("palegreen");
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3 + 100, 200, "Actual");
+    painter.drawText(2 * win_w / 3 + 100, 240, "Actual");
 
 
     pen.setColor("lightsalmon");
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3 + 120, 40, QString::number(sample_size));
     painter.drawText(2 * win_w / 3 + 150, 80, QString::number(trials));
-    painter.drawText(2 * win_w / 3 + 140, 120, "Uniform");
+    painter.drawText(2 * win_w / 3 , 160, "Hypergeometric (5, 5, 4)");
     if (p_type == PType::Power)
-        painter.drawText(2 * win_w / 3 + 160, 160, "Power");
+        painter.drawText(2 * win_w / 3 + 160, 200, "Power");
     else
-        painter.drawText(2 * win_w / 3 + 160, 160, "T.1 Error");
+        painter.drawText(2 * win_w / 3 + 160, 200, "T.1 Error");
 
 
-    painter.drawText(2 * win_w / 3 + 100, 220, "Expected");
+    painter.drawText(2 * win_w / 3 + 100, 280, "Expected");
 
     pen.setColor("white");
     pen.setWidthF(4);
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 200, "Legend:");
+    painter.drawText(2 * win_w / 3, 240, "Legend:");
 
 
     double step_x = 5 * win_w / 110;
