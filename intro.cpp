@@ -10,8 +10,7 @@ Intro::Intro(QWidget* parent)
 
 {
     ui->setupUi(this);
-    this->ui->label->setText("<span style=\"color: white\"><a href=\"https://github.com/AlinaBoshchenko\">Created by @lesslyrics</a></span>");
-    this->ui->label->setTextFormat(Qt::RichText);
+    this->ui->label->setText("<a style=\"color: white\" href=\"https://github.com/AlinaBoshchenko\">Created by @lesslyrics</a>");    this->ui->label->setTextFormat(Qt::RichText);
     this->ui->label->setTextInteractionFlags(Qt::TextBrowserInteraction);
     this->ui->label->setOpenExternalLinks(true);
     this->ui->label->setStyleSheet("QLabel { text-decoration: none; }");

@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
  * When this menu component is selected draw a histogram for sample
  */
 void MainWindow::on_actionModel_triggered() {
+
+
     auto width = this->ui->renderarea->getLineWidth();
     auto color = this->ui->renderarea->getRectColor();
     auto modelDialog = new Dialog(width, color, this);

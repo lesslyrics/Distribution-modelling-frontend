@@ -70,7 +70,7 @@ private:
     int b;
     int k;
 
-    int sample_size_min = 10;
+    int sample_size_min = 0;
     int sample_size_med = 100;
     int sample_size_max = 1000;
 
@@ -99,6 +99,8 @@ private:
     void paintEventModel(QPainter &painter);
 
     void paintEventCustom(QPainter &painter);
+
+    void paintEventHello(QPainter &painter);
 
 
 };

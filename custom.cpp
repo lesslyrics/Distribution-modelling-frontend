@@ -68,6 +68,7 @@ void Custom::done(int r) {
         return;
     }
 
+    sample_size = 2;
 
     alpha = this->ui->sliderAlpha->value() * 0.5 / MAX;
 

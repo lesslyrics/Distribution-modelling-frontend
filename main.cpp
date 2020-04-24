@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
         std::cerr << ex.what() << std::endl;
         QMessageBox::warning(
                 nullptr,
-                QLatin1String("Sample05"),
+                QLatin1String("Sample excep"),
                 QString::fromUtf8(ex.what()));
     }
 }

@@ -15,21 +15,15 @@ using namespace std;
 void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, double chi, double p,
                      std::vector<double> &exp_freq, std::vector<double> &act_freq, QPainter &painter) {
 
-
     double *a = &exp_freq[0];
     double *b = &act_freq[0];
 
-    for (int i = 0; i < act_freq.size(); i++){
-        std::cout << "a[i] " <<  a[i] << std::endl;
-        std::cout << "b[i] " <<  b[i] << std::endl;
-
-    }
+    QPen pen;
 
     float win_width = (float) win_w / LIMIT_X;
     float x, width = WIDTH;
     int i;
     QFont *font = new QFont("Courier", 12);
-    QPen pen;//
     chi = static_cast<int>(chi * 1000 + (chi >= 0.0 ? 0.5 : -0.5)) / 1000.0;
     p = static_cast<int>(p * 1000 + (p >= 0.0 ? 0.5 : -0.5)) / 1000.0;
 
@@ -68,7 +62,9 @@ void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, 
     for (i = 0; i < 13; i++) {
         pen.setWidthF(2);
         painter.setPen(pen);
-        painter.drawText(win_w / 18 - 20, 10 * win_h / 11 - i * step * 10, QString::number(i * step));
+        double num = i * step;
+        num =  static_cast<int>(num * 1000 + (num >= 0.0 ? 0.5 : -0.5)) / 10000.0;
+        painter.drawText(win_w / 18 - 20, 10 * win_h / 11 - i * step * 10, QString::number(num));
         painter.drawLine(win_w / 11 - 3, 10 * win_h / 11 - i * step * 10, win_w / 11 + 3, 10 * win_h / 11 - i * step * 10);
     }
     painter.drawText(3 * win_w / 25, 105 * win_h / 110, QString::number(0));

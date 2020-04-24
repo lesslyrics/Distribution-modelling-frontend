@@ -14,6 +14,7 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
         : QDialog(parent), ui(new Ui::Dialog), sample_size(width), rect_color(color) {
     ui->setupUi(this);
 
+
     this->ui->lineEditSize->setText(QString::number(100));
     this->ui->lineEdit_A->setText(QString::number(30));
     this->ui->lineEdit_B->setText(QString::number(25));

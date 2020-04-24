@@ -26,8 +26,6 @@ void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double>
     QFont *font = new QFont("Courier", 12);
     QPen pen;//
 
-    for (int i = 0; i < p_dist.size(); i++)
-        std::cout << "hh " << i << " " << p_dist[i] << std::endl;
 
     /**Parameters description**/
     int length = 10;

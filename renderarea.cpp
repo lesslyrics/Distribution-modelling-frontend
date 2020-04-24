@@ -6,7 +6,7 @@
 #include <iostream>
 #include <UI/Plot.h>
 #include <Model/PType.h>
-
+#include <QTimer>
 #include "UI/Histogram.h"
 
 RenderArea::RenderArea(QWidget *parent)
@@ -17,8 +17,12 @@ void RenderArea::paintEventModel(QPainter &painter) {
 
     auto x = this->width();
     auto y = this->height();
-
-    createHistogram(sample_size, model_type, x, y, chi, p, exp_freq, act_freq, painter);
+    QPen pen;
+    pen.setColor("black");
+    painter.setPen(pen);
+    painter.drawRect(0, 0, x, y);
+    if (sample_size != 1)
+         createHistogram(sample_size, model_type, x, y, chi, p, exp_freq, act_freq, painter);
 
 }
 
@@ -38,17 +42,32 @@ void RenderArea::paintEventCustom(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
     QString color = "palegreen";
+    sample_size = sample_size_min;
     drawParamsCustom(a, b, k, sample_size_min, sample_size_med, sample_size_max, x, trials, painter);
     createCustom(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
     drawAlpha(alpha, x, y, painter);
 
 }
 
+void RenderArea::paintEventHello(QPainter &painter) {
+    auto x = this->width();
+    auto y = this->height();
+    if (sample_size == 1) {
+        QFont *font = new QFont("Courier", 14);
+        QPen pen;//
+        painter.setFont(*font);
+        pen.setColor("white");
+        painter.setPen(pen);
+        painter.drawText(x / 15, y / 8, "Welcome to the tool for distribution modelling.");
+        painter.drawText(x / 15, y / 5, "Select menu item to start_");
+    }
+}
 
 
 void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
+    paintEventHello(painter);
 
     switch (menu) {
         case Menu::Model:
