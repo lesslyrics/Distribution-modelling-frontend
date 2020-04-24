@@ -10,6 +10,12 @@
 
 const int MAX = 50;
 
+/**
+ * Initialize
+ * @param width
+ * @param color
+ * @param parent
+ */
 Custom::Custom(int width, QColor color, QWidget *parent)
         : QDialog(parent), ui(new Ui::Custom), sample_size(width), rect_color(color) {
     ui->setupUi(this);
@@ -21,9 +27,10 @@ Custom::Custom(int width, QColor color, QWidget *parent)
     this->ui->lineEdit_B->setText(QString::number(5));
     this->ui->lineEdit_K->setText(QString::number(4));
 
-
 }
-/* parameters setting */
+/**
+ * parameters setting
+ **/
 void Custom::done(int r) {
 
     a = this->ui->lineEdit_A->text().toInt();
@@ -70,6 +77,9 @@ void Custom::done(int r) {
     QDialog::done(r);
 }
 
+/**
+ * Destructor
+ */
 Custom::~Custom() {
     delete ui;
 }

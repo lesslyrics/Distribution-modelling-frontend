@@ -14,8 +14,6 @@ RenderArea::RenderArea(QWidget *parent)
 
 
 void RenderArea::paintEventModel(QPainter &painter) {
-//    painter.setPen(QPen(rect_color, sample_size));
-//    painter.drawLine(100, 200, 100, 400);
 
     auto x = this->width();
     auto y = this->height();

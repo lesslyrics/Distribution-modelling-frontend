@@ -4,7 +4,12 @@
 #include <QMessageBox>
 #include <iostream>
 
-
+/**
+ * Initialize
+ * @param width
+ * @param color
+ * @param parent
+ */
 Dialog::Dialog(int width, QColor color, QWidget *parent)
         : QDialog(parent), ui(new Ui::Dialog), sample_size(width), rect_color(color) {
     ui->setupUi(this);
@@ -13,7 +18,6 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
     this->ui->lineEdit_A->setText(QString::number(30));
     this->ui->lineEdit_B->setText(QString::number(25));
     this->ui->lineEdit_K->setText(QString::number(20));
-
 
 
     if (color == Qt::red)
@@ -25,10 +29,9 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
 
 }
 
-void Dialog::on_radioButtonBern_toggled(bool checked) {
-}
-
-/* parameters setting */
+/**
+ * parameters setting
+ **/
 void Dialog::done(int r) {
     if (ui->radioButtonBern->isChecked())
         rect_color = Qt::red;
@@ -72,11 +75,12 @@ void Dialog::done(int r) {
 
     }
 
-
-//    std::cout << " type= " << modelType << std::endl;
     QDialog::done(r);
 }
 
+/**
+ * Destructor
+ */
 Dialog::~Dialog() {
     delete ui;
 }

@@ -10,7 +10,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 }
 
-/* If Format was chosen - draw a line */
+/**
+ * When this menu component is selected draw a histogram for sample
+ */
 void MainWindow::on_actionModel_triggered() {
     auto width = this->ui->renderarea->getLineWidth();
     auto color = this->ui->renderarea->getRectColor();
@@ -39,7 +41,6 @@ void MainWindow::on_actionModel_triggered() {
         else if (temp == ModelType::Inv)
             ui->renderarea->getModelType() = ModellingType::Inv;
 
-//        ui->renderarea->getChi() = modelDialog->activateModel(chi_tmp, 0, exp_freq);
         ui->renderarea->getP() =    modelDialog->getP();
         ui->renderarea->getExpFreq() =  exp_freq;
         ui->renderarea->getActFreq() =  act_freq;
@@ -47,7 +48,9 @@ void MainWindow::on_actionModel_triggered() {
     }
 }
 
-/* If Color was chosen - draw a rectangle */
+/**
+ * When this menu component is selected draw a plot for the p-values distribution
+ */
 void MainWindow::on_actionPval_triggered() {
 
     auto width = this->ui->renderarea->getLineWidth();
@@ -85,7 +88,10 @@ void MainWindow::on_actionPval_triggered() {
 }
 
 
-/* If Color was chosen - draw a rectangle */
+/**
+ * When this menu component is selected draw a plot to show difference
+ * for p-values distribution depending on the sample_size and alpha
+ */
 void MainWindow::on_actionCustom_triggered() {
 
     auto width = this->ui->renderarea->getLineWidth();
@@ -130,7 +136,9 @@ void MainWindow::on_actionCustom_triggered() {
     }
 }
 
-
+/**
+ * When this menu component is selected show hi message
+ */
 void MainWindow::on_actionHi_triggered() {
 
       auto dialog = new Intro(this);
@@ -140,6 +148,9 @@ void MainWindow::on_actionHi_triggered() {
       dialog->activateWindow();
 }
 
+/**
+ * When this menu component is selected - exit
+ */
 void MainWindow::on_actionExit_triggered(){
     QApplication::exit();
 }

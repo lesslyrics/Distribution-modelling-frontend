@@ -15,10 +15,15 @@ Q_OBJECT
 public:
     explicit Custom(int width, QColor color, QWidget *parent = nullptr);
 
-    QColor &getRectColor() { return rect_color; }
 
-    int &getSampleSize() { return sample_size_min; }
-
+    /**
+     * Acquire parameters for drawing
+     * @param chi_tmp
+     * @param expr_freq
+     * @param actu_freq
+     * @param p_dist
+     * @param p_dist_alt
+     */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
                        std::vector<double> &actu_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
         p = model(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
@@ -57,9 +62,13 @@ public:
 
     }
 
+    /**
+      * Getters
+     **/
     int &getSampleSizeMin() { return sample_size_min; }
     int &getSampleSizeMed() { return sample_size_med; }
     int &getSampleSizeMax() { return sample_size_max; }
+    QColor &getRectColor() { return rect_color; }
 
     double &getAlpha() { return alpha; }
 
@@ -69,14 +78,11 @@ public:
     int &getB() { return b; }
     int &getK() { return k; }
 
-
     double &getChi() { return chi;}
 
-    ModelType &getModelType() { return modelType; }
-
-
-//
-
+    /**
+     * Destructor
+     */
     ~Custom();
 
 protected:
@@ -97,7 +103,6 @@ private:
     double chi = 0;
     int trials = 10000;
     ModelType modelType = ModelType::Bern;
-    PType p_type = PType::Power;
 
     int sample_size  = 50;
 

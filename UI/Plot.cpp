@@ -13,8 +13,6 @@
 #define MOVE 100
 
 
-
-
 void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,
         int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color){
 
