@@ -58,8 +58,9 @@ void RenderArea::paintEventHello(QPainter &painter) {
         painter.setFont(*font);
         pen.setColor("white");
         painter.setPen(pen);
-        painter.drawText(x / 15, y / 8, "Welcome to the tool for distribution modelling.");
-        painter.drawText(x / 15, y / 5, "Select menu item to start_");
+        painter.drawText(x / 15, y / 8, "Hello friend");
+        painter.drawText(x / 15, y / 5, "Welcome to the tool for distribution modelling");
+        painter.drawText(x / 15, 2 * y / 7, "Select menu item to start_");
     }
 }
 
