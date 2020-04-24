@@ -1,12 +1,10 @@
 #include <iostream>
 #include "BernoulliMethod.h"
 #include "InverseFunctionMethod.h"
-#include "HyperGeomTheoretical.h"
 #include <vector>
 #include "probdist.h"
 #include "Model.h"
 
-#include <boost/math/distributions/chi_squared.hpp>
 /**
  * hyperparameters
  * */
@@ -27,7 +25,6 @@ double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::v
     df = -1;
     for (int i = 0; i != a + 1; ++i) { //
         if (h_freq[i] != -1) {
-            double e1 = double(h1[i]) * 100 / double(nt);
             chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
             df++;
         }
@@ -99,15 +96,13 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
 
     for (int j = 1; j <= 10; ++j){
         hist_p[j] = (double)(hist_p[j - 1] + hist_p[j]);
-        // std::cout << std::endl <<  hist_p[j-1] << std::endl;
     }
-
-
-
 
 }
 
-
+/**
+ * Main method for distribution generation activation
+ */
 auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
            std::vector<double> &act_freq,std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
 
@@ -140,40 +135,17 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     std::cout << "chi_sq: " << chi << std::endl;
     std::cout << "p: " << p << std::endl;
 
-//    std::cout << std::endl << "exp[0]: " << exp_freq[0] << std::endl;
-//    std::cout << std::endl << "exp[1]: " << exp_freq[1] << std::endl;
-//    std::cout << std::endl << "exp[2]: " << exp_freq[2] << std::endl;
-//
-//    std::cout << std::endl << "size main" << exp_freq.size() << std::endl;
-
-
-    std::cout << "Ho: The data is consistent with a Hypergeometric distribution  "<< a << ' ' << b << ' ' << k << std::endl
-              << "Ha: The data is consistent with a Hypergeometric distribution (5, 5, 4)" << std::endl;
-
     auto hist_p = std::vector<int>(11, 0); // histograms
     auto hist_p_alt = std::vector<int>(11, 0); // histograms
-
-    std::cout << std::endl << "p-value distribution for type 1 error: " << std::endl;
-    std::cout << std::endl << "p-value rep: " << trials << std::endl;
-
 
     show_p(hist_p, p_dist, trials);
     std::cout << std::endl << std::endl;
 
-//    for (int i = 1; i < 11; ++i){
-//        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
-//
-//    }
     p_dist.clear();
     for(int i = 1; i < hist_p.size(); i++)
         p_dist.push_back(((double)hist_p[i - 1])/ trials);
 
     std::cout << std::endl;
-//
-//    for (int i = 0; i < 10; ++i){
-//        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist[i] << std::endl;
-//
-//    }
 
     std::fill(hist_p.begin(), hist_p.end(), 0);
 //----------------

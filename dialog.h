@@ -1,5 +1,4 @@
-#ifndef DIALOG_H
-#define DIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <Model/Model.h>
@@ -60,5 +59,3 @@ private:
     Ui::Dialog *ui;
 
 };
-
-#endif // DIALOG_H

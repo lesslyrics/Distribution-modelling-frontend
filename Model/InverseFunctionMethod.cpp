@@ -51,7 +51,20 @@ int InverseFunctionMethod::generateRandomValue(int a, int b, int k) {
     return i;
 }
 
-
+/**
+ * Generate distribution
+ * @param trials
+ * @param a
+ * @param b
+ * @param k
+ * @param nt
+ * @param p_fin
+ * @param exp_freq
+ * @param act_freq
+ * @param p_dist
+ * @param p_dist_alt
+ * @return
+ */
 double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
                                    std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
 
@@ -157,11 +170,6 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
             if (i > 0) {
                 p_dist_alt.push_back(i);
             }
-
-
-        this->chi_sqrt = chi_sq;
-        this->p_value = p_fin;
-        this->size = trials;
 
     }
     return chi_sq;

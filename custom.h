@@ -1,6 +1,4 @@
-#ifndef CUSTOM_H
-#define CUSTOM_H
-
+#pragma once
 #include <QDialog>
 #include <Model/Model.h>
 #include <Model/PType.h>
@@ -111,5 +109,3 @@ private:
     Ui::Custom *ui;
 
 };
-
-#endif

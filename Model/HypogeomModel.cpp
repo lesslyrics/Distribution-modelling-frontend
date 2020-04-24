@@ -7,12 +7,14 @@
 #include "HypogeomModel.h"
 #include "time.h"
 
-const int NT = 100000; // number of trials
 
-
+/**
+ * Version for random numbers, high speed
+ * **/
 double HypogeomModel::randomRange(int min, int max) {
 
-    return double( rand())/RAND_MAX* ( max - min ) + min;
+    return double(rand()) / RAND_MAX * (max - min) + min;
+}
 
 /**
  * preferred version for more accurate random numbers, but with lower speed **/
@@ -22,22 +24,16 @@ double HypogeomModel::randomRange(int min, int max) {
 //    std::uniform_real_distribution<> dis(min, max);
 //    return dis(gen);
 
-
-}
-
+/**
+ * Generate random value
+ */
 int HypogeomModel::generateRandomValue(int a, int b, int k) {
     return 0;
 }
 
-
-//std::vector<int> HypogeomModel::generateHist(int a, int b, int k) {
-//    int q;
-//    for (int j = 0; j != NT; ++j) {
-//        q = generateRandomValue(a, b, k);
-//        h[q]++; // count
-//    }
-//}
-
+/**
+ * Generate distribution
+ */
 double HypogeomModel::createDist(int trials, int a, int b, int k, int nt,
         double &p_fin, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt){
     return 0;

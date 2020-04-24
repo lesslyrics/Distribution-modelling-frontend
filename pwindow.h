@@ -1,6 +1,4 @@
-#ifndef PWINDOW_H
-#define PWINDOW_H
-
+#pragma once
 #include <QDialog>
 #include <Model/Model.h>
 #include <Model/PType.h>
@@ -63,6 +61,4 @@ private:
     QColor rect_color;
     Ui::PWindow *ui;
 };
-
-#endif // PWINDOW_H
 

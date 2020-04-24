@@ -61,7 +61,7 @@ void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double>
 
     drawMinors(i, win_w, win_h, step_x, step_y, length, painter);
 
-    /** draw x and y axes **/
+    // draw x and y axes
     pen.setWidth(2);
     pen.setColor("white");
 
@@ -84,7 +84,7 @@ void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int le
 }
 
 void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType p_type ){
-    /**Parameters description**/
+    //Parameters description
     QPen pen;//
 
     int length = 10;
@@ -167,10 +167,9 @@ void createCustom(int sample_size, std::vector<double> p_dist, std::vector<doubl
 }
 
 void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_med, int sample_size_max, int win_w, int trials, QPainter &painter){
-    /**Parameters description**/
+    //Parameters description
     QPen pen;//
 
-    int length = 10;
     QFont *font = new QFont("Courier", 12);
     painter.setFont(*font);
     pen.setColor("gold");
@@ -203,7 +202,7 @@ void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_
 
 void drawAlpha(double alpha, double win_w, double win_h, QPainter &painter){
 
-    /** draw alpha-level **/
+    // draw alpha-level
     double y = 5 * win_w / 110 * 10;
     double x = 6 * win_h / 110 * 12;
 

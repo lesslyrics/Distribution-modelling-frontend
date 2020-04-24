@@ -1,5 +1,4 @@
-#ifndef INTRO_H
-#define INTRO_H
+#pragma once
 #include <QDialog>
 
 
@@ -19,7 +18,4 @@ private:
   Ui::Intro* ui;
 
 };
-
-
-#endif // INTRO_H
 

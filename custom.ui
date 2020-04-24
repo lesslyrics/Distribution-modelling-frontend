@@ -110,7 +110,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Enter parameters:</string>
+     <string>Enter alternative  parameters:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">

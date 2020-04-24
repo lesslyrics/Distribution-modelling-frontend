@@ -4,9 +4,6 @@
 
 #include "Histogram.h"
 
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
 
 #include <iostream>
 
@@ -42,32 +39,12 @@ void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, 
     painter.setFont(*font);
     pen.setColor("white");
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 40, "Chi-squared:");
-    painter.drawText(2 * win_w / 3, 80, "P-value:");
-    painter.drawText(2 * win_w / 3, 140, "Sample size:");
-    painter.drawText(2 * win_w / 3, 180, "Method:");
 
-    pen.setColor("thistle");
-    painter.setPen(pen);
-    painter.drawText(2 * win_w / 3 + 100, 240, "Expected");
-
-    pen.setColor("darkorange");
-    painter.setPen(pen);
-    painter.drawText(2 * win_w / 3 + 120, 40, QString::number(chi));
-    painter.drawText(2 * win_w / 3 + 80, 80, QString::number(p));
-    painter.drawText(2 * win_w / 3 + 120, 140, QString::number(sample_size));
-
-    if (type == ModellingType::Bern)
-        painter.drawText(2 * win_w / 3 + 80, 180, "Bernoulli");
-    else if (type == ModellingType::Inv)
-        painter.drawText(2 * win_w / 3 + 80, 180, "Inverse functions");
-
-    painter.drawText(2 * win_w / 3 + 100, 220, "Actual");
+    printHistParams(sample_size, type, win_w, chi, p, exp_freq, act_freq, painter);
 
     pen.setColor("white");
     pen.setWidthF(4);
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 220, "Legend:");
 
 //-------------------------------------Find boundaries for the plot
     vector<double> vect_tmp;
@@ -135,4 +112,44 @@ void createBox(float x, float y, float width, float height, QPainter &painter, Q
     painter.setPen(pen);
     painter.drawLine(x, y - width / 2, x, y - width / 2 - height * 10);
 
+}
+
+/**
+ * Draw histogram parameters
+ */
+void printHistParams(int sample_size, ModellingType type, int win_w, double chi, double p,
+                     std::vector<double> &exp_freq, std::vector<double> &act_freq, QPainter &painter){
+    QPen pen;
+    QFont *font = new QFont("Courier", 12);
+    painter.setFont(*font);
+    /**Parameters description**/
+    painter.setFont(*font);
+    pen.setColor("white");
+    painter.setPen(pen);
+    painter.drawText(2 * win_w / 3, 40, "Chi-squared:");
+    painter.drawText(2 * win_w / 3, 80, "P-value:");
+    painter.drawText(2 * win_w / 3, 140, "Sample size:");
+    painter.drawText(2 * win_w / 3, 180, "Method:");
+
+    pen.setColor("thistle");
+    painter.setPen(pen);
+    painter.drawText(2 * win_w / 3 + 100, 240, "Expected");
+
+    pen.setColor("darkorange");
+    painter.setPen(pen);
+    painter.drawText(2 * win_w / 3 + 120, 40, QString::number(chi));
+    painter.drawText(2 * win_w / 3 + 80, 80, QString::number(p));
+    painter.drawText(2 * win_w / 3 + 120, 140, QString::number(sample_size));
+
+    if (type == ModellingType::Bern)
+        painter.drawText(2 * win_w / 3 + 80, 180, "Bernoulli");
+    else if (type == ModellingType::Inv)
+        painter.drawText(2 * win_w / 3 + 80, 180, "Inverse functions");
+
+    painter.drawText(2 * win_w / 3 + 100, 220, "Actual");
+
+    pen.setColor("white");
+    pen.setWidthF(4);
+    painter.setPen(pen);
+    painter.drawText(2 * win_w / 3, 220, "Legend:");
 }

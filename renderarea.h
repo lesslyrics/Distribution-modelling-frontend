@@ -1,5 +1,4 @@
-#ifndef RENDERAREA_H
-#define RENDERAREA_H
+#pragma once
 
 #include <QWidget>
 #include <Model/PType.h>
@@ -103,5 +102,3 @@ private:
 
 
 };
-
-#endif // RENDERAREA_H
