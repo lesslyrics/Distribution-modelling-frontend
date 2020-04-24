@@ -23,7 +23,7 @@ const int FREQ = 5;
 double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df, int a, int nt) {
     double chi_sq = 0;
     df = -1;
-    for (int i = 0; i != a + 1; ++i) { //
+    for (int i = 0; i != a + 1; ++i) {
         if (h_freq[i] != -1) {
             chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
             df++;
@@ -122,8 +122,6 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
             break;
         }
         case ModelType::Inv : {
-            std::cout << "I AM HERE " << std::endl;
-
             InverseFunctionMethod model(a);
             chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
             break;
@@ -131,9 +129,6 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
         default:
             return 1;
     }
-
-    std::cout << "chi_sq: " << chi << std::endl;
-    std::cout << "p: " << p << std::endl;
 
     auto hist_p = std::vector<int>(11, 0); // histograms
     auto hist_p_alt = std::vector<int>(11, 0); // histograms
@@ -153,20 +148,11 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     show_p(hist_p_alt, p_dist_alt, trials);
     std::cout << std::endl << std::endl;
 
-    for (int i = 1; i < 11; ++i){
-        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p_alt[i - 1])/ trials << std::endl;
 
-    }
     p_dist_alt.clear();
     for(int i = 1; i < hist_p_alt.size(); i++)
         p_dist_alt.push_back(((double)hist_p_alt[i - 1])/ trials);
 
-    std::cout << "POWER" << std::endl;
-
-    for (int i = 0; i < 10; ++i){
-        std::cout << "[" << (double) i / 10 << "," << (double) (i + 1) / 10 << "] : " << p_dist_alt[i] << std::endl;
-
-    }
 
     std::fill(hist_p_alt.begin(), hist_p_alt.end(), 0);
 

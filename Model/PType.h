@@ -4,6 +4,9 @@
 
 #pragma once
 
+/**
+ * Type of the p-values distribution
+ */
 enum class PType{
     Error,
     Power,

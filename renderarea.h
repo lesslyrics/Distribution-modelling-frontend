@@ -57,8 +57,6 @@ public:
     int &getK() { return k; }
 
 
-
-
 protected:
     void paintEvent(QPaintEvent *event) override;
 

@@ -3,6 +3,7 @@
 //
 
 #include "Histogram.h"
+#include <math.h>
 
 
 #include <iostream>
@@ -63,7 +64,7 @@ void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, 
         pen.setWidthF(2);
         painter.setPen(pen);
         double num = i * step;
-        num =  static_cast<int>(num * 1000 + (num >= 0.0 ? 0.5 : -0.5)) / 10000.0;
+        num = roundf(num * 10) / 10;
         painter.drawText(win_w / 18 - 20, 10 * win_h / 11 - i * step * 10, QString::number(num));
         painter.drawLine(win_w / 11 - 3, 10 * win_h / 11 - i * step * 10, win_w / 11 + 3, 10 * win_h / 11 - i * step * 10);
     }

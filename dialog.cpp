@@ -65,15 +65,10 @@ void Dialog::done(int r) {
 
     if (ui->radioButtonBern->isChecked()){
         modelType = ModelType::Bern;
-           std::cout << " type= bern"  << std::endl;
-
     }
 
     else if (ui->radioButtonInverse->isChecked()){
-        std::cout << " type=inv"  << std::endl;
-
         modelType = ModelType::Inv;
-
     }
 
     QDialog::done(r);

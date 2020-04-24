@@ -56,10 +56,6 @@ public:
             }
         chi = chi_tmp;
 
-        for (double & i : p_alt_temp)
-            std::cout << "p-dist-alt:" << i << std::endl;
-        std::cout << std::endl;
-
     }
 
     /**

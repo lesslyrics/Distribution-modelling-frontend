@@ -4,6 +4,9 @@
 
 #pragma once
 
+/**
+ * Type of the modelling method
+ */
 enum class ModelType{
     Bern,
     Inv

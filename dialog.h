@@ -33,7 +33,7 @@ public:
      * @param p_dist_alt
      */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
-            std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+            std::vector<double> &p_dist, std::vector<double> &p_dist_alt){
         p = model(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
         chi = chi_tmp;
     }

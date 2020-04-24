@@ -26,10 +26,10 @@ int InverseFunctionMethod::generateRandomValue(int a, int b, int k) {
     int i = 0;
     int n = a + b;
 
-    std::cout <<"fac1 " << (long double)(findFactorial(b) * findFactorial(n-k)) <<  std::endl ;
-    std::cout <<"fac2 " << (long double)(findFactorial(n - a - k)) << std::endl;
-
-    std::cout <<"fac3 " << (long double)(findFactorial(n)) <<  std::endl ;
+//    std::cout <<"fac1 " << (long double)(findFactorial(b) * findFactorial(n-k)) <<  std::endl ;
+//    std::cout <<"fac2 " << (long double)(findFactorial(n - a - k)) << std::endl;
+//
+//    std::cout <<"fac3 " << (long double)(findFactorial(n)) <<  std::endl ;
 
     long double p = (long double)(findFactorial(b) * findFactorial(n - k)) / findFactorial(n - a - k) / findFactorial(n);
     long double l = p;
@@ -90,7 +90,7 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
             q1 = model.generateRandomValue(a, b, k);
             q2 = model.generateRandomValue(5, 5, 4);
             q_temp = model_temp.generateRandomValue(a, b, k);
-            std::cout  << j << ": q1 "  << q1 << " q_temp " << q_temp << std::endl;
+//            std::cout  << j << ": q1 "  << q1 << " q_temp " << q_temp << std::endl;
 
             h1[q1]++; // count
             h2[q2]++;
@@ -158,7 +158,6 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
         std::fill(h_freq.begin(), h_freq.end(), 0);
 
 
-//        std::cout << std::endl << "size bern " << exp_freq.size() << std::endl;
         p_dist.clear();
         for (double & i : p)
             if (i > 0){

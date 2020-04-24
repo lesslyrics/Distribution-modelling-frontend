@@ -26,7 +26,7 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
         double alpha = randomRange(0, 1);
         double pivot = double(a - j) / (n - i);
         if (alpha < pivot)
-            j++;  //std::cout << " j: " << j << std::endl;
+            j++;
         i++;
     } while (i < k);
     int phi = j;
@@ -64,15 +64,13 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
     std::vector<double> h(a + 1, 0);
     std::vector<double> h_freq(a + 1, 0);
 
-    std::cout << "here" << std::endl;
     BernoulliMethod model(a);
     for (int l = 0; l < trials; ++l) {
         for (int j = 0; j != nt; ++j) {
             q1 = model.generateRandomValue(a, b, k);
             q2 = model.generateRandomValue(a_alt, b_alt, k_alt);
-            h1[q1]++; // count
+            h1[q1]++;
             h2[q2]++;
-            //std::cout << "q1 " << q1 << std::endl;
         }
         for (int i = 0; i != a + 1; ++i) {
             h[i] = model_t.hyperGeomTheor(a + b, a, k, i);
@@ -82,7 +80,7 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
         merge_sample(h_freq, h, h1, h2);
 
 
-        for (int i = 0; i != a + 1; ++i) { //
+        for (int i = 0; i != a + 1; ++i) {
             double e1 = double(h1[i]) * 100 / double(nt);
             double e2 = double(h2[i]) * 100 / double(nt);
         }
@@ -117,7 +115,6 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
         std::fill(h1.begin(), h1.end(), 0);
         std::fill(h2.begin(), h2.end(), 0);
         std::fill(h_freq.begin(), h_freq.end(), 0);
-
 
         p_dist.clear();
         for (double & i : p)

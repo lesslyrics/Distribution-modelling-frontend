@@ -123,12 +123,10 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
 void drawForPower(int i, int win_w, int win_h, double step_x, double step_y, int length, const double* p, QPainter &painter){
 
     double height = 10 * step_y;
-
     for (i = 0; i < length - 1; i++){
         painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height * p[i + 1] );
     }
     painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height );
-
 
 }
 

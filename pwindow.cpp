@@ -52,17 +52,14 @@ void PWindow::done(int r) {
 
     if (ui->radioButtonError->isChecked()){
         p_type = PType::Error;
-        std::cout << " type_p= error"  << std::endl;
 
     }
 
     else if (ui->radioButtonPower->isChecked()){
-        std::cout << " type_p=pow"  << std::endl;
         p_type = PType::Power;
 
     }
 
-//    std::cout << " type= " << modelType << std::endl;
     QDialog::done(r);
 }
 

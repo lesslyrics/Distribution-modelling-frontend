@@ -72,9 +72,6 @@ void Custom::done(int r) {
 
     alpha = this->ui->sliderAlpha->value() * 0.5 / MAX;
 
-    std::cout << "alpha: " << alpha << std::endl;
-
-//    std::cout << " type= " << modelType << std::endl;
     QDialog::done(r);
 }
 
