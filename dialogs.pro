@@ -31,7 +31,15 @@ SOURCES += \
     renderarea.cpp \
     intro.cpp \
     pwindow.cpp \
-    custom.cpp
+    custom.cpp \
+    Model/BernoulliMethod.cpp \
+    Model/HyperGeomTheoretical.cpp \
+    Model/HypogeomModel.cpp \
+    Model/InverseFunctionMethod.cpp \
+    Model/Model.cpp \
+    Model/probdist.cpp \
+    UI/Histogram.cpp \
+    UI/Plot.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +47,17 @@ HEADERS += \
     renderarea.h \
     intro.h \
     pwindow.h \
-    custom.h
+    custom.h \
+    Model/BernoulliMethod.h \
+    Model/HyperGeomTheoretical.h \
+    Model/HypogeomModel.h \
+    Model/InverseFunctionMethod.h \
+    Model/Model.h \
+    Model/ModelType.h \
+    Model/probdist.h \
+    Model/PType.h \
+    UI/Histogram.h \
+    UI/Plot.h
 
 FORMS += \
         mainwindow.ui \
