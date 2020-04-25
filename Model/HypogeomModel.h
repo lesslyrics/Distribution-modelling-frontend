@@ -29,5 +29,5 @@ public:
                               std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist,
                               std::vector<double> &p_dist_alt);
 
-//    virtual ~HypogeomModel() = default;
+    virtual ~HypogeomModel() = default;
 };

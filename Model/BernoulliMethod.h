@@ -26,5 +26,5 @@ public:
     /**
      * Destructor
      */
-    ~BernoulliMethod()  = default;
+    ~BernoulliMethod() override = default;
 };
