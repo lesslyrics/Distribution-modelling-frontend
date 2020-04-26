@@ -158,7 +158,7 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
         dist.setExpectedFreq(exp_freq_temp);
         dist.setExpected(exp_temp);
 
-//----------------------------------------------
+//-----------------------------------------------
 
         chiStat.computeStatistics(*model, dist, trials, nt);
         p.push_back(chiStat.getPValue());
