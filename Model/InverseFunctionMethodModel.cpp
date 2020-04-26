@@ -3,12 +3,13 @@
 //
 
 #include <iostream>
-#include "InverseFunctionMethod.h"
+#include <iomanip>
+#include "InverseFunctionMethodModel.h"
 #include "HyperGeomTheoretical.h"
 #include "Model.h"
 
 /** This function finds factorial of large numbers **/
-long long int InverseFunctionMethod::findFactorial(int num) {
+long long int InverseFunctionMethodModel::findFactorial(int num) {
     int fact = 1, i;
     for (i = 1; i <= num; i++)
         fact = fact * i;
@@ -22,7 +23,7 @@ long long int InverseFunctionMethod::findFactorial(int num) {
  * @param k
  * @return
  */
-int InverseFunctionMethod::generateRandomValue(int a, int b, int k) {
+int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0;
     int n = a + b;
 
@@ -58,9 +59,9 @@ int InverseFunctionMethod::generateRandomValue(int a, int b, int k) {
  * @param p_dist_alt
  * @return
  */
-double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
-                                         std::vector<double> &exp_freq, std::vector<double> &act_freq,
-                                         std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+double InverseFunctionMethodModel::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
+                                              std::vector<double> &exp_freq, std::vector<double> &act_freq,
+                                              std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
 
     HyperGeomTheoretical model_t;
     double chi_sq;
@@ -71,13 +72,13 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
     auto p = std::vector<double>(trials, 0); // histograms
     auto p_alt = std::vector<double>(trials, 0); // histograms
 
-    std::vector<int> h1(a + 1, 0); // histograms
-    std::vector<int> h2(a + 1, 0);
+    std::vector<double> h1(a + 1, 0); // histograms
+    std::vector<double> h2(a + 1, 0);
     std::vector<double> h(a + 1, 0);
     std::vector<double> h_freq(a + 1, 0);
 
-    InverseFunctionMethod model(a);
-    BernoulliMethod model_temp(a);
+    InverseFunctionMethodModel model(a);
+    BernoulliMethodModel model_temp(a);
 
     for (int l = 0; l < trials; ++l) {
         for (int j = 0; j != nt; ++j) {
@@ -95,7 +96,6 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
 
         merge_sample(h_freq, h, h1, h2);
 
-        //printing
 //        std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
 //                  << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)" <<
 //                  std::setw(30) << "Obs - Exp (n_i - n*p_i)" << std::setw(30) << "Obs - Exp Alt (n_i - n*p_i)"
@@ -109,6 +109,7 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
 
         exp_freq.clear();
         act_freq.clear();
+        actual_freq.clear();
 
         for (double &i : h_freq)
             if (i > 0) {
@@ -119,6 +120,12 @@ double InverseFunctionMethod::createDist(int trials, int a, int b, int k, int nt
             if (h_freq[i] > 0) {
                 act_freq.push_back(h1[i]);
             }
+
+        for (int i = 0; i != a + 1; i++)
+            if (h_freq[i] > 0){
+                actual_freq.push_back(h1[i]);
+            }
+
 
         chi_sq = calculate_chi(h_freq, h, h1, df, a, nt);
         chi_sq_alt = calculate_chi(h_freq, h, h2, df, a, nt);

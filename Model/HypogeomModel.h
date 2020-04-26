@@ -10,10 +10,11 @@ class HypogeomModel {
 
 protected:
     std::vector<int> h; // histograms
+    std::vector<double> actual_freq;
+    std::vector<double> actual_alt_freq;
 
 
 public:
-    explicit HypogeomModel(int a) { h = std::vector<int>(a, 0); }
 
     double randomRange(int min, int max);
 
@@ -30,4 +31,12 @@ public:
                               std::vector<double> &p_dist_alt);
 
     virtual ~HypogeomModel() = default;
+
+    const std::vector<double> &getActualFreq() const;
+
+    void setActualFreq(const std::vector<double> &actualFreq);
+
+    const std::vector<double> &getActualAltFreq() const;
+
+    void setActualAltFreq(const std::vector<double> &actualAltFreq);
 };

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "BernoulliMethod.h"
+#include "BernoulliMethodModel.h"
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
 #include "Model.h"
@@ -19,7 +19,7 @@ const int k_alt = 4;
  * @param k
  * @return
  */
-int BernoulliMethod::generateRandomValue(int a, int b, int k) {
+int BernoulliMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0, j = 0;
     int n = a + b;
     do {
@@ -47,8 +47,8 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
  * @param p_dist_alt
  * @return
  */
- double BernoulliMethod::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
-         std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+ double BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt, double &p_fin,
+                                         std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
 
     HyperGeomTheoretical model_t;
     double chi_sq;
@@ -59,12 +59,12 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
     auto p = std::vector<double>(trials, 0); // histograms
     auto p_alt = std::vector<double>(trials, 0); // histograms
 
-    std::vector<int> h1(a + 1, 0); // histograms
-    std::vector<int> h2(a + 1, 0);
+    std::vector<double> h1(a + 1, 0); // histograms
+    std::vector<double> h2(a + 1, 0);
     std::vector<double> h(a + 1, 0);
     std::vector<double> h_freq(a + 1, 0);
 
-    BernoulliMethod model(a);
+    BernoulliMethodModel model(a);
     for (int l = 0; l < trials; ++l) {
         for (int j = 0; j != nt; ++j) {
             q1 = model.generateRandomValue(a, b, k);
@@ -79,7 +79,6 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 
         merge_sample(h_freq, h, h1, h2);
 
-
         for (int i = 0; i != a + 1; ++i) {
             double e1 = double(h1[i]) * 100 / double(nt);
             double e2 = double(h2[i]) * 100 / double(nt);
@@ -87,6 +86,8 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
 
         exp_freq.clear();
         act_freq.clear();
+        actual_freq.clear();
+        actual_alt_freq.clear();
 
 
         for (double & i : h_freq)
@@ -99,6 +100,15 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
                 act_freq.push_back(h1[i]);
             }
 
+        for (int i = 0; i != a + 1; i++)
+            if (h_freq[i] > 0){
+                actual_freq.push_back(h1[i]);
+            }
+
+        for (int i = 0; i != a + 1; i++)
+            if (h2[i] > 0){
+                actual_alt_freq.push_back(h2[i]);
+            }
 
         chi_sq = calculate_chi(h_freq, h, h1, df, a, nt);
         chi_sq_alt = calculate_chi(h_freq, h, h2, df, a, nt);
@@ -128,6 +138,7 @@ int BernoulliMethod::generateRandomValue(int a, int b, int k) {
                 p_dist_alt.push_back(i);
             }
     }
+
     return chi_sq;
 }
 

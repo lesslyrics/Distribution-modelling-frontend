@@ -39,3 +39,19 @@ double HypogeomModel::createDist(int trials, int a, int b, int k, int nt,
     return 0;
 }
 
+const std::vector<double> &HypogeomModel::getActualFreq() const {
+    return actual_freq;
+}
+
+void HypogeomModel::setActualFreq(const std::vector<double> &actualFreq) {
+    actual_freq = actualFreq;
+}
+
+const std::vector<double> &HypogeomModel::getActualAltFreq() const {
+    return actual_alt_freq;
+}
+
+void HypogeomModel::setActualAltFreq(const std::vector<double> &actualAltFreq) {
+    actual_alt_freq = actualAltFreq;
+}
+

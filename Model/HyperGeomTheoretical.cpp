@@ -13,7 +13,7 @@
  * @param k
  * @return
  */
-func HyperGeomTheoretical::computeBinCoef(uint64_t n, uint64_t k) -> double {
+double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k){
 
     if (k > n)
         return 0.0;
@@ -36,10 +36,49 @@ func HyperGeomTheoretical::computeBinCoef(uint64_t n, uint64_t k) -> double {
  * @param k
  * @return
  */
-func HyperGeomTheoretical::hyperGeomTheor(uint64_t N, uint64_t K, uint64_t n, uint64_t k) -> double {
+double HyperGeomTheoretical::hyperGeomTheor(unsigned long  N, unsigned long  K, unsigned long  n, unsigned long  k) {
     return computeBinCoef(K, k) * 100 * computeBinCoef(N - K, n - k) / computeBinCoef(N, n);
 }
 
+    int HyperGeomTheoretical::getA() const {
+        return a;
+    }
+
+    void HyperGeomTheoretical::setA(int a) {
+        HyperGeomTheoretical::a = a;
+    }
+
+    int HyperGeomTheoretical::getB() const {
+        return b;
+    }
+
+    void HyperGeomTheoretical::setB(int b) {
+        HyperGeomTheoretical::b = b;
+    }
+
+    int HyperGeomTheoretical::getK() const {
+        return k;
+    }
+
+    void HyperGeomTheoretical::setK(int k) {
+        HyperGeomTheoretical::k = k;
+    }
+
+    const  std::vector<double> &HyperGeomTheoretical::getExpectedFreq() const {
+        return expected_freq;
+    }
+
+    void HyperGeomTheoretical::setExpectedFreq(const  std::vector<double> &expectedFreq) {
+        expected_freq = expectedFreq;
+    }
+
+    const  std::vector<double> &HyperGeomTheoretical::getExpected() const {
+        return expected;
+    }
+
+    void HyperGeomTheoretical::setExpected(const  std::vector<double>  &expect) {
+        expected = expect;
+    }
 
 
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "BernoulliMethod.h"
-#include "InverseFunctionMethod.h"
+#include "BernoulliMethodModel.h"
+#include "InverseFunctionMethodModel.h"
 #include <vector>
 #include "probdist.h"
 #include "Model.h"
@@ -11,27 +11,6 @@
 
 const int FREQ = 5;
 
-/**
- * method to calculate chi-square value
- * @param h_freq
- * @param h
- * @param h1
- * @param h2
- * @param df
- * @return
- */
-double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, int &df, int a, int nt) {
-    double chi_sq = 0;
-    df = -1;
-    for (int i = 0; i != a + 1; ++i) {
-        if (h_freq[i] != -1) {
-            chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
-            df++;
-        }
-
-    }
-    return chi_sq;
-}
 
 /**
  * method to perform sample merging based on pivot
@@ -40,7 +19,7 @@ double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::v
  * @param h1
  * @param h2
  */
-void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<int> &h1, std::vector<int> &h2) {
+void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, std::vector<double> &h2) {
 
     if (!h_freq.empty()) {
         if (h_freq[0] < FREQ) {
@@ -86,7 +65,7 @@ void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vect
  * @param hist_p
  * @param p
  */
-void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
+void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
     for (int i = 0; i < trials; ++i) {
         for (int j = 1; j <= 10; ++j) {
             if (p[i] < (double)j / 10.0 && p[i] > (double)(j - 1) / 10)
@@ -99,6 +78,20 @@ void show_p(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
     }
 
 }
+
+double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt) {
+    double chi_sq = 0;
+    df = -1;
+    for (int i = 0; i != a + 1; ++i) {
+        if (h_freq[i] != -1) {
+            chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
+            df++;
+        }
+
+    }
+    return chi_sq;
+}
+
 
 /**
  * Main method for distribution generation activation
@@ -115,15 +108,16 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
         std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
 
     double p = 0;
+    HypogeomModel *model;
     switch ( type ) {
         case ModelType::Bern : {
-            BernoulliMethod model(a);
-            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
+            model = new BernoulliMethodModel(a);
+            chi = model->createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
             break;
         }
         case ModelType::Inv : {
-            InverseFunctionMethod model(a);
-            chi = model.createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
+            model = new InverseFunctionMethodModel(a);
+            chi = model->createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
             break;
         }
         default:
@@ -133,7 +127,7 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     auto hist_p = std::vector<int>(11, 0); // histograms
     auto hist_p_alt = std::vector<int>(11, 0); // histograms
 
-    show_p(hist_p, p_dist, trials);
+    build_p_dist(hist_p, p_dist, trials);
     std::cout << std::endl << std::endl;
 
     p_dist.clear();
@@ -145,7 +139,7 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
     std::fill(hist_p.begin(), hist_p.end(), 0);
 //----------------
 
-    show_p(hist_p_alt, p_dist_alt, trials);
+    build_p_dist(hist_p_alt, p_dist_alt, trials);
     std::cout << std::endl << std::endl;
 
 
@@ -156,5 +150,7 @@ auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> 
 
     std::fill(hist_p_alt.begin(), hist_p_alt.end(), 0);
 
+    delete(model);
     return p;
 }
+

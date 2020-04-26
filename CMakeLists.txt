@@ -41,10 +41,10 @@ add_executable(dialogs
         Model/Model.h
         Model/HypogeomModel.cpp
         Model/HypogeomModel.h
-        Model/BernoulliMethod.cpp
-        Model/BernoulliMethod.h
-        Model/InverseFunctionMethod.cpp
-        Model/InverseFunctionMethod.h
+        Model/BernoulliMethodModel.cpp
+        Model/BernoulliMethodModel.h
+        Model/InverseFunctionMethodModel.cpp
+        Model/InverseFunctionMethodModel.h
         Model/HyperGeomTheoretical.cpp
         Model/HyperGeomTheoretical.h
         Model/probdist.cpp
@@ -52,7 +52,7 @@ add_executable(dialogs
         UI/Histogram.cpp
         UI/Histogram.h
         UI/Plot.cpp
-        UI/Plot.h Model/ModelType.h Model/PType.h)
+        UI/Plot.h Model/ModelType.h Model/PType.h Model/ChiSquared.cpp Model/ChiSquared.h)
 
 
 target_link_libraries(dialogs ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
