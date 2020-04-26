@@ -34,12 +34,11 @@ int HypogeomModel::generateRandomValue(int a, int b, int k) {
 /**
  * Generate distribution
  */
-double HypogeomModel::createDist(int trials, int a, int b, int k, int nt,
-        double &p_fin, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt){
-    return 0;
+void HypogeomModel::createDist(int trials, int a, int b, int k, int nt){
+    return;
 }
 
-const std::vector<double> &HypogeomModel::getActualFreq() const {
+const std::vector<double> &HypogeomModel::getActualFreq(){
     return actual_freq;
 }
 
@@ -47,7 +46,7 @@ void HypogeomModel::setActualFreq(const std::vector<double> &actualFreq) {
     actual_freq = actualFreq;
 }
 
-const std::vector<double> &HypogeomModel::getActualAltFreq() const {
+const std::vector<double> &HypogeomModel::getActualAltFreq(){
     return actual_alt_freq;
 }
 

@@ -63,12 +63,7 @@ public:
 
         for (int l = 0; l < trials; ++l) {
 
-            merge_sample(exp_freq, expected, act_freq, act_alt_freq);
-
-            for (int i = 0; i != exp_freq.size(); ++i) {
-                double e1 = double(act_freq[i]) * 100 / double(nt);
-                double e2 = double(act_alt_freq[i]) * 100 / double(nt);
-            }
+//            merge_sample(exp_freq, expected, act_freq, act_alt_freq);
 
             int df = 0;
             double p_val = 0;
@@ -84,10 +79,10 @@ public:
             CHI(1, df, chi_sq_alt, p_val);
             p_alt[l] = p_val;
 
+
+
 //            std::fill(expected.begin(), expected.end(), 0);
-//            std::fill(act_freq.begin(), act_freq.end(), 0);
-//            std::fill(act_alt_freq.begin(), act_alt_freq.end(), 0);
-//            std::fill(exp_freq.begin(), exp_freq.end(), 0);
+
 
             p_dist.clear();
             for (double &i : p)
@@ -100,6 +95,11 @@ public:
                 if (i > 0) {
                     p_dist_alt.push_back(i);
                 }
+
+            for (int i = 0; i < p_dist.size(); ++i) {
+                std::cout << "p_dist" << std::setw(30) << p_dist[i] << std::setw(30) << "p_alt"
+                 << std::setw(30) << p_dist_alt[i] << std::setw(30)  << '\n';
+            }
         }
     }
 

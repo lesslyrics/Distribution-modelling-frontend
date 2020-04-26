@@ -6,10 +6,12 @@
 
 
 #include <vector>
+#include <iostream>
+#include <iomanip>
 
 class HyperGeomTheoretical {
 
-protected:
+public:
     int a;
     int b;
     int k;
@@ -56,18 +58,21 @@ public:
             h_freq[i] = h[i] * nt / 100;
         }
 
+
         expected_freq.clear();
         expected.clear();
 
         for (double &i : h)
-            if (i > 0) {
                 expected.push_back(i);
-            }
 
-        for (double &i : h)
-            if (i > 0) {
-                expected.push_back(i);
-            }
+
+        for (double &i : h_freq)
+                expected_freq.push_back(i);
+
+//        for (int i = 0; i != a + 1; ++i) {
+//            std::cout <<"\nhere" << i << std::setw(30) << expected[i] << std::setw(30) << expected_freq[i]  << '\n';
+//        }
+
     }
 
 };
