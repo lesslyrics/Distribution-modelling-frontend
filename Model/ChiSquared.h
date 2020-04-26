@@ -53,7 +53,6 @@ public:
         setExpected(dist.getExpected());
         setActAltFreq(model.getActualAltFreq());
         computeStatistics(trials, nt);
-
     }
 
     /**
@@ -75,7 +74,6 @@ public:
      * @param nt
      */
     void computeStatistics(int trials, int nt) {
-
 
         int df = 0;
         double p_val = 0;
@@ -99,7 +97,6 @@ public:
         setPValueAlt(p_val);
 
         p_dist_alt.push_back(p_val);
-
 
         std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
         std::fill(exp_temp.begin(), exp_temp.end(), 0);

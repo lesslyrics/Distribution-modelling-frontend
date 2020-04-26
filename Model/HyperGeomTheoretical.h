@@ -11,7 +11,7 @@
 
 class HyperGeomTheoretical {
 
-public:
+protected:
     int a;
     int b;
     int k;
@@ -52,12 +52,10 @@ public:
         std::vector<double> h(a + 1, 0);
         std::vector<double> h_freq(a + 1, 0);
 
-
         for (int i = 0; i != a + 1; ++i) {
             h[i] = hyperGeomTheor(a + b, a, k, i);
             h_freq[i] = h[i] * nt / 100;
         }
-
 
         expected_freq.clear();
         expected.clear();
@@ -69,12 +67,7 @@ public:
         for (double &i : h_freq)
                 expected_freq.push_back(i);
 
-//        for (int i = 0; i != a + 1; ++i) {
-//            std::cout <<"\nhere" << i << std::setw(30) << expected[i] << std::setw(30) << expected_freq[i]  << '\n';
-//        }
-
     }
-
 };
 
 

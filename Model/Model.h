@@ -39,4 +39,3 @@ auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq, std::
 
 auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
            std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) -> double;
-double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt) ;

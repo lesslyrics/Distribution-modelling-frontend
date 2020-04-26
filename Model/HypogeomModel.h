@@ -8,8 +8,7 @@
 
 class HypogeomModel {
 
-public:
-    std::vector<int> h; // histograms
+protected:
     std::vector<double> actual_freq;
     std::vector<double> actual_alt_freq;
 
@@ -28,8 +27,7 @@ public:
       **/
     virtual void createDist(int trials, int a, int b, int k, int nt);
 
-
-        virtual ~HypogeomModel() = default;
+    virtual ~HypogeomModel() = default;
 
     const std::vector<double> &getActualFreq();
 

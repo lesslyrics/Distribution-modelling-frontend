@@ -97,11 +97,6 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
     for (int j = 1; j <= 10; ++j) {
         hist_p[j] = (double) (hist_p[j - 1] + hist_p[j]);
     }
-
-    for (int i = 1; i < 11; ++i)
-        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : "
-                  << ((double) hist_p[i - 1]) / trials << std::endl;
-
 }
 
 
@@ -150,10 +145,10 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
         dist.setK(k);
         dist.modelTheoreticalDist(nt);
 
-        std::vector<double> exp_freq_temp = dist.expected_freq;
-        std::vector<double> exp_temp = dist.expected;
-        std::vector<double> act_freq_temp = model->actual_freq;
-        std::vector<double> act_alt_temp = model->actual_alt_freq;
+        std::vector<double> exp_freq_temp = dist.getExpectedFreq();
+        std::vector<double> exp_temp = dist.getExpected();
+        std::vector<double> act_freq_temp = model->getActualFreq();
+        std::vector<double> act_alt_temp = model->getActualAltFreq();
 
         merge_sample(exp_freq_temp, exp_temp, act_freq_temp, act_alt_temp);
 
@@ -177,6 +172,7 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
 
     }
 
+//------------------------------------------------
     auto hist_p = std::vector<int>(11, 0); // histograms
     auto hist_p_alt = std::vector<int>(11, 0); // histograms
 
@@ -185,6 +181,7 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
     p_dist.clear();
     for (int i = 1; i < hist_p.size(); i++)
         p_dist.push_back(((double) hist_p[i - 1]) / trials);
+
     chiStat.setPDist(p_dist);
 
     /* for alternative*/
@@ -192,6 +189,7 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
     p_dist_alt.clear();
     for (int i = 1; i < hist_p_alt.size(); i++)
         p_dist_alt.push_back(((double) hist_p_alt[i - 1]) / trials);
+
     chiStat.setPDistAlt(p_dist_alt);
 
 

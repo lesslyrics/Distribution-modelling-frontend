@@ -10,7 +10,7 @@
 class BernoulliMethodModel : public HypogeomModel {
 
 public:
-    explicit BernoulliMethodModel(int a){ h = std::vector<int>(a, 0 );}
+    explicit BernoulliMethodModel(int a){}
 
     /**
     * Generate random value

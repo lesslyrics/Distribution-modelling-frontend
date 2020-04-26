@@ -5,6 +5,7 @@
 #include "HyperGeomTheoretical.h"
 #include <cstdint>
 #include <cmath>
+
 #define func auto
 
 /**
@@ -13,7 +14,7 @@
  * @param k
  * @return
  */
-double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k){
+double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k) {
 
     if (k > n)
         return 0.0;
@@ -25,7 +26,7 @@ double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k){
         return 1.0;
 
     // lgamma is the logarithm of the factorial of arg-1.
-    return exp(lgamma(n+1) - (lgamma(k+1) + lgamma(n-k+1)));
+    return exp(lgamma(n + 1) - (lgamma(k + 1) + lgamma(n - k + 1)));
 }
 
 /**
@@ -36,49 +37,49 @@ double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k){
  * @param k
  * @return
  */
-double HyperGeomTheoretical::hyperGeomTheor(unsigned long  N, unsigned long  K, unsigned long  n, unsigned long  k) {
+double HyperGeomTheoretical::hyperGeomTheor(unsigned long N, unsigned long K, unsigned long n, unsigned long k) {
     return computeBinCoef(K, k) * 100 * computeBinCoef(N - K, n - k) / computeBinCoef(N, n);
 }
 
-    int HyperGeomTheoretical::getA() const {
-        return a;
-    }
+int HyperGeomTheoretical::getA() const {
+    return a;
+}
 
-    void HyperGeomTheoretical::setA(int a) {
-        HyperGeomTheoretical::a = a;
-    }
+void HyperGeomTheoretical::setA(int a) {
+    HyperGeomTheoretical::a = a;
+}
 
-    int HyperGeomTheoretical::getB() const {
-        return b;
-    }
+int HyperGeomTheoretical::getB() const {
+    return b;
+}
 
-    void HyperGeomTheoretical::setB(int b) {
-        HyperGeomTheoretical::b = b;
-    }
+void HyperGeomTheoretical::setB(int b) {
+    HyperGeomTheoretical::b = b;
+}
 
-    int HyperGeomTheoretical::getK() const {
-        return k;
-    }
+int HyperGeomTheoretical::getK() const {
+    return k;
+}
 
-    void HyperGeomTheoretical::setK(int k) {
-        HyperGeomTheoretical::k = k;
-    }
+void HyperGeomTheoretical::setK(int k) {
+    HyperGeomTheoretical::k = k;
+}
 
-    const  std::vector<double> &HyperGeomTheoretical::getExpectedFreq() const {
-        return expected_freq;
-    }
+const std::vector<double> &HyperGeomTheoretical::getExpectedFreq() const {
+    return expected_freq;
+}
 
-    void HyperGeomTheoretical::setExpectedFreq(const  std::vector<double> &expectedFreq) {
-        expected_freq = expectedFreq;
-    }
+void HyperGeomTheoretical::setExpectedFreq(const std::vector<double> &expectedFreq) {
+    expected_freq = expectedFreq;
+}
 
-    const  std::vector<double> &HyperGeomTheoretical::getExpected() const {
-        return expected;
-    }
+const std::vector<double> &HyperGeomTheoretical::getExpected() const {
+    return expected;
+}
 
-    void HyperGeomTheoretical::setExpected(const  std::vector<double>  &expect) {
-        expected = expect;
-    }
+void HyperGeomTheoretical::setExpected(const std::vector<double> &expect) {
+    expected = expect;
+}
 
 
 

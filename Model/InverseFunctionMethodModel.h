@@ -10,7 +10,7 @@
 class InverseFunctionMethodModel : public HypogeomModel{
 
 public:
-    explicit InverseFunctionMethodModel(int a){ h = std::vector<int>(a, 0 );}
+    explicit InverseFunctionMethodModel(int a){}
 
     /**
      * Generate random value
