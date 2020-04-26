@@ -81,81 +81,33 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
         hist_p[j] = (double)(hist_p[j - 1] + hist_p[j]);
     }
 
+    for (int i = 1; i < 11; ++i)
+        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << ((double)hist_p[i - 1])/ trials << std::endl;
+
 }
 
 
 /**
  * Main method for distribution generation activation
  */
-auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
-           std::vector<double> &act_freq,std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
+double model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
+           std::vector<double> &act_freq,std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) {
 
     return model(ModelType::Bern, trials, nt, chi, exp_freq,
-            act_freq,p_dist, p_dist_alt, a,  b, k);
+                 act_freq,p_dist, p_dist_alt, a,  b, k);
 
 }
-//
-//auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-//        std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) -> double {
-//
-//    double p = 0;
-//    HypogeomModel *model;
-//    switch ( type ) {
-//        case ModelType::Bern : {
-//            model = new BernoulliMethodModel(a);
-//            chi = model->createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
-//            break;
-//        }
-//        case ModelType::Inv : {
-//            model = new InverseFunctionMethodModel(a);
-//            chi = model->createDist(trials, a, b, k, nt, p, exp_freq, act_freq, p_dist, p_dist_alt);
-//            break;
-//        }
-//        default:
-//            return 1;
-//    }
-//
-//    auto hist_p = std::vector<int>(11, 0); // histograms
-//    auto hist_p_alt = std::vector<int>(11, 0); // histograms
-//
-//    build_p_dist(hist_p, p_dist, trials);
-//    std::cout << std::endl << std::endl;
-//
-//    p_dist.clear();
-//    for(int i = 1; i < hist_p.size(); i++)
-//        p_dist.push_back(((double)hist_p[i - 1])/ trials);
-//
-//    std::cout << std::endl;
-//
-//    std::fill(hist_p.begin(), hist_p.end(), 0);
-////----------------
-//
-//    build_p_dist(hist_p_alt, p_dist_alt, trials);
-//    std::cout << std::endl << std::endl;
-//
-//
-//    p_dist_alt.clear();
-//    for(int i = 1; i < hist_p_alt.size(); i++)
-//        p_dist_alt.push_back(((double)hist_p_alt[i - 1])/ trials);
-//
-//
-//    std::fill(hist_p_alt.begin(), hist_p_alt.end(), 0);
-//
-//    delete(model);
-//    return p;
-//}
-
 
 
 double model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                  std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) {
+             std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) {
 
-    double p = 0;
+    std::vector<double> p;
     HypogeomModel *model;
+    ChiSquared chiStat;
     switch ( type ) {
         case ModelType::Bern : {
             model = new BernoulliMethodModel(a);
-            model->createDist(trials, a, b, k, nt);
             break;
         }
 //        case ModelType::Inv : {
@@ -167,83 +119,82 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
             return 1;
     }
 
+    for(int l = 0; l < trials; l++) {
 
-    HyperGeomTheoretical dist;
+        model->createDist(trials, a, b, k, nt);
+        HyperGeomTheoretical dist;
 
-    dist.setA(a);
-    dist.setB(b);
-    dist.setK(k);
-    dist.modelTheoreticalDist(nt);
-
-
-    std::vector<double> exp_freq_temp = dist.expected_freq;
-    std::vector<double> exp_temp = dist.expected;
-    std::vector<double> act_freq_temp = model->actual_freq;
-    std::vector<double> act_alt_temp = model->actual_alt_freq;
-
-    merge_sample(exp_freq_temp, exp_temp,act_freq_temp, act_alt_temp);
+        dist.setA(a);
+        dist.setB(b);
+        dist.setK(k);
+        dist.modelTheoreticalDist(nt);
 
 
-//    std::cout << "Num of" << std::setw(25) << "Expected Percent" << std::setw(30) << "Expected  Freq B (n*p_i)"
-//              << std::setw(30) << "Observed Percent B (n_i/n)" << std::setw(30) << "Observed Freq B (n_i)" <<
-//              std::setw(30) << "Obs - Exp (n_i - n*p_i)"  << std::setw(30) << "Obs - Exp Alt (n_i - n*p_i)" << std::endl;
-//    std::cout << "white balls\n";
-    int size_temp = act_freq_temp.size();
-//
+        std::vector<double> exp_freq_temp = dist.expected_freq;
+        std::vector<double> exp_temp = dist.expected;
+        std::vector<double> act_freq_temp = model->actual_freq;
+        std::vector<double> act_alt_temp = model->actual_alt_freq;
+
+        merge_sample(exp_freq_temp, exp_temp, act_freq_temp, act_alt_temp);
+
+        int size_temp = act_freq_temp.size();
+
+        int iter = 0;
+        while (iter < size_temp) {
+            if (exp_freq_temp[iter] == -1) {
+                exp_freq_temp.erase(exp_freq_temp.begin() + iter);
+                exp_temp.erase(exp_temp.begin() + iter);
+                act_freq_temp.erase(act_freq_temp.begin() + iter);
+                act_alt_temp.erase(act_alt_temp.begin() + iter);
+                iter--;
+                size_temp--;
+            }
+            iter++;
+        }
+
 //    for (int i = 0; i < size_temp; ++i) {
 //        std::cout << i << std::setw(30) << exp_temp[i] << std::setw(30) << exp_freq_temp[i]
 //                  << std::setw(30) << act_freq_temp[i] << std::setw(30) << act_freq_temp[i] - exp_freq_temp[i] << std::setw(30) << act_alt_temp[i] - exp_freq_temp[i]  << '\n';
 //    }
 
+        model->setActualFreq(act_freq_temp);
+        model->setActualAltFreq(act_alt_temp);
+        dist.setExpectedFreq(exp_freq_temp);
+        dist.setExpected(exp_temp);
 
-    int iter = 0;
-    while (iter < size_temp) {
-        if (exp_freq_temp[iter] == -1) {
-            exp_freq_temp.erase(exp_freq_temp.begin() + iter);
-            exp_temp.erase(exp_temp.begin() + iter);
-            act_freq_temp.erase(act_freq_temp.begin() + iter);
-            act_alt_temp.erase(act_alt_temp.begin() + iter);
-            iter--;
-            size_temp--;
-        }
-        iter++;
+//----------------------------------------------
+
+        chiStat.computeStatistics(*model, dist, trials, nt);
+//        std::cout << "p-val main: " << chiStat.getPValue() << '\n';
+
+        p.push_back(chiStat.getPValue());
+
+        chi = chiStat.getChiSq();
+//        std::cout << "chi " << chi << std::endl;
+        exp_freq = chiStat.getExpFreq();
+        act_freq = chiStat.getActFreq();
+        p_dist = chiStat.getPDist();
+        p_dist_alt = chiStat.getPDistAlt();
+
     }
 
-//    for (int i = 0; i < size_temp; ++i) {
-//        std::cout << i << std::setw(30) << exp_temp[i] << std::setw(30) << exp_freq_temp[i]
-//                  << std::setw(30) << act_freq_temp[i] << std::setw(30) << act_freq_temp[i] - exp_freq_temp[i] << std::setw(30) << act_alt_temp[i] - exp_freq_temp[i]  << '\n';
-//    }
+    auto hist_p = std::vector<int>(11, 0); // histograms
 
-    model->setActualFreq(act_freq_temp);
-    model->setActualAltFreq(act_alt_temp);
-    dist.setExpectedFreq(exp_freq_temp);
-    dist.setExpected(exp_temp);
+//    for(int i = 1; i < p.size(); i++)
+//        std::cout << "dist " << p[i] << std::endl;
 
+    build_p_dist(hist_p, p, trials);
+    std::cout << std::endl << std::endl;
 
-    ChiSquared chiStat;
-    chiStat.computeStatistics(*model, dist, trials, nt);
-
-    chi = chiStat.getChiSq();
-    exp_freq = chiStat.getExpFreq();
-    act_freq = chiStat.getActFreq();
-    p_dist = chiStat.getPDist();
-    p_dist_alt = chiStat.getPDistAlt();
+    p_dist.clear();
+        for(int i = 1; i < hist_p.size(); i++)
+          p_dist.push_back(((double)hist_p[i - 1])/ trials);
+     chiStat.setPDist(p_dist);
 
 
-//    auto hist_p = std::vector<int>(11, 0); // histograms
-//    auto hist_p_alt = std::vector<int>(11, 0); // histograms
-//
-//    build_p_dist(hist_p, p_dist, trials);
-//    std::cout << std::endl << std::endl;
-//
-//    p_dist.clear();
-//    for(int i = 1; i < hist_p.size(); i++)
-//        p_dist.push_back(((double)hist_p[i - 1])/ trials);
-//
-//    std::cout << std::endl;
-//
-//    std::fill(hist_p.begin(), hist_p.end(), 0);
+    delete (model);
 
-    delete(model);
+
+    return chiStat.getPValue();
 
 }

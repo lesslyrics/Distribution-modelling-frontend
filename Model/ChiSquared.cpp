@@ -89,3 +89,11 @@ const std::vector<double> &ChiSquared::getPDistAlt() const {
 void ChiSquared::setPDistAlt(const std::vector<double> &pDistAlt) {
     p_dist_alt = pDistAlt;
 }
+
+double ChiSquared::getPValue() const {
+    return p_value;
+}
+
+void ChiSquared::setPValue(double pValue) {
+    p_value = pValue;
+}

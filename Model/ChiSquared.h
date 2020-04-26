@@ -20,6 +20,14 @@ protected:
     double chi_sq;
     double chi_sq_alt;
 
+    double p_value;
+public:
+    double getPValue() const;
+
+    void setPValue(double pValue);
+
+protected:
+
     std::vector<double> p_dist;
     std::vector<double> p_dist_alt;
 
@@ -61,46 +69,36 @@ public:
      */
     void computeStatistics(int trials, int nt) {
 
-        for (int l = 0; l < trials; ++l) {
-
-//            merge_sample(exp_freq, expected, act_freq, act_alt_freq);
 
             int df = 0;
             double p_val = 0;
             auto p = std::vector<double>(trials, 0); // p_distibutions
             auto p_alt = std::vector<double>(trials, 0);
 
-            chi_sq = calculate_chi(exp_freq, expected, act_freq, df, exp_freq.size() - 1, nt);
-            chi_sq_alt = calculate_chi(exp_freq, expected, act_alt_freq, df, exp_freq.size() - 1, nt);
+            std::vector<double> exp_freq_temp = getExpFreq();
+            std::vector<double> exp_temp = getExpected();
+            std::vector<double> act_freq_temp = getActFreq();
+            std::vector<double> act_alt_temp = getActAltFreq();
+
+
+            setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
+            setChiSqAlt(calculate_chi(exp_freq_temp, exp_temp, act_alt_temp, df, exp_freq_temp.size() - 1, nt));
 
             CHI(1, df, chi_sq, p_val);
-            p[l] = p_val;
-            p_val = 0;
-            CHI(1, df, chi_sq_alt, p_val);
-            p_alt[l] = p_val;
 
-
-
-//            std::fill(expected.begin(), expected.end(), 0);
-
-
-            p_dist.clear();
             for (double &i : p)
                 if (i > 0) {
-                    p_dist.push_back(i);
+                    p_dist.push_back(p_val);
                 }
 
-            p_dist_alt.clear();
-            for (double &i : p_alt)
-                if (i > 0) {
-                    p_dist_alt.push_back(i);
-                }
 
-            for (int i = 0; i < p_dist.size(); ++i) {
-                std::cout << "p_dist" << std::setw(30) << p_dist[i] << std::setw(30) << "p_alt"
-                 << std::setw(30) << p_dist_alt[i] << std::setw(30)  << '\n';
-            }
-        }
+            std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
+            std::fill(exp_temp.begin(), exp_temp.end(), 0);
+            std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
+            std::fill(act_alt_temp.begin(), act_alt_temp.end(), 0);
+
+
+            setPValue(p_val);
     }
 
     /** getters and setters **/

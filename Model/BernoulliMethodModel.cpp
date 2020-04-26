@@ -7,6 +7,7 @@
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
 #include "Model.h"
+#include "ChiSquared.h"
 
 const int a_alt = 5;
 const int b_alt = 5;
@@ -54,8 +55,7 @@ void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt) {
     std::vector<double> h1(a + 1, 0); // histograms
     std::vector<double> h2(a + 1, 0); // histograms
 
-    BernoulliMethodModel model(a);
-    for (int l = 0; l < trials; ++l) {
+
         for (int j = 0; j != nt; ++j) {
             q1 = generateRandomValue(a, b, k);
             q2 = generateRandomValue(a_alt, b_alt, k_alt);
@@ -79,7 +79,7 @@ void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt) {
         for (int i = 0; i != a + 1; i++)
                 actual_alt_freq.push_back(h2[i]);
 
-    }
+
 
  }
 
