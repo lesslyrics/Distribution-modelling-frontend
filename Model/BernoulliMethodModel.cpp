@@ -63,11 +63,6 @@ void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt) {
             h2[q2]++;
         }
 
-        for (int i = 0; i != a + 1; ++i) {
-            double e1 = double(h1[i]) * 100 / double(nt);
-            double e2 = double(h2[i]) * 100 / double(nt);
-
-        }
 
         actual_freq.clear();
         actual_alt_freq.clear();
