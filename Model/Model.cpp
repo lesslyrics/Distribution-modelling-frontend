@@ -103,6 +103,8 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
              std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) {
 
     std::vector<double> p;
+    std::vector<double> p_alt;
+
     HypogeomModel *model;
     ChiSquared chiStat;
     switch ( type ) {
@@ -168,6 +170,7 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
 //        std::cout << "p-val main: " << chiStat.getPValue() << '\n';
 
         p.push_back(chiStat.getPValue());
+        p_alt.push_back(chiStat.getPValueAlt());
 
         chi = chiStat.getChiSq();
 //        std::cout << "chi " << chi << std::endl;
@@ -179,12 +182,12 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
     }
 
     auto hist_p = std::vector<int>(11, 0); // histograms
+    auto hist_p_alt= std::vector<int>(11, 0); // histograms
 
 //    for(int i = 1; i < p.size(); i++)
 //        std::cout << "dist " << p[i] << std::endl;
 
     build_p_dist(hist_p, p, trials);
-    std::cout << std::endl << std::endl;
 
     p_dist.clear();
         for(int i = 1; i < hist_p.size(); i++)
@@ -192,8 +195,15 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
      chiStat.setPDist(p_dist);
 
 
-    delete (model);
+    build_p_dist(hist_p_alt, p_alt, trials);
 
+    p_dist_alt.clear();
+    for(int i = 1; i < hist_p_alt.size(); i++)
+        p_dist_alt.push_back(((double)hist_p_alt[i - 1])/ trials);
+    chiStat.setPDistAlt(p_dist_alt);
+
+
+    delete (model);
 
     return chiStat.getPValue();
 

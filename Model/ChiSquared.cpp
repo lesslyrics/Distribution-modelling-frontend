@@ -97,3 +97,11 @@ double ChiSquared::getPValue() const {
 void ChiSquared::setPValue(double pValue) {
     p_value = pValue;
 }
+
+double ChiSquared::getPValueAlt() const {
+    return p_value_alt;
+}
+
+void ChiSquared::setPValueAlt(double pValueAlt) {
+    p_value_alt = pValueAlt;
+}

@@ -21,6 +21,8 @@ protected:
     double chi_sq_alt;
 
     double p_value;
+    double p_value_alt;
+
 public:
     double getPValue() const;
 
@@ -30,6 +32,10 @@ protected:
 
     std::vector<double> p_dist;
     std::vector<double> p_dist_alt;
+public:
+    double getPValueAlt() const;
+
+    void setPValueAlt(double pValueAlt);
 
 
 public:
@@ -59,7 +65,8 @@ public:
      * @param df
      * @return
      */
-    double  calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt);
+    double
+    calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt);
 
 
     /**
@@ -70,35 +77,36 @@ public:
     void computeStatistics(int trials, int nt) {
 
 
-            int df = 0;
-            double p_val = 0;
-            auto p = std::vector<double>(trials, 0); // p_distibutions
-            auto p_alt = std::vector<double>(trials, 0);
+        int df = 0;
+        double p_val = 0;
 
-            std::vector<double> exp_freq_temp = getExpFreq();
-            std::vector<double> exp_temp = getExpected();
-            std::vector<double> act_freq_temp = getActFreq();
-            std::vector<double> act_alt_temp = getActAltFreq();
+        std::vector<double> exp_freq_temp = getExpFreq();
+        std::vector<double> exp_temp = getExpected();
+        std::vector<double> act_freq_temp = getActFreq();
+        std::vector<double> act_alt_temp = getActAltFreq();
 
 
-            setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
-            setChiSqAlt(calculate_chi(exp_freq_temp, exp_temp, act_alt_temp, df, exp_freq_temp.size() - 1, nt));
+        setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
+        setChiSqAlt(calculate_chi(exp_freq_temp, exp_temp, act_alt_temp, df, exp_freq_temp.size() - 1, nt));
 
-            CHI(1, df, chi_sq, p_val);
+        CHI(1, df, chi_sq, p_val);
+        setPValue(p_val);
 
-            for (double &i : p)
-                if (i > 0) {
-                    p_dist.push_back(p_val);
-                }
+        p_dist.push_back(p_val);
 
+        p_val = 0;
+        CHI(1, df, chi_sq_alt, p_val);
+        setPValueAlt(p_val);
 
-            std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
-            std::fill(exp_temp.begin(), exp_temp.end(), 0);
-            std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
-            std::fill(act_alt_temp.begin(), act_alt_temp.end(), 0);
+        p_dist_alt.push_back(p_val);
 
 
-            setPValue(p_val);
+        std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
+        std::fill(exp_temp.begin(), exp_temp.end(), 0);
+        std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
+        std::fill(act_alt_temp.begin(), act_alt_temp.end(), 0);
+
+
     }
 
     /** getters and setters **/
@@ -107,7 +115,7 @@ public:
 
     void setExpFreq(const std::vector<double> &expFreq);
 
-    const  std::vector<double> &getExpected() const;
+    const std::vector<double> &getExpected() const;
 
     void setExpected(const std::vector<double> &expected);
 
@@ -134,6 +142,5 @@ public:
     const std::vector<double> &getPDistAlt() const;
 
     void setPDistAlt(const std::vector<double> &pDistAlt);
-
 
 };
