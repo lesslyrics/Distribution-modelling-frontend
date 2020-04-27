@@ -1,7 +1,5 @@
 #include "renderarea.h"
 #include <QPainter>
-#include <GL/glut.h>
-#include <GL/gl.h>// or glew header, gl3w header,...
 #include <array>
 #include <iostream>
 #include <UI/Plot.h>

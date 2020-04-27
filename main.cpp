@@ -3,9 +3,6 @@
 #include <iostream>
 #include "UI/Histogram.h"
 
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
 #include <iostream>
 #include <QtWidgets/QMessageBox>
 

@@ -26,7 +26,6 @@ public:
 
     int &getLineWidth() { return line_width; }
 
-
     double &getChi() { return chi; }
 
     double &getP() { return p; }
