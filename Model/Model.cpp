@@ -119,6 +119,10 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
 
     std::vector<double> p;
     std::vector<double> p_alt;
+    std::vector<double> expected_freq;
+    std::vector<double> expected;
+
+    std::cout << "hello";
 
     HypogeomModel *model;
     ChiSquared chiStat;
@@ -143,24 +147,25 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
         dist.setA(a);
         dist.setB(b);
         dist.setK(k);
-        dist.modelTheoreticalDist(nt);
+        dist.modelTheoreticalDist(nt, expected_freq, expected);
 
-        std::vector<double> exp_freq_temp = dist.getExpectedFreq();
-        std::vector<double> exp_temp = dist.getExpected();
+//        std::vector<double> exp_freq_temp = expected_freq;
+//        std::vector<double> exp_temp = expected;
+
         std::vector<double> act_freq_temp = model->getActualFreq();
         std::vector<double> act_alt_temp = model->getActualAltFreq();
 
-        merge_sample(exp_freq_temp, exp_temp, act_freq_temp, act_alt_temp);
-
+        merge_sample(expected_freq, expected, act_freq_temp, act_alt_temp);
 
         model->setActualFreq(act_freq_temp);
         model->setActualAltFreq(act_alt_temp);
-        dist.setExpectedFreq(exp_freq_temp);
-        dist.setExpected(exp_temp);
+//
+//        expected_freq = exp_freq_temp;
+//        expected = exp_temp;
 
 //-----------------------------------------------
 
-        chiStat.computeStatistics(*model, dist, trials, nt);
+        chiStat.computeStatistics(*model, dist, trials, nt, expected_freq, expected);
         p.push_back(chiStat.getPValue());
         p_alt.push_back(chiStat.getPValueAlt());
 

@@ -47,10 +47,10 @@ public:
      * @param trials
      * @param nt
      */
-    void computeStatistics(HypogeomModel model, HyperGeomTheoretical dist, int trials, int nt) {
-        setExpFreq(dist.getExpectedFreq());
+    void computeStatistics(HypogeomModel model, HyperGeomTheoretical dist, int trials, int nt, const std::vector<double> &expected_freq, const std::vector<double> &exp) {
+        setExpFreq(expected_freq);
         setActFreq(model.getActualFreq());
-        setExpected(dist.getExpected());
+        setExpected(exp);
         setActAltFreq(model.getActualAltFreq());
         computeStatistics(trials, nt);
     }

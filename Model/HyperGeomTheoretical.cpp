@@ -65,22 +65,22 @@ void HyperGeomTheoretical::setK(int k) {
     HyperGeomTheoretical::k = k;
 }
 
-const std::vector<double> &HyperGeomTheoretical::getExpectedFreq() const {
-    return expected_freq;
-}
-
-void HyperGeomTheoretical::setExpectedFreq(const std::vector<double> &expectedFreq) {
-    expected_freq = expectedFreq;
-}
-
-const std::vector<double> &HyperGeomTheoretical::getExpected() const {
-    return expected;
-}
-
-void HyperGeomTheoretical::setExpected(const std::vector<double> &expect) {
-    expected = expect;
-}
-
+//const std::vector<double> &HyperGeomTheoretical::getExpectedFreq() const {
+//    return expected_freq;
+//}
+//
+//void HyperGeomTheoretical::setExpectedFreq(const std::vector<double> &expectedFreq) {
+//    expected_freq = expectedFreq;
+//}
+//
+//const std::vector<double> &HyperGeomTheoretical::getExpected() const {
+//    return expected;
+//}
+//
+//void HyperGeomTheoretical::setExpected(const std::vector<double> &expect) {
+//    expected = expect;
+//}
+//
 
 
 

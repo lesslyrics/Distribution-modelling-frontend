@@ -15,8 +15,8 @@ protected:
     int a;
     int b;
     int k;
-    std::vector<double> expected_freq;
-    std::vector<double> expected;
+//    std::vector<double> expected_freq;
+//    std::vector<double> expected;
 
 public:
     int getA() const;
@@ -31,13 +31,13 @@ public:
 
     void setK(int k);
 
-    const std::vector<double> &getExpectedFreq() const;
-
-    void setExpectedFreq(const  std::vector<double> &expectedFreq);
-
-    const  std::vector<double> &getExpected() const;
-
-    void setExpected(const  std::vector<double> &expect);
+//    const std::vector<double> &getExpectedFreq() const;
+//
+//    void setExpectedFreq(const  std::vector<double> &expectedFreq);
+//
+//    const  std::vector<double> &getExpected() const;
+//
+//    void setExpected(const  std::vector<double> &expect);
 
 
 public:
@@ -47,7 +47,7 @@ public:
 
     ~HyperGeomTheoretical() = default;
 
-    void modelTheoreticalDist(int nt) {
+    void modelTheoreticalDist(int nt, std::vector<double> &expected_freq, std::vector<double> &expected) {
 
         std::vector<double> h(a + 1, 0);
         std::vector<double> h_freq(a + 1, 0);
