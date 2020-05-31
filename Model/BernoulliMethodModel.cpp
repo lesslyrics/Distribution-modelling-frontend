@@ -50,30 +50,17 @@ int BernoulliMethodModel::generateRandomValue(int a, int b, int k) {
  */
 void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt, int h) {
 
-    int q1, q2;
-
-    std::vector<double> h1(h + 1, 0); // histograms
-    std::vector<double> h2(h + 1, 0); // histograms
-
-
+    int q;
+    std::vector<double> hist(h + 1, 0); // histograms
     for (int j = 0; j != nt; ++j) {
-        q1 = generateRandomValue(a, b, k);
-        q2 = generateRandomValue(a_alt, b_alt, k_alt);
-        h1[q1]++;
-        h2[q2]++;
+        q = generateRandomValue(a, b, k);
+        hist[q]++;
     }
 
-
     actual_freq.clear();
-    actual_alt_freq.clear();
 
     for (int i = 0; i != h + 1; i++)
-        actual_freq.push_back(h1[i]);
-
-
-    for (int i = 0; i != h + 1; i++)
-        actual_alt_freq.push_back(h2[i]);
-
+        actual_freq.push_back(hist[i]);
 
 }
 

@@ -148,24 +148,15 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
         dist.setK(k);
         dist.modelTheoreticalDist(nt, expected_freq, expected);
 
-        std::cout << "len1 " << len << std::endl;
 
+        /* actual */
         model->createDist(trials, a, b, k, nt, len);
-
-
         std::vector<double> act_freq_temp = model->getActualFreq();
 
-        for (int i = 0; i < act_freq_temp.size(); i++){
-            std::cout << act_freq_temp[i] << std::endl;
-        }
-        std::cout << "len " << len << std::endl;
+        /* alternative */
         model->createDist(trials, a_alt, b_alt, k_alt, nt, len);
-
         std::vector<double> act_alt_temp = model->getActualFreq();
-        std::cout << std::endl;
-        for (int i = 0; i < act_alt_temp.size(); i++){
-            std::cout << act_alt_temp[i] << std::endl;
-        }
+
 
         merge_sample(expected_freq, expected, act_freq_temp, act_alt_temp);
 
