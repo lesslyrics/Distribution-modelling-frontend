@@ -34,7 +34,7 @@ int HypogeomModel::generateRandomValue(int a, int b, int k) {
 /**
  * Generate distribution
  */
-void HypogeomModel::createDist(int trials, int a, int b, int k, int nt){
+void HypogeomModel::createDist(int trials, int a, int b, int k, int nt, int h){
     return;
 }
 

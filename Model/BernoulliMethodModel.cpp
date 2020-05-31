@@ -48,12 +48,12 @@ int BernoulliMethodModel::generateRandomValue(int a, int b, int k) {
  * @param p_dist_alt
  * @return
  */
-void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt) {
+void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt, int h) {
 
     int q1, q2;
 
-    std::vector<double> h1(a + 1, 0); // histograms
-    std::vector<double> h2(a + 1, 0); // histograms
+    std::vector<double> h1(h + 1, 0); // histograms
+    std::vector<double> h2(h + 1, 0); // histograms
 
 
     for (int j = 0; j != nt; ++j) {
@@ -67,11 +67,11 @@ void BernoulliMethodModel::createDist(int trials, int a, int b, int k, int nt) {
     actual_freq.clear();
     actual_alt_freq.clear();
 
-    for (int i = 0; i != a + 1; i++)
+    for (int i = 0; i != h + 1; i++)
         actual_freq.push_back(h1[i]);
 
 
-    for (int i = 0; i != a + 1; i++)
+    for (int i = 0; i != h + 1; i++)
         actual_alt_freq.push_back(h2[i]);
 
 

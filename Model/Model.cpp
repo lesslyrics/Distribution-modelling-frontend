@@ -139,9 +139,8 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
             return 1;
     }
 
+    int len = a;
     for (int l = 0; l < trials; l++) {
-
-        model->createDist(trials, a, b, k, nt);
         HyperGeomTheoretical dist;
 
         dist.setA(a);
@@ -149,22 +148,33 @@ double model(ModelType type, int trials, int nt, double &chi, std::vector<double
         dist.setK(k);
         dist.modelTheoreticalDist(nt, expected_freq, expected);
 
-//        std::vector<double> exp_freq_temp = expected_freq;
-//        std::vector<double> exp_temp = expected;
+        std::cout << "len1 " << len << std::endl;
+
+        model->createDist(trials, a, b, k, nt, len);
+
 
         std::vector<double> act_freq_temp = model->getActualFreq();
-        std::vector<double> act_alt_temp = model->getActualAltFreq();
+
+        for (int i = 0; i < act_freq_temp.size(); i++){
+            std::cout << act_freq_temp[i] << std::endl;
+        }
+        std::cout << "len " << len << std::endl;
+        model->createDist(trials, a_alt, b_alt, k_alt, nt, len);
+
+        std::vector<double> act_alt_temp = model->getActualFreq();
+        std::cout << std::endl;
+        for (int i = 0; i < act_alt_temp.size(); i++){
+            std::cout << act_alt_temp[i] << std::endl;
+        }
 
         merge_sample(expected_freq, expected, act_freq_temp, act_alt_temp);
 
         model->setActualFreq(act_freq_temp);
         model->setActualAltFreq(act_alt_temp);
-//
-//        expected_freq = exp_freq_temp;
-//        expected = exp_temp;
+
 //-----------------------------------------------
 
-        chiStat.computeStatistics(*model, dist, trials, nt, expected_freq, expected);
+        chiStat.computeStatistics(*model, trials, nt, expected_freq, expected);
         p.push_back(chiStat.getPValue());
         p_alt.push_back(chiStat.getPValueAlt());
 

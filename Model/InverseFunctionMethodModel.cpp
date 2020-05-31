@@ -63,12 +63,12 @@ int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
  * @param p_dist_alt
  * @return
  */
-void InverseFunctionMethodModel::createDist(int trials, int a, int b, int k, int nt) {
+void InverseFunctionMethodModel::createDist(int trials, int a, int b, int k, int nt, int h) {
 
     int q1, q2;
 
-    std::vector<double> h1(a + 1, 0); // histograms
-    std::vector<double> h2(a + 1, 0); // histograms
+    std::vector<double> h1(h + 1, 0); // histograms
+    std::vector<double> h2(h + 1, 0); // histograms
 
 
     for (int j = 0; j != nt; ++j) {

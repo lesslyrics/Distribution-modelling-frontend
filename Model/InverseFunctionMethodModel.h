@@ -25,7 +25,7 @@ public:
     /**
      * Generate distribution
      */
-    void createDist(int trials, int a, int b, int k, int nt) override ;
+    void createDist(int trials, int a, int b, int k, int nt, int h) override ;
 
     ~InverseFunctionMethodModel() override = default;
 

@@ -25,7 +25,7 @@ public:
     /**
       * Generate distribution
       **/
-    virtual void createDist(int trials, int a, int b, int k, int nt);
+    virtual void createDist(int trials, int a, int b, int k, int nt, int h);
 
     virtual ~HypogeomModel() = default;
 
