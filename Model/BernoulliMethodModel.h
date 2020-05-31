@@ -15,12 +15,12 @@ public:
     /**
     * Generate random value
     **/
-    int generateRandomValue(int a, int b, int k);
+    int generateRandomValue(int a, int b, int k) override;
 
     /**
     * Generate distribution
     **/
-    void createDist(int trials, int a, int b, int k, int nt);
+    void createDist(int trials, int a, int b, int k, int nt) override;
 
         /**
          * Destructor
