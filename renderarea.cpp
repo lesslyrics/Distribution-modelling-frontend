@@ -31,7 +31,13 @@ void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
     QString color = "palegreen";
 
     drawParams(sample_size, x, trials, painter, p_type );
-    createPlot(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+    createPlot_tester(sample_size, p_dist, x, y, trials, painter, p_type, color);
+
+//    if (p_type == PType::Power)
+//        createPlot_tester(sample_size, p_dist_alt, x, y, trials, painter, p_type, color);
+//    else
+//        createPlot_tester(sample_size, p_dist, x, y, trials, painter, p_type, color);
+
 
 }
 
@@ -42,7 +48,9 @@ void RenderArea::paintEventCustom(QPainter &painter) {
     QString color = "palegreen";
     sample_size = sample_size_min;
     drawParamsCustom(a, b, k, sample_size_min, sample_size_med, sample_size_max, x, trials, painter);
-    createCustom(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+//    createCustom(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+    createCustom_tester(sample_size, p_dist, x, y, trials, painter, p_type, color);
+
     drawAlpha(alpha, x, y, painter);
 
 }

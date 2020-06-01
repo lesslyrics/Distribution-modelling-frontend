@@ -25,34 +25,41 @@ public:
      * @param p_dist_alt
      */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
-                       std::vector<double> &actu_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
-        p = model(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+                       std::vector<double> &actu_freq, std::vector<double> &p_distr, PType p_type) {
+
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
+
+//        p = model(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
 
         std::vector<double> p_alt_temp;
-        for (double & i : p_dist_alt)
+        for (double & i : p_distr)
             if (i > 0){
                 p_alt_temp.push_back(i);
             }
 
-        p = model(trials, sample_size_med, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
 
-        for (double & i : p_dist_alt)
+//        p = model(trials, sample_size_med, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+
+        for (double & i : p_distr)
             if (i > 0){
                 p_alt_temp.push_back(i);
             }
 
-        p = model(trials, sample_size_max, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
 
-        for (double & i : p_dist_alt)
+//        p = model(trials, sample_size_max, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+
+        for (double & i : p_distr)
             if (i > 0){
                 p_alt_temp.push_back(i);
             }
         chi = chi_tmp;
 
-        p_dist_alt.clear();
+        p_distr.clear();
         for (double & i : p_alt_temp)
             if (i > 0){
-                p_dist_alt.push_back(i);
+                p_distr.push_back(i);
             }
         chi = chi_tmp;
 

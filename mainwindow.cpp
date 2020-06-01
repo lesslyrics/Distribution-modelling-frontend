@@ -69,15 +69,11 @@ void MainWindow::on_actionPval_triggered() {
 
 
     if (pvalDialog->exec() == QDialog::Accepted) {
-
-        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
-
-//        if (pvalDialog->getPType() == PType::Error)
-//            pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
-//        else
-//            pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
-
         ui->renderarea->getPType() = pvalDialog->getPType();
+//        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist);
+
+        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, ui->renderarea->getPType() );
+
         ui->renderarea->getMenu() = Menu::Pval;
         ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
         ui->renderarea->getRectColor() = pvalDialog->getRectColor();
@@ -116,7 +112,7 @@ void MainWindow::on_actionCustom_triggered() {
 
 
     if (customDialog->exec() == QDialog::Accepted) {
-        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
 
         ui->renderarea->getMenu() = Menu::Custom;
         ui->renderarea->getRectColor() = customDialog->getRectColor();

@@ -6,6 +6,7 @@
 #include "probdist.h"
 #include "Model.h"
 #include "ChiSquared.h"
+#include "PType.h"
 
 /**
  * hyperparameters
@@ -166,11 +167,15 @@ double model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
 }
 
 double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
-             std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b,
-             int k) {
+             std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
+             int k, PType type ) {
 
-    return tester_p(ModelType::Bern, trials, nt, chi, exp_freq,
-                 act_freq, p_dist, p_dist_alt, a, b, k);
+    if (type == PType::Power)
+         return tester_p2(ModelType::Bern, trials, nt, chi, exp_freq,
+                 act_freq, p_dist,  a, b, k);
+    else
+        return tester_p(ModelType::Bern, trials, nt, chi, exp_freq,
+                         act_freq, p_dist,  a, b, k);
 
 }
 
@@ -248,11 +253,10 @@ void findChiStat_tester( ChiSquared &chiStat, HypogeomModel *model, double &chi,
 }
 
 double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b,
+                std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                 int k) {
 
     std::vector<double> p;
-    std::vector<double> p_alt;
     std::vector<double> expected_freq;
     std::vector<double> expected;
 
@@ -260,18 +264,8 @@ double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<dou
 
     HypogeomModel *model;
     ChiSquared chiStat;
-    switch (type) {
-        case ModelType::Bern : {
-            model = new BernoulliMethodModel(a);
-            break;
-        }
-        case ModelType::Inv : {
-            model = new InverseFunctionMethodModel(a);
-            break;
-        }
-        default:
-            return 1;
-    }
+    model = new BernoulliMethodModel(a);
+
 
     int len = a;
     for (int l = 0; l < trials; l++) {
@@ -287,33 +281,26 @@ double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<dou
         model->createDist(trials, a, b, k, nt, len);
         std::vector<double> act_freq_temp = model->getActualFreq();
 
-        /* alternative */
-        model->createDist(trials, a_alt, b_alt, k_alt, nt, len);
-        std::vector<double> act_alt_temp = model->getActualFreq();
 
 
-        merge_sample(expected_freq, expected, act_freq_temp, act_alt_temp);
+        merge_sample_tester(expected_freq, expected, act_freq_temp);
 
         model->setActualFreq(act_freq_temp);
-        model->setActualAltFreq(act_alt_temp);
 
 //-----------------------------------------------
 
         chiStat.computeStatistics_old(*model, trials, nt, expected_freq, expected);
         p.push_back(chiStat.getPValue());
-        p_alt.push_back(chiStat.getPValueAlt());
 
         chi = chiStat.getChiSq();
         exp_freq = chiStat.getExpFreq();
         act_freq = chiStat.getActFreq();
         p_dist = chiStat.getPDist();
-        p_dist_alt = chiStat.getPDistAlt();
 
     }
 
 //------------------------------------------------
     auto hist_p = std::vector<int>(11, 0); // histograms
-    auto hist_p_alt = std::vector<int>(11, 0); // histograms
 
     /* for p_value*/
     build_p_dist(hist_p, p, trials);
@@ -323,20 +310,73 @@ double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<dou
 
     chiStat.setPDist(p_dist);
 
-    /* for alternative*/
-    build_p_dist(hist_p_alt, p_alt, trials);
-    p_dist_alt.clear();
-    for (int i = 1; i < hist_p_alt.size(); i++)
-        p_dist_alt.push_back(((double) hist_p_alt[i - 1]) / trials);
-
-    chiStat.setPDistAlt(p_dist_alt);
-
-
     delete (model);
     return chiStat.getPValue();
 
 }
 
+double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+                std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
+                int k) {
+
+    std::vector<double> p;
+    std::vector<double> expected_freq;
+    std::vector<double> expected;
+
+    std::cout << "hello";
+
+    HypogeomModel *model;
+    ChiSquared chiStat;
+    model = new BernoulliMethodModel(a);
+
+
+    int len = a;
+    for (int l = 0; l < trials; l++) {
+        HyperGeomTheoretical dist;
+
+        dist.setA(a);
+        dist.setB(b);
+        dist.setK(k);
+        dist.modelTheoreticalDist(nt, expected_freq, expected);
+
+
+        /* actual */
+        model->createDist(trials, 5, 5, 4, nt, len);
+        std::vector<double> act_freq_temp = model->getActualFreq();
+
+
+
+        merge_sample_tester(expected_freq, expected, act_freq_temp);
+
+        model->setActualFreq(act_freq_temp);
+
+//-----------------------------------------------
+
+        chiStat.computeStatistics_old(*model, trials, nt, expected_freq, expected);
+        p.push_back(chiStat.getPValue());
+
+        chi = chiStat.getChiSq();
+        exp_freq = chiStat.getExpFreq();
+        act_freq = chiStat.getActFreq();
+        p_dist = chiStat.getPDist();
+
+    }
+
+//------------------------------------------------
+    auto hist_p = std::vector<int>(11, 0); // histograms
+
+    /* for p_value*/
+    build_p_dist(hist_p, p, trials);
+    p_dist.clear();
+    for (int i = 1; i < hist_p.size(); i++)
+        p_dist.push_back(((double) hist_p[i - 1]) / trials);
+
+    chiStat.setPDist(p_dist);
+
+    delete (model);
+    return chiStat.getPValue();
+
+}
 
 double model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
              std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b,

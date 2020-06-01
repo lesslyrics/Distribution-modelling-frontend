@@ -111,30 +111,22 @@ public:
         std::vector<double> exp_freq_temp = getExpFreq();
         std::vector<double> exp_temp = getExpected();
         std::vector<double> act_freq_temp = getActFreq();
-        std::vector<double> act_alt_temp = getActAltFreq();
-
 
         setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
-        setChiSqAlt(calculate_chi(exp_freq_temp, exp_temp, act_alt_temp, df, exp_freq_temp.size() - 1, nt));
 
         CHI(1, df, chi_sq, p_val);
         setPValue(p_val);
 
         p_dist.push_back(p_val);
 
-        p_val = 0;
-        CHI(1, df, chi_sq_alt, p_val);
-        setPValueAlt(p_val);
-
-        p_dist_alt.push_back(p_val);
 
         std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
         std::fill(exp_temp.begin(), exp_temp.end(), 0);
         std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
-        std::fill(act_alt_temp.begin(), act_alt_temp.end(), 0);
 
 
     }
+
 
     /** getters and setters **/
 

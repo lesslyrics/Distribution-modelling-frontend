@@ -66,7 +66,6 @@ void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double>
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
 
 }
-
 void createPlot_tester(int sample_size, std::vector<double> p_dist,
                 int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color){
 
@@ -117,6 +116,7 @@ void createPlot_tester(int sample_size, std::vector<double> p_dist,
     painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
 
 }
+
 
 void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter){
 
@@ -199,6 +199,20 @@ void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int
 
 void createCustom(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,
                     int win_w, int win_h, int trials, QPainter &painter, PType p_type,  QString color) {
+
+    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "gold");
+    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+
+    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "lightsalmon");
+    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+
+    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "palegreen");
+    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+
+}
+
+void createCustom_tester(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,
+                  int win_w, int win_h, int trials, QPainter &painter, PType p_type,  QString color) {
 
     createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "gold");
     p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);

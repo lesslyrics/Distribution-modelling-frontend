@@ -4,6 +4,7 @@
 #include "probdist.h"
 #include "ModelType.h"
 #include "ChiSquared.h"
+#include "PType.h"
 
 
 class ChiSquared;
@@ -51,14 +52,22 @@ double tester(ModelType type, int trials, int nt, double &chi, std::vector<doubl
 void
 merge_sample_tester(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1);
 
-double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b,
-                int k);
-
-double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                    std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b,
-                    int k);
 
 
 void findChiStat_tester( ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt,  std::vector<double> &p, int trials, std::vector<double>
 expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist);
+
+
+
+
+double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+                std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
+                int k);
+
+double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
+                    std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
+                    int k, PType type);
+
+double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+                 std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
+                 int k);
