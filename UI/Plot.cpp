@@ -67,6 +67,57 @@ void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double>
 
 }
 
+void createPlot_tester(int sample_size, std::vector<double> p_dist,
+                int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color){
+
+    double *p;
+    p = &p_dist[0];
+
+    int i;
+    QFont *font = new QFont("Courier", 12);
+    QPen pen;//
+
+
+    /**Parameters description**/
+    int length = 10;
+
+    double step_x = 5 * win_w / 110;
+    double step_y = 6 * win_h / 110;
+
+    /** draw expected **/
+    if (p_type == PType::Error){
+        pen.setWidth(2);
+        pen.setStyle(Qt::DashLine);
+
+        pen.setColor("lightsalmon");
+        painter.setPen(pen);
+        painter.drawLine(win_w / 11, 10 * win_h / 11,  win_w / 11 + step_x * 10 , 10 * win_h / 11 - step_y * 10);
+    }
+
+    /*Draw plot*/
+    pen.setWidth(2);
+    pen.setStyle(Qt::SolidLine);
+
+    pen.setColor(color);
+    painter.setPen(pen);
+
+    if (p_type == PType::Power)
+        drawForPower(i, win_w, win_h, step_x, step_y, length, p, painter);
+    else
+        drawForError(i, win_w, win_h, step_x, step_y, length, p, painter);
+
+    drawMinors(i, win_w, win_h, step_x, step_y, length, painter);
+
+    // draw x and y axes
+    pen.setWidth(2);
+    pen.setColor("white");
+
+    painter.setPen(pen);
+    painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11, 10 * win_h / 11 - step_y * 10);
+    painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
+
+}
+
 void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter){
 
     for (i = 1; i < length + 2; i++) {

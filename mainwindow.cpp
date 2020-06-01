@@ -69,8 +69,15 @@ void MainWindow::on_actionPval_triggered() {
 
 
     if (pvalDialog->exec() == QDialog::Accepted) {
-        pvalDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
 
+        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+
+//        if (pvalDialog->getPType() == PType::Error)
+//            pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+//        else
+//            pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+
+        ui->renderarea->getPType() = pvalDialog->getPType();
         ui->renderarea->getMenu() = Menu::Pval;
         ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
         ui->renderarea->getRectColor() = pvalDialog->getRectColor();
@@ -83,7 +90,6 @@ void MainWindow::on_actionPval_triggered() {
         ui->renderarea->getPDist() =  p_dist;
         ui->renderarea->getPDistAlt() =  p_dist_alt;
 
-        ui->renderarea->getPType() =   pvalDialog->getPType();
 
 
     }

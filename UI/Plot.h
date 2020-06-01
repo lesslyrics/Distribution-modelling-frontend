@@ -3,7 +3,8 @@
 //
 
 #pragma once
-
+void createPlot_tester(int sample_size, std::vector<double> p_dist,
+                       int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color);
 /**
  * Draw Plot
  **/

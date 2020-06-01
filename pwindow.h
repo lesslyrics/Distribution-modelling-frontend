@@ -22,12 +22,17 @@ public:
      * @param p_dist
      * @param p_dist_alt
      */
-    void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
-                       std::vector<double> &actu_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
-        p = model(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+//    void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
+//                       std::vector<double> &actu_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt) {
+//        p = model(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+//        chi = chi_tmp;
+//    }
+
+    void activateModel_tester(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
+                       std::vector<double> &p_dist, std::vector<double> &p_dist_alt){
+        p = model_tester(trials, sample_size, chi, exp_freq, act_freq, p_dist, p_dist_alt, a,  b, k);
         chi = chi_tmp;
     }
-
     /**
      * Getters
      * @return
