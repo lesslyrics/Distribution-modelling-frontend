@@ -32,6 +32,4 @@ public:
 
     void setActualFreq(const std::vector<double> &actualFreq);
 
-    const std::vector<double> &getActualAltFreq();
-
 };

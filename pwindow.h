@@ -34,7 +34,6 @@ public:
      * Getters
      * @return
      */
-    QColor &getRectColor() { return rect_color; }
 
     int &getSampleSize() { return sample_size; }
 
@@ -75,7 +74,6 @@ private:
     int trials;
 
     int sample_size;
-    QColor rect_color;
     Ui::PWindow *ui;
 };
 

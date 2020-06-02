@@ -41,8 +41,6 @@ public:
                 p_distr.push_back(i);
             }
 
-        for (int i = 0; i < p_distr.size(); i++)
-            std::cout <<  p_distr[i] << ' ';
     }
 
 
@@ -50,7 +48,6 @@ public:
       * Getters
      **/
     int &getSampleSizeMin() { return sample_size_min; }
-    QColor &getRectColor() { return rect_color; }
 
     double &getAlpha() { return alpha; }
 
@@ -92,10 +89,8 @@ private:
     double p = 0;
     double chi = 0;
     int trials = 10000;
-    ModelType modelType = ModelType::Bern;
 
     int sample_size_min  = 50;
-    QColor rect_color;
     Ui::Custom *ui;
 
 };

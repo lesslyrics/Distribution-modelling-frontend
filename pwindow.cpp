@@ -6,7 +6,7 @@
 
 
 PWindow::PWindow(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::PWindow), sample_size(width), rect_color(color) {
+        : QDialog(parent), ui(new Ui::PWindow), sample_size(width){
     ui->setupUi(this);
 
     this->ui->lineEditTrials->setText(QString::number(10000));

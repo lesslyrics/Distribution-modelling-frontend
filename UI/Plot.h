@@ -33,8 +33,7 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
 /**
  * Draw parameters for the plot with distributions for 3 sample_sizes
  **/
-void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_med, int sample_size_max,
-        int win_w, int trials, QPainter &painter);
+void drawParamsCustom(int a, int b, int k, int sample_size_min, int win_w, int trials, QPainter &painter);
 /**
  * Draw alpha level
  **/

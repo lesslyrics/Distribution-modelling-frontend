@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <QtGui/QPainter>
-#include <iostream>
 #include <QPen>
 #include <Model/PType.h>
 #include "Plot.h"
@@ -68,7 +67,8 @@ void createCustomPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter
 
     int i;
     QPen pen;//
-
+    pen.setColor("lightsalmon");
+    painter.setPen(pen);
 
     /**Parameters description**/
     int length = 10;
@@ -80,8 +80,6 @@ void createCustomPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter
     pen.setWidth(2);
     pen.setStyle(Qt::SolidLine);
 
-    pen.setColor(color);
-    painter.setPen(pen);
 
     drawForPower(i, win_w, win_h, step_x, step_y, length, p, painter);
     drawMinorsCustom(i, win_w, win_h, step_x, step_y, length, painter, sample_size);
@@ -189,7 +187,7 @@ void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int
 }
 
 
-void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_med, int sample_size_max, int win_w, int trials, QPainter &painter){
+void drawParamsCustom(int a, int b, int k, int sample_size_min, int win_w, int trials, QPainter &painter){
     //Parameters description
     QPen pen;//
 

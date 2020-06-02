@@ -11,7 +11,7 @@
  * @param parent
  */
 Dialog::Dialog(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Dialog), sample_size(width), rect_color(color) {
+        : QDialog(parent), ui(new Ui::Dialog), sample_size(width){
     ui->setupUi(this);
 
 
@@ -34,10 +34,6 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
  * parameters setting
  **/
 void Dialog::done(int r) {
-    if (ui->radioButtonBern->isChecked())
-        rect_color = Qt::red;
-    else if (ui->radioButtonInverse->isChecked())
-        rect_color = Qt::green;
 
     a = this->ui->lineEdit_A->text().toInt();
     if (a <= 0){

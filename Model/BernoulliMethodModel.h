@@ -22,8 +22,8 @@ public:
     **/
     void createDist(int trials, int a, int b, int k, int nt, int h) override;
 
-        /**
-         * Destructor
-         */
+    /**
+     * Destructor
+     * */
     ~BernoulliMethodModel() override = default;
 };

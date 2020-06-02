@@ -23,7 +23,6 @@ void MainWindow::on_actionModel_triggered() {
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
 
 
     modelDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
@@ -31,10 +30,9 @@ void MainWindow::on_actionModel_triggered() {
 
     if (modelDialog->exec() == QDialog::Accepted) {
 
-        modelDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+        modelDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist);
         ui->renderarea->getMenu() = Menu::Model;
         ui->renderarea->getSampleSize() = modelDialog->getSampleSize();
-        ui->renderarea->getRectColor() = modelDialog->getRectColor();
         ui->renderarea->getChi() = modelDialog->getChi();
 
         ModelType temp  =modelDialog->getModelType();
@@ -73,7 +71,6 @@ void MainWindow::on_actionPval_triggered() {
 
         ui->renderarea->getMenu() = Menu::Pval;
         ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
-        ui->renderarea->getRectColor() = pvalDialog->getRectColor();
         ui->renderarea->getChi() = pvalDialog->getChi();
         ui->renderarea->getTrials() = pvalDialog->getTrials();
 
@@ -99,16 +96,12 @@ void MainWindow::on_actionCustom_triggered() {
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
-
 
     customDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
-
 
     if (customDialog->exec() == QDialog::Accepted) {
         customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
         ui->renderarea->getMenu() = Menu::Custom;
-        ui->renderarea->getRectColor() = customDialog->getRectColor();
         ui->renderarea->getChi() = customDialog->getChi();
 
         ui->renderarea->getP() =    customDialog->getP();
