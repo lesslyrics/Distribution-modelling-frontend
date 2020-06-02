@@ -46,11 +46,3 @@ void HypogeomModel::setActualFreq(const std::vector<double> &actualFreq) {
     actual_freq = actualFreq;
 }
 
-const std::vector<double> &HypogeomModel::getActualAltFreq(){
-    return actual_alt_freq;
-}
-
-void HypogeomModel::setActualAltFreq(const std::vector<double> &actualAltFreq) {
-    actual_alt_freq = actualAltFreq;
-}
-

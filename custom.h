@@ -28,9 +28,7 @@ public:
                        std::vector<double> &actu_freq, std::vector<double> &p_distr, PType p_type) {
 
         std::cout << "hey";
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
-
-//        p = model(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+        p = modelPVal(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
 
         std::vector<double> p_alt_temp;
         for (double & i : p_distr)
@@ -38,18 +36,14 @@ public:
                 p_alt_temp.push_back(i);
             }
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
-
-//        p = model(trials, sample_size_med, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+        p = modelPVal(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
 
         for (double & i : p_distr)
             if (i > 0){
                 p_alt_temp.push_back(i);
             }
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
-
-//        p = model(trials, sample_size_max, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
+        p = modelPVal(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
 
         for (double & i : p_distr)
             if (i > 0){

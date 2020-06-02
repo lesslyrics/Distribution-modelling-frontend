@@ -16,8 +16,8 @@ class ChiSquared;
  * @param h1
  * @param h2
  */
-void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, std::vector<double> &h2);
-
+void
+merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1);
 /**
  * method to print p-value distribution
  * @param hist_p
@@ -39,35 +39,48 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials);
  * @param k
  * @return
  */
-auto model(int trials, int nt, double &chi, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist,  std::vector<double> &p_dist_alt, int a, int b, int k) -> double;
 
-auto model(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-           std::vector<double> &act_freq, std::vector<double> &p_dist, std::vector<double> &p_dist_alt, int a, int b, int k) -> double;
-
-
-double tester(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-              std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
-              int k);
-
-void
-merge_sample_tester(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1);
+double modelDistribution(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+                         std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
+                         int k);
 
 
-
-void findChiStat_tester( ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt,  std::vector<double> &p, int trials, std::vector<double>
+/**
+ * Refers to  chi-squared
+ * @param chiStat
+ * @param model
+ * @param chi
+ * @param nt
+ * @param p
+ * @param trials
+ * @param expected_freq
+ * @param expected
+ * @param exp_freq
+ * @param act_freq
+ * @param p_dist
+ */
+void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, int trials, std::vector<double>
 expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist);
 
 
 
-
-double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
-                int k);
-
-double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
-                    std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
-                    int k, int a_alt, int b_alt, int k_alt, PType type);
-
-double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
+/**
+ * Method for p-values distribution modelling
+ * @param trials
+ * @param nt
+ * @param chi
+ * @param exp_freq
+ * @param act_freq
+ * @param p_dist
+ * @param a
+ * @param b
+ * @param k
+ * @param a_alt
+ * @param b_alt
+ * @param k_alt
+ * @param p_type
+ * @return
+ */
+double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
                  std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
-                 int k, int a_alt, int b_alt, int k_alt);
+                 int k, int a_alt, int b_alt, int k_alt, PType p_type);

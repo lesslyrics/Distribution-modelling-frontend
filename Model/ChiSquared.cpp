@@ -50,13 +50,6 @@ void ChiSquared::setActFreq(const std::vector<double> &actFreq) {
     act_freq = actFreq;
 }
 
-const std::vector<double> &ChiSquared::getActAltFreq() const {
-    return act_alt_freq;
-}
-
-void ChiSquared::setActAltFreq(const std::vector<double> &actAltFreq) {
-    act_alt_freq = actAltFreq;
-}
 
 double ChiSquared::getChiSq() const {
     return chi_sq;
@@ -66,13 +59,6 @@ void ChiSquared::setChiSq(double chiSq) {
     chi_sq = chiSq;
 }
 
-double ChiSquared::getChiSqAlt() const {
-    return chi_sq_alt;
-}
-
-void ChiSquared::setChiSqAlt(double chiSqAlt) {
-    chi_sq_alt = chiSqAlt;
-}
 
 const std::vector<double> &ChiSquared::getPDist() const {
     return p_dist;
@@ -82,26 +68,10 @@ void ChiSquared::setPDist(const std::vector<double> &pDist) {
     p_dist = pDist;
 }
 
-const std::vector<double> &ChiSquared::getPDistAlt() const {
-    return p_dist_alt;
-}
-
-void ChiSquared::setPDistAlt(const std::vector<double> &pDistAlt) {
-    p_dist_alt = pDistAlt;
-}
-
 double ChiSquared::getPValue() const {
     return p_value;
 }
 
 void ChiSquared::setPValue(double pValue) {
     p_value = pValue;
-}
-
-double ChiSquared::getPValueAlt() const {
-    return p_value_alt;
-}
-
-void ChiSquared::setPValueAlt(double pValueAlt) {
-    p_value_alt = pValueAlt;
 }

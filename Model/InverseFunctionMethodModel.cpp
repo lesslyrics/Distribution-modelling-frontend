@@ -2,10 +2,7 @@
 // Created by lesslyrics on 23.02.2020.
 //
 
-#include <iostream>
-#include <iomanip>
 #include "InverseFunctionMethodModel.h"
-#include "HyperGeomTheoretical.h"
 #include "Model.h"
 
 

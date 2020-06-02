@@ -3,15 +3,16 @@
 //
 
 #pragma once
-void createCustom_tester(int sample_size, std::vector<double> p_dist,
-                         int win_w, int win_h, int trials, QPainter &painter, PType p_type,  QString color) ;
-void createPlot_tester(int sample_size, std::vector<double> p_dist,
-                       int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color);
+
+/**
+ * Draw plot with distributions for 3 sample_sizes
+ **/
+void createCustom( std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type);
+
 /**
  * Draw Plot
  **/
-void createPlot(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,  int win_w, int win_h, int trials, QPainter &painter, PType p_type, QString color);
-
+void createPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type, QString color);
 /**
  * Draw minor details
  **/
@@ -32,11 +33,6 @@ void drawForPower(int i, int win_w, int win_h,  double step_x, double step_y, in
  **/
 void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType p_type );
 
-/**
- * Draw plot with distributions for 3 sample_sizes
- **/
-void createCustom(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,
-                  int win_w, int win_h, int trials, QPainter &painter, PType p_type,  QString color);
 
 /**
  * Draw parameters for the plot with distributions for 3 sample_sizes

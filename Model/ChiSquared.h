@@ -13,30 +13,15 @@ class ChiSquared {
 protected:
     std::vector<double> exp_freq;
     std::vector<double> expected;
-
     std::vector<double> act_freq;
-    std::vector<double> act_alt_freq ={};
 
     double chi_sq = 0;
-    double chi_sq_alt = 0;
-
     double p_value = 0;
-    double p_value_alt = 0;
+    std::vector<double> p_dist;
 
 public:
     double getPValue() const;
-
     void setPValue(double pValue);
-
-protected:
-
-    std::vector<double> p_dist;
-    std::vector<double> p_dist_alt = {};
-public:
-    double getPValueAlt() const;
-
-    void setPValueAlt(double pValueAlt);
-
 
 public:
 
@@ -95,39 +80,6 @@ public:
 
     }
 
-    void computeStatistics_old(HypogeomModel model, int trials, int nt, const std::vector<double> &expected_freq, const std::vector<double> &exp) {
-        setExpFreq(expected_freq);
-        setActFreq(model.getActualFreq());
-        setExpected(exp);
-        setActAltFreq(model.getActualAltFreq());
-        computeStatistics_old(trials, nt);
-    }
-
-    void computeStatistics_old(int trials, int nt) {
-
-        int df = 0;
-        double p_val = 0;
-
-        std::vector<double> exp_freq_temp = getExpFreq();
-        std::vector<double> exp_temp = getExpected();
-        std::vector<double> act_freq_temp = getActFreq();
-
-        setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
-
-        CHI(1, df, chi_sq, p_val);
-        setPValue(p_val);
-
-        p_dist.push_back(p_val);
-
-
-        std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
-        std::fill(exp_temp.begin(), exp_temp.end(), 0);
-        std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
-
-
-    }
-
-
     /** getters and setters **/
 
     const std::vector<double> &getExpFreq() const;
@@ -142,24 +94,14 @@ public:
 
     void setActFreq(const std::vector<double> &actFreq);
 
-    const std::vector<double> &getActAltFreq() const;
-
-    void setActAltFreq(const std::vector<double> &actAltFreq);
-
     double getChiSq() const;
 
     void setChiSq(double chiSq);
-
-    double getChiSqAlt() const;
-
-    void setChiSqAlt(double chiSqAlt);
 
     const std::vector<double> &getPDist() const;
 
     void setPDist(const std::vector<double> &pDist);
 
-    const std::vector<double> &getPDistAlt() const;
 
-    void setPDistAlt(const std::vector<double> &pDistAlt);
 
 };

@@ -34,7 +34,7 @@ public:
      */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
             std::vector<double> &p_dist, std::vector<double> &p_dist_alt){
-        p = tester(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist,  a, b, k);
+        p = modelDistribution(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, a, b, k);
         chi = chi_tmp;
     }
 

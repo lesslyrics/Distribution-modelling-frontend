@@ -4,10 +4,8 @@
 
 #include <iostream>
 #include "BernoulliMethodModel.h"
-#include "HyperGeomTheoretical.h"
 #include "probdist.h"
 #include "Model.h"
-#include "ChiSquared.h"
 
 
 /**

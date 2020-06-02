@@ -10,7 +10,6 @@ class HypogeomModel {
 
 protected:
     std::vector<double> actual_freq;
-    std::vector<double> actual_alt_freq;
 
 
 public:
@@ -35,5 +34,4 @@ public:
 
     const std::vector<double> &getActualAltFreq();
 
-    void setActualAltFreq(const std::vector<double> &actualAltFreq);
 };

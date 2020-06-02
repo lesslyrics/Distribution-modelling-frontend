@@ -62,7 +62,6 @@ void MainWindow::on_actionPval_triggered() {
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
 
 
     pvalDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
@@ -70,9 +69,7 @@ void MainWindow::on_actionPval_triggered() {
 
     if (pvalDialog->exec() == QDialog::Accepted) {
         ui->renderarea->getPType() = pvalDialog->getPType();
-//        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist);
-
-        pvalDialog->activateModel_tester(chi_tmp, exp_freq, act_freq, p_dist, ui->renderarea->getPType() );
+        pvalDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, ui->renderarea->getPType());
 
         ui->renderarea->getMenu() = Menu::Pval;
         ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
@@ -84,9 +81,6 @@ void MainWindow::on_actionPval_triggered() {
         ui->renderarea->getExpFreq() =  exp_freq;
         ui->renderarea->getActFreq() =  act_freq;
         ui->renderarea->getPDist() =  p_dist;
-        ui->renderarea->getPDistAlt() =  p_dist_alt;
-
-
 
     }
 }
@@ -122,7 +116,6 @@ void MainWindow::on_actionCustom_triggered() {
         ui->renderarea->getExpFreq() =  exp_freq;
         ui->renderarea->getActFreq() =  act_freq;
         ui->renderarea->getPDist() =  p_dist;
-        ui->renderarea->getPDistAlt() =  p_dist_alt;
 
         ui->renderarea->getTrials() = 10000;
         ui->renderarea->getPType() =  PType::Power;
