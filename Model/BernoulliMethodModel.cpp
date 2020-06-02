@@ -9,9 +9,6 @@
 #include "Model.h"
 #include "ChiSquared.h"
 
-const int a_alt = 5;
-const int b_alt = 5;
-const int k_alt = 4;
 
 /**
  * method to activateModel random values using Bernoulli distribution

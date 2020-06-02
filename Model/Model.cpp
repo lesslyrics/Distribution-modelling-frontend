@@ -13,9 +13,6 @@
  * */
 
 const int FREQ = 5;
-const int a_alt = 5;
-const int b_alt = 5;
-const int k_alt = 4;
 
 /**
  * method to perform sample merging based on pivot
@@ -168,11 +165,11 @@ double model(int trials, int nt, double &chi, std::vector<double> &exp_freq,
 
 double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
              std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
-             int k, PType type ) {
+             int k, int a_alt, int b_alt, int k_alt, PType type ) {
 
     if (type == PType::Power)
          return tester_p2(ModelType::Bern, trials, nt, chi, exp_freq,
-                 act_freq, p_dist,  a, b, k);
+                 act_freq, p_dist,  a, b, k, a_alt, b_alt, k_alt);
     else
         return tester_p(ModelType::Bern, trials, nt, chi, exp_freq,
                          act_freq, p_dist,  a, b, k);
@@ -317,7 +314,7 @@ double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<dou
 
 double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
                 std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
-                int k) {
+                int k, int a_alt, int b_alt, int k_alt) {
 
     std::vector<double> p;
     std::vector<double> expected_freq;
@@ -341,7 +338,7 @@ double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<do
 
 
         /* actual */
-        model->createDist(trials, 5, 5, 4, nt, len);
+        model->createDist(trials, a_alt, b_alt, k_alt, nt, len);
         std::vector<double> act_freq_temp = model->getActualFreq();
 
 

@@ -17,8 +17,8 @@ Dialog::Dialog(int width, QColor color, QWidget *parent)
 
     this->ui->lineEditSize->setText(QString::number(100));
     this->ui->lineEdit_A->setText(QString::number(30));
-    this->ui->lineEdit_B->setText(QString::number(25));
-    this->ui->lineEdit_K->setText(QString::number(20));
+    this->ui->lineEdit_B->setText(QString::number(20));
+    this->ui->lineEdit_K->setText(QString::number(25));
 
 
     if (color == Qt::red)

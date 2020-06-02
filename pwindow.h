@@ -31,8 +31,10 @@ public:
     void activateModel_tester(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
                        std::vector<double> &p_distr, PType p_type){
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a, b, k, a_alt, b_alt, k_alt,p_type);
         chi = chi_tmp;
+
+
 
     }
     /**
@@ -66,6 +68,9 @@ private:
     int a;
     int b;
     int k;
+    int a_alt;
+    int b_alt;
+    int k_alt;
     std::vector<double> exp_freq;
     std::vector<double> act_freq;
     std::vector<double> p_dist;

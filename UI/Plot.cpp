@@ -141,7 +141,7 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3, 40, "Sample size:");
     painter.drawText(2 * win_w / 3, 80, "P-value trials:");
-    painter.drawText(2 * win_w / 3, 120, "Alternative:");
+    painter.drawText(2 * win_w / 3, 120, "Distribution:");
     painter.drawText(2 * win_w / 3, 200, "Distibution for:");
 
 
@@ -154,7 +154,7 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3 + 120, 40, QString::number(sample_size));
     painter.drawText(2 * win_w / 3 + 150, 80, QString::number(trials));
-    painter.drawText(2 * win_w / 3 , 160, "Hypergeometric (5, 5, 4)");
+    painter.drawText(2 * win_w / 3 , 160, "Hypergeometric");
     if (p_type == PType::Power)
         painter.drawText(2 * win_w / 3 + 160, 200, "Power");
     else
@@ -211,17 +211,19 @@ void createCustom(int sample_size, std::vector<double> p_dist, std::vector<doubl
 
 }
 
-void createCustom_tester(int sample_size, std::vector<double> p_dist, std::vector<double> p_dist_alt,
+void createCustom_tester(int sample_size, std::vector<double> p_dist,
                   int win_w, int win_h, int trials, QPainter &painter, PType p_type,  QString color) {
 
-    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "gold");
-    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+    for (int i = 0; i < p_dist.size(); i++)
+        std::cout <<  p_dist[i] << ' ';
+    createPlot_tester(sample_size, p_dist, win_w, win_h, trials, painter, p_type,  "gold");
+    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
 
-    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "lightsalmon");
-    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+    createPlot_tester(sample_size, p_dist, win_w, win_h, trials, painter, p_type,  "lightsalmon");
+    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
 
-    createPlot(sample_size, p_dist, p_dist_alt, win_w, win_h, trials, painter, p_type,  "palegreen");
-    p_dist_alt.erase (p_dist_alt.begin(),p_dist_alt.begin() + 10);
+    createPlot_tester(sample_size, p_dist, win_w, win_h, trials, painter, p_type,  "palegreen");
+    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
 
 }
 

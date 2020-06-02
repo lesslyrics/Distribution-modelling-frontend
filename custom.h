@@ -24,10 +24,11 @@ public:
      * @param p_dist
      * @param p_dist_alt
      */
-    void activateModel(double &chi_tmp, std::vector<double> &expr_freq,
+    void activateModel_tmp(double &chi_tmp, std::vector<double> &expr_freq,
                        std::vector<double> &actu_freq, std::vector<double> &p_distr, PType p_type) {
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
+        std::cout << "hey";
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
 
 //        p = model(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
 
@@ -37,7 +38,7 @@ public:
                 p_alt_temp.push_back(i);
             }
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
 
 //        p = model(trials, sample_size_med, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
 
@@ -46,7 +47,7 @@ public:
                 p_alt_temp.push_back(i);
             }
 
-        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, p_type);
+        p = model_tester(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr,  a,  b, k, a_alt, b_alt, k_alt, p_type);
 
 //        p = model(trials, sample_size_max, chi_tmp, expr_freq, actu_freq, p_dist, p_dist_alt, a, b, k);
 
@@ -62,6 +63,9 @@ public:
                 p_distr.push_back(i);
             }
         chi = chi_tmp;
+
+        for (int i = 0; i < p_distr.size(); i++)
+            std::cout <<  p_distr[i] << ' ';
 
     }
 
@@ -81,6 +85,10 @@ public:
     int &getB() { return b; }
     int &getK() { return k; }
 
+    int &getA_alt() { return a_alt; }
+    int &getB_alt() { return b_alt; }
+    int &getK_alt() { return k_alt; }
+
     double &getChi() { return chi;}
 
     /**
@@ -98,6 +106,10 @@ private:
     int a;
     int b;
     int k;
+
+    int a_alt;
+    int b_alt;
+    int k_alt;
     double alpha = 0;
     std::vector<double> exp_freq;
     std::vector<double> act_freq;

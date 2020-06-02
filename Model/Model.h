@@ -66,8 +66,8 @@ double tester_p(ModelType type, int trials, int nt, double &chi, std::vector<dou
 
 double model_tester(int trials, int nt, double &chi, std::vector<double> &exp_freq,
                     std::vector<double> &act_freq, std::vector<double> &p_dist,  int a, int b,
-                    int k, PType type);
+                    int k, int a_alt, int b_alt, int k_alt, PType type);
 
 double tester_p2(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
                  std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
-                 int k);
+                 int k, int a_alt, int b_alt, int k_alt);

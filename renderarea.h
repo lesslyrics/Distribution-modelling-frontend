@@ -54,6 +54,9 @@ public:
     int &getA() { return a; }
     int &getB() { return b; }
     int &getK() { return k; }
+    int &getA_alt() { return a_alt; }
+    int &getB_alt() { return b_alt; }
+    int &getK_alt() { return k_alt; }
 
 
 protected:
@@ -66,6 +69,9 @@ private:
     int a;
     int b;
     int k;
+    int a_alt;
+    int b_alt;
+    int k_alt;
 
     int sample_size_min = 0;
     int sample_size_med = 100;

@@ -112,7 +112,7 @@ void MainWindow::on_actionCustom_triggered() {
 
 
     if (customDialog->exec() == QDialog::Accepted) {
-        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
+        customDialog->activateModel_tmp(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
 
         ui->renderarea->getMenu() = Menu::Custom;
         ui->renderarea->getRectColor() = customDialog->getRectColor();
@@ -135,6 +135,10 @@ void MainWindow::on_actionCustom_triggered() {
         ui->renderarea->getA() = customDialog->getA();
         ui->renderarea->getB() = customDialog->getB();
         ui->renderarea->getK() = customDialog->getK();
+
+        ui->renderarea->getA() = customDialog->getA_alt();
+        ui->renderarea->getB() = customDialog->getB_alt();
+        ui->renderarea->getK() = customDialog->getK_alt();
 
 
     }

@@ -11,9 +11,12 @@ PWindow::PWindow(int width, QColor color, QWidget *parent)
 
     this->ui->lineEditTrials->setText(QString::number(10000));
     this->ui->lineEditSize->setText(QString::number(50));
-    this->ui->lineEdit_A->setText(QString::number(6));
-    this->ui->lineEdit_B->setText(QString::number(5));
-    this->ui->lineEdit_K->setText(QString::number(4));
+    this->ui->lineEdit_A->setText(QString::number(30));
+    this->ui->lineEdit_B->setText(QString::number(20));
+    this->ui->lineEdit_K->setText(QString::number(25));
+    this->ui->lineEdit_A_alt->setText(QString::number(29));
+    this->ui->lineEdit_B_alt->setText(QString::number(19));
+    this->ui->lineEdit_K_alt->setText(QString::number(24));
 
 }
 
@@ -34,6 +37,24 @@ void PWindow::done(int r) {
 
     k = this->ui->lineEdit_K->text().toInt();
     if (k <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    a_alt = this->ui->lineEdit_A_alt->text().toInt();
+    if (a_alt <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    b_alt = this->ui->lineEdit_B_alt->text().toInt();
+    if (b_alt <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    k_alt = this->ui->lineEdit_K_alt->text().toInt();
+    if (k_alt <= 0){
         QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
         return;
     }

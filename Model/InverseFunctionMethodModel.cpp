@@ -8,9 +8,6 @@
 #include "HyperGeomTheoretical.h"
 #include "Model.h"
 
-const int a_alt = 5;
-const int b_alt = 5;
-const int k_alt = 4;
 
 /** This function finds factorial of large numbers **/
 long long int InverseFunctionMethodModel::findFactorial(int num) {
