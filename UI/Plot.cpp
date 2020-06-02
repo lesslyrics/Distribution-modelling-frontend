@@ -18,9 +18,7 @@ void createPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &pain
     p = &p_dist[0];
 
     int i;
-    QFont *font = new QFont("Courier", 12);
     QPen pen;//
-
 
     /**Parameters description**/
     int length = 10;
@@ -62,6 +60,56 @@ void createPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &pain
 
 }
 
+
+void createCustomPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type, QString color, int sample_size){
+
+    double *p;
+    p = &p_dist[0];
+
+    int i;
+    QPen pen;//
+
+
+    /**Parameters description**/
+    int length = 10;
+
+    double step_x = 5 * win_w / 110;
+    double step_y = 6 * win_h / 110;
+
+    /*Draw plot*/
+    pen.setWidth(2);
+    pen.setStyle(Qt::SolidLine);
+
+    pen.setColor(color);
+    painter.setPen(pen);
+
+    drawForPower(i, win_w, win_h, step_x, step_y, length, p, painter);
+    drawMinorsCustom(i, win_w, win_h, step_x, step_y, length, painter, sample_size);
+
+    // draw x and y axes
+    pen.setWidth(2);
+    pen.setColor("white");
+
+    painter.setPen(pen);
+    painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11, 10 * win_h / 11 - step_y * 10);
+    painter.drawLine(win_w / 11, 10 * win_h / 11, win_w / 11 + step_x * 10 , 10 * win_h / 11);
+
+}
+
+
+
+
+void drawMinorsCustom(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter, int sample_size){
+
+    for (i = 1; i < length + 1; i++) {
+        //numbers on the y-axes
+        painter.drawLine( win_w / 11 - 3, 10 * win_h / 11 - (i-1) * step_y,  win_w / 11 + 3, 10 * win_h / 11 - (i-1) * step_y);
+        painter.drawText(win_w / 11 - 40, 10 * win_h / 11 - (i-1) * step_y, QString::number((double)(i - 1)/10));
+        //numbers on the x-axes
+        painter.drawLine( win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 3,  win_w / 11 + (i-1) * step_x, 10 * win_h / 11 - 3);
+        painter.drawText(win_w / 11 + (i-1) * step_x, 10 * win_h / 11 + 20, QString::number(sample_size + (i - 1) * 50));
+    }
+}
 
 void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter){
 
@@ -117,7 +165,6 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
 }
 
 void drawForPower(int i, int win_w, int win_h, double step_x, double step_y, int length, const double* p, QPainter &painter){
-
     double height = 10 * step_y;
     for (i = 0; i < length - 1; i++){
         painter.drawLine( win_w / 11 + step_x * i, 10 * win_h / 11 - height * p[i] ,  win_w / 11 + step_x * (i + 1), 10 * win_h / 11 - height * p[i + 1] );
@@ -142,21 +189,6 @@ void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int
 }
 
 
-void createCustom( std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type) {
-
-    for (int i = 0; i < p_dist.size(); i++)
-        std::cout <<  p_dist[i] << ' ';
-    createPlot(p_dist, win_w, win_h, painter, p_type, "gold");
-    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
-
-    createPlot(p_dist, win_w, win_h, painter, p_type, "lightsalmon");
-    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
-
-    createPlot(p_dist, win_w, win_h, painter, p_type, "palegreen");
-    p_dist.erase (p_dist.begin(),p_dist.begin() + 10);
-
-}
-
 void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_med, int sample_size_max, int win_w, int trials, QPainter &painter){
     //Parameters description
     QPen pen;//
@@ -171,7 +203,7 @@ void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_
     pen.setColor("palegreen");
     painter.setPen(pen);
     painter.drawText(2 * win_w / 3, 80, "Max sample size:");
-    painter.drawText(2 * win_w / 3 + 160, 80, QString::number(sample_size_min + 500));
+    painter.drawText(2 * win_w / 3 + 160, 80, QString::number(sample_size_min + 450));
 
     pen.setColor("white");
     painter.setPen(pen);

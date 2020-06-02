@@ -26,15 +26,12 @@ public:
      */
      void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
                        std::vector<double> &p_distr, PType p_type){
-        std::cout << alpha << " alpha "<< ' ';
         std::vector<double> p_alt_temp;
         for (int i = 0; i < 10; i++){
-            std::cout << alpha << " alpha "<< ' ';
-
-            p = modelPVal(trials, sample_size_min, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
+            p = modelPVal(trials, sample_size_min + i * 50, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
             chi = chi_tmp;
-            for (int j = 0; j < p_distr.size(); j++){
-                if ((double)j / 10 < alpha && double(j + 1) / 10 >= alpha)
+            for (int j = 0; j < p_distr.size() + 1; j++){
+                if ((double)j / 10  - 0.1 <= alpha && double(j + 1) / 10 - 0.1 >= alpha)
                     p_alt_temp.push_back(p_distr[j]);
             }
         }

@@ -22,13 +22,13 @@ Custom::Custom(int width, QColor color, QWidget *parent)
 
     this->ui->lineEditSize1->setText(QString::number(50));
 
-    this->ui->lineEdit_A->setText(QString::number(6));
-    this->ui->lineEdit_B->setText(QString::number(5));
-    this->ui->lineEdit_K->setText(QString::number(4));
+    this->ui->lineEdit_A->setText(QString::number(30));
+    this->ui->lineEdit_B->setText(QString::number(20));
+    this->ui->lineEdit_K->setText(QString::number(25));
 
-    this->ui->lineEdit_A_alt->setText(QString::number(5));
-    this->ui->lineEdit_B_alt->setText(QString::number(5));
-    this->ui->lineEdit_K_alt->setText(QString::number(4));
+    this->ui->lineEdit_A_alt->setText(QString::number(29));
+    this->ui->lineEdit_B_alt->setText(QString::number(19));
+    this->ui->lineEdit_K_alt->setText(QString::number(24));
 
 }
 /**
