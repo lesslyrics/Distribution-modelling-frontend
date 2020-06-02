@@ -168,25 +168,19 @@ void drawParamsCustom(int a, int b, int k, int sample_size_min, int sample_size_
     painter.drawText(2 * win_w / 3, 40, "Min sample size:");
     painter.drawText(2 * win_w / 3 + 160, 40, QString::number(sample_size_min));
 
-    pen.setColor("lightsalmon");
-    painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 80, "Med sample size:");
-    painter.drawText(2 * win_w / 3 + 160, 80, QString::number(sample_size_med));
-
     pen.setColor("palegreen");
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 120, "Max sample size:");
-    painter.drawText(2 * win_w / 3 + 160, 120, QString::number(sample_size_max));
+    painter.drawText(2 * win_w / 3, 80, "Max sample size:");
+    painter.drawText(2 * win_w / 3 + 160, 80, QString::number(sample_size_min + 500));
 
     pen.setColor("white");
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3, 160, "Alternative: ");
+    painter.drawText(2 * win_w / 3, 160, "Distribution: ");
     painter.drawText(2 * win_w / 3, 240, "Trials: ");
 
     pen.setColor("wheat");
     painter.setPen(pen);
-    painter.drawText(2 * win_w / 3 , 200, "Hypergeometric (" +  QString::number(a) + ", " +
-                        QString::number(b) + ", " + QString::number(k) + ")");
+    painter.drawText(2 * win_w / 3 , 200, "Hypergeometric ");
     painter.drawText(2 * win_w / 3 + 80 , 240, QString::number(trials));
 
 }
@@ -200,10 +194,10 @@ void drawAlpha(double alpha, double win_w, double win_h, QPainter &painter){
 
     QPen pen;
     pen.setWidth(2);
-    pen.setColor("red");
-    pen.setStyle(Qt::DashLine);
-    painter.setPen(pen);
-    painter.drawLine(win_w / 11, 10 * win_h / 11 - y * alpha, win_w / 11 + x , 10 * win_h / 11 - y * alpha);
+//    pen.setColor("red");
+//    pen.setStyle(Qt::DashLine);
+//    painter.setPen(pen);
+//    painter.drawLine(win_w / 11, 10 * win_h / 11 - y * alpha, win_w / 11 + x , 10 * win_h / 11 - y * alpha);
 
     pen.setColor("red");
     painter.setPen(pen);

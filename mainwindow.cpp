@@ -106,8 +106,7 @@ void MainWindow::on_actionCustom_triggered() {
 
 
     if (customDialog->exec() == QDialog::Accepted) {
-        customDialog->activateModel_tmp(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
-
+        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, PType::Power);
         ui->renderarea->getMenu() = Menu::Custom;
         ui->renderarea->getRectColor() = customDialog->getRectColor();
         ui->renderarea->getChi() = customDialog->getChi();
@@ -122,8 +121,6 @@ void MainWindow::on_actionCustom_triggered() {
         ui->renderarea->getAlpha() = customDialog->getAlpha();
 
         ui->renderarea->getSampleSizeMin() = customDialog->getSampleSizeMin();
-        ui->renderarea->getSampleSizeMed() = customDialog->getSampleSizeMed();
-        ui->renderarea->getSampleSizeMax() = customDialog->getSampleSizeMax();
 
         ui->renderarea->getA() = customDialog->getA();
         ui->renderarea->getB() = customDialog->getB();

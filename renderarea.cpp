@@ -41,8 +41,10 @@ void RenderArea::paintEventCustom(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
     sample_size = sample_size_min;
+    QString color = "palegreen";
     drawParamsCustom(a, b, k, sample_size_min, sample_size_med, sample_size_max, x, trials, painter);
-    createCustom(p_dist, x, y, painter, p_type);
+//    createCustom(p_dist, x, y, painter, p_type);
+    createPlot(p_dist, x, y, painter, p_type, color);
 
     drawAlpha(alpha, x, y, painter);
 
