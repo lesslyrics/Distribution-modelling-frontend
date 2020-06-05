@@ -20,7 +20,7 @@ public:
     /**
      * Find factorial
      */
-    static long long int findFactorial(int num);
+    static long double findFactorial(int num);
 
     /**
      * Generate distribution
