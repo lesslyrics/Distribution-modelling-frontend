@@ -12,7 +12,7 @@ class PWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit PWindow(int width, QColor color, QWidget *parent = nullptr);
+    explicit PWindow(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
 
     /**
      * Acquire parameters for drawing
@@ -23,9 +23,15 @@ public:
      * @param p_dist_alt
      */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
-                       std::vector<double> &p_distr, PType p_type){
+                       std::vector<double> &p_distr, PType p_type, int &a_tmp, int &b_tmp, int &k_tmp, int &a_tmp_alt, int &b_tmp_alt, int &k_tmp_alt ){
 
         p = modelPVal(trials, sample_size, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
+        a_tmp = a;
+        b_tmp = b;
+        k_tmp = k;
+        a_tmp_alt = a_alt;
+        b_tmp_alt = b_alt;
+        k_tmp_alt = k_alt;
         chi = chi_tmp;
 
     }

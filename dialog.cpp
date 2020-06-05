@@ -10,15 +10,15 @@
  * @param color
  * @param parent
  */
-Dialog::Dialog(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Dialog), sample_size(width){
+Dialog::Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *parent)
+        : QDialog(parent), ui(new Ui::Dialog), sample_size(width),  a(a_t), b(b_t), k(k_t){
     ui->setupUi(this);
 
 
-    this->ui->lineEditSize->setText(QString::number(100));
-    this->ui->lineEdit_A->setText(QString::number(30));
-    this->ui->lineEdit_B->setText(QString::number(20));
-    this->ui->lineEdit_K->setText(QString::number(25));
+//    this->ui->lineEditSize->setText(QString::number(100));
+    this->ui->lineEdit_A->setText(QString::number(a_t));
+    this->ui->lineEdit_B->setText(QString::number(b_t));
+    this->ui->lineEdit_K->setText(QString::number(k_t));
 
 
     if (color == Qt::red)

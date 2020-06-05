@@ -13,7 +13,7 @@ class Custom : public QDialog {
 Q_OBJECT
 
 public:
-    explicit Custom(int width, QColor color, QWidget *parent = nullptr);
+    explicit Custom(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
 
 
     /**
@@ -25,7 +25,7 @@ public:
      * @param p_dist_alt
      */
      void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
-                       std::vector<double> &p_distr, PType p_type){
+                       std::vector<double> &p_distr, PType p_type, int &a_tmp, int &b_tmp, int &k_tmp, int &a_tmp_alt, int &b_tmp_alt, int &k_tmp_alt){
         std::vector<double> p_alt_temp;
         for (int i = 0; i < 10; i++){
             p = modelPVal(trials, sample_size_min + i * 50, chi_tmp, expr_freq, actu_freq, p_distr, a, b, k, a_alt, b_alt, k_alt, p_type);
@@ -40,7 +40,12 @@ public:
             if (i > 0){
                 p_distr.push_back(i);
             }
-
+        a_tmp = a;
+        b_tmp = b;
+        k_tmp = k;
+        a_tmp_alt = a_alt;
+        b_tmp_alt = b_alt;
+        k_tmp_alt = k_alt;
     }
 
 

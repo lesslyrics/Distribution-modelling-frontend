@@ -16,19 +16,19 @@ const int MAX = 50;
  * @param color
  * @param parent
  */
-Custom::Custom(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Custom), sample_size_min(width) {
+Custom::Custom(int width, QColor color,int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
+        : QDialog(parent), ui(new Ui::Custom), sample_size_min(width), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at) {
     ui->setupUi(this);
 
     this->ui->lineEditSize1->setText(QString::number(50));
 
-    this->ui->lineEdit_A->setText(QString::number(30));
-    this->ui->lineEdit_B->setText(QString::number(20));
-    this->ui->lineEdit_K->setText(QString::number(25));
+    this->ui->lineEdit_A->setText(QString::number(a));
+    this->ui->lineEdit_B->setText(QString::number(b));
+    this->ui->lineEdit_K->setText(QString::number(k));
 
-    this->ui->lineEdit_A_alt->setText(QString::number(29));
-    this->ui->lineEdit_B_alt->setText(QString::number(19));
-    this->ui->lineEdit_K_alt->setText(QString::number(24));
+    this->ui->lineEdit_A_alt->setText(QString::number(a_alt));
+    this->ui->lineEdit_B_alt->setText(QString::number(b_alt));
+    this->ui->lineEdit_K_alt->setText(QString::number(k_alt));
 
 }
 /**

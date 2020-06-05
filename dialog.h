@@ -18,7 +18,7 @@ public:
      * @param color
      * @param parent
      */
-    explicit Dialog(int width, QColor color, QWidget *parent = nullptr);
+    explicit Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *parent = nullptr);
 
     int &getSampleSize() { return sample_size; }
 
@@ -31,8 +31,11 @@ public:
      * @param p_dist_alt
      */
     void activateModel(double &chi_tmp, std::vector<double> &expr_freq, std::vector<double> &actu_freq,
-            std::vector<double> &p_dist){
+            std::vector<double> &p_dist, int &a_tmp, int &b_tmp, int &k_tmp){
         p = modelDistribution(modelType, 1, sample_size, chi_tmp, expr_freq, actu_freq, p_dist, a, b, k);
+        a_tmp = a;
+        b_tmp = b;
+        k_tmp = k;
         chi = chi_tmp;
     }
 

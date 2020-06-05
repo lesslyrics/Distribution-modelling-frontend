@@ -44,5 +44,13 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    int a = 6;
+    int b = 6;
+    int k = 5;
+
+    int a_alt = 7;
+    int b_alt = 5;
+    int k_alt = 4;
 };
 
