@@ -13,6 +13,9 @@
 class HypogeomModel {
 
 protected:
+    /**
+     * actual frequencies
+     */
     std::vector<double> actual_freq;
 
 

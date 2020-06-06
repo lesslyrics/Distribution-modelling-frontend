@@ -1,0 +1,145 @@
+\hypertarget{classPWindow}{}\doxysection{P\+Window Class Reference}
+\label{classPWindow}\index{PWindow@{PWindow}}
+
+
+Ui class.  
+
+
+
+
+{\ttfamily \#include $<$pwindow.\+h$>$}
+
+
+
+Inheritance diagram for P\+Window\+:
+% FIG 0
+
+
+Collaboration diagram for P\+Window\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPWindow_a3142f90661bdf76276ee22145cbc8d7b}{P\+Window}} (int width, Q\+Color color, int a\+\_\+t, int b\+\_\+t, int k\+\_\+t, int a\+\_\+at, int b\+\_\+at, int k\+\_\+at, Q\+Widget $\ast$parent=nullptr)
+\item 
+void \mbox{\hyperlink{classPWindow_a163686176aca055ec16d3e963aa60b82}{activate\+Model}} (double \&chi\+\_\+tmp, std\+::vector$<$ double $>$ \&expr\+\_\+freq, std\+::vector$<$ double $>$ \&actu\+\_\+freq, std\+::vector$<$ double $>$ \&p\+\_\+distr, P\+Type p\+\_\+type, int \&a\+\_\+tmp, int \&b\+\_\+tmp, int \&k\+\_\+tmp, int \&a\+\_\+tmp\+\_\+alt, int \&b\+\_\+tmp\+\_\+alt, int \&k\+\_\+tmp\+\_\+alt)
+\item 
+int \& \mbox{\hyperlink{classPWindow_a34c587323df553e8801329a80b7b9efa}{get\+Sample\+Size}} ()
+\item 
+\mbox{\Hypertarget{classPWindow_ac7c23d494c35ce6f0791b582e4e23cdb}\label{classPWindow_ac7c23d494c35ce6f0791b582e4e23cdb}} 
+double \& {\bfseries getP} ()
+\item 
+\mbox{\Hypertarget{classPWindow_a740252bd0dd7c3d8b2c69abcbcc2939d}\label{classPWindow_a740252bd0dd7c3d8b2c69abcbcc2939d}} 
+double \& {\bfseries get\+Chi} ()
+\item 
+\mbox{\Hypertarget{classPWindow_a821c4d955cf3b5ccad171c93ed97c74b}\label{classPWindow_a821c4d955cf3b5ccad171c93ed97c74b}} 
+int \& {\bfseries get\+Trials} ()
+\item 
+\mbox{\Hypertarget{classPWindow_af5c4864a31a128a8ce4dcc21d96321a5}\label{classPWindow_af5c4864a31a128a8ce4dcc21d96321a5}} 
+P\+Type \& {\bfseries get\+P\+Type} ()
+\item 
+\mbox{\hyperlink{classPWindow_ab33872bba494ddfae9f9f2f8ce51edc7}{$\sim$\+P\+Window}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPWindow_ae06fadec5f0a4b65d1d73ea2dfcf0b8d}{done}} (int r) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ui class. 
+
+\begin{DoxyAuthor}{Author}
+@lesslyrics (Alina Boshchenko) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+June 2020
+\end{DoxyDate}
+Class for the p-\/values distribution visualization 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPWindow_a3142f90661bdf76276ee22145cbc8d7b}\label{classPWindow_a3142f90661bdf76276ee22145cbc8d7b}} 
+\index{PWindow@{PWindow}!PWindow@{PWindow}}
+\index{PWindow@{PWindow}!PWindow@{PWindow}}
+\doxysubsubsection{\texorpdfstring{PWindow()}{PWindow()}}
+{\footnotesize\ttfamily P\+Window\+::\+P\+Window (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{Q\+Color}]{color,  }\item[{int}]{a\+\_\+t,  }\item[{int}]{b\+\_\+t,  }\item[{int}]{k\+\_\+t,  }\item[{int}]{a\+\_\+at,  }\item[{int}]{b\+\_\+at,  }\item[{int}]{k\+\_\+at,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Initialize 
+\begin{DoxyParams}{Parameters}
+{\em width} & \\
+\hline
+{\em color} & \\
+\hline
+{\em a\+\_\+t} & \\
+\hline
+{\em b\+\_\+t} & \\
+\hline
+{\em k\+\_\+t} & \\
+\hline
+{\em a\+\_\+at} & \\
+\hline
+{\em b\+\_\+at} & \\
+\hline
+{\em k\+\_\+at} & \\
+\hline
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPWindow_ab33872bba494ddfae9f9f2f8ce51edc7}\label{classPWindow_ab33872bba494ddfae9f9f2f8ce51edc7}} 
+\index{PWindow@{PWindow}!````~PWindow@{$\sim$PWindow}}
+\index{````~PWindow@{$\sim$PWindow}!PWindow@{PWindow}}
+\doxysubsubsection{\texorpdfstring{$\sim$PWindow()}{~PWindow()}}
+{\footnotesize\ttfamily P\+Window\+::$\sim$\+P\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPWindow_a163686176aca055ec16d3e963aa60b82}\label{classPWindow_a163686176aca055ec16d3e963aa60b82}} 
+\index{PWindow@{PWindow}!activateModel@{activateModel}}
+\index{activateModel@{activateModel}!PWindow@{PWindow}}
+\doxysubsubsection{\texorpdfstring{activateModel()}{activateModel()}}
+{\footnotesize\ttfamily void P\+Window\+::activate\+Model (\begin{DoxyParamCaption}\item[{double \&}]{chi\+\_\+tmp,  }\item[{std\+::vector$<$ double $>$ \&}]{expr\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{actu\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{p\+\_\+distr,  }\item[{P\+Type}]{p\+\_\+type,  }\item[{int \&}]{a\+\_\+tmp,  }\item[{int \&}]{b\+\_\+tmp,  }\item[{int \&}]{k\+\_\+tmp,  }\item[{int \&}]{a\+\_\+tmp\+\_\+alt,  }\item[{int \&}]{b\+\_\+tmp\+\_\+alt,  }\item[{int \&}]{k\+\_\+tmp\+\_\+alt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Acquire parameters for drawing 
+\begin{DoxyParams}{Parameters}
+{\em chi\+\_\+tmp} & \\
+\hline
+{\em expr\+\_\+freq} & \\
+\hline
+{\em actu\+\_\+freq} & \\
+\hline
+{\em p\+\_\+dist} & \\
+\hline
+{\em p\+\_\+dist\+\_\+alt} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPWindow_ae06fadec5f0a4b65d1d73ea2dfcf0b8d}\label{classPWindow_ae06fadec5f0a4b65d1d73ea2dfcf0b8d}} 
+\index{PWindow@{PWindow}!done@{done}}
+\index{done@{done}!PWindow@{PWindow}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily void P\+Window\+::done (\begin{DoxyParamCaption}\item[{int}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+parameters setting 
+\begin{DoxyParams}{Parameters}
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPWindow_a34c587323df553e8801329a80b7b9efa}\label{classPWindow_a34c587323df553e8801329a80b7b9efa}} 
+\index{PWindow@{PWindow}!getSampleSize@{getSampleSize}}
+\index{getSampleSize@{getSampleSize}!PWindow@{PWindow}}
+\doxysubsubsection{\texorpdfstring{getSampleSize()}{getSampleSize()}}
+{\footnotesize\ttfamily int\& P\+Window\+::get\+Sample\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getters \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+pwindow.\+h\item 
+pwindow.\+cpp\end{DoxyCompactItemize}

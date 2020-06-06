@@ -148,11 +148,11 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
     HypogeomModel *model;
     switch (type) {
         case ModelType::Bern : {
-            model = new BernoulliMethodModel(a);
+            model = new BernoulliMethodModel();
             break;
         }
         case ModelType::Inv : {
-            model = new InverseFunctionMethodModel(a);
+            model = new InverseFunctionMethodModel();
             break;
         }
         default:
@@ -223,7 +223,7 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
 
     HypogeomModel *model;
     ChiSquared chiStat;
-    model = new BernoulliMethodModel(a);
+    model = new BernoulliMethodModel();
 
 
     int len = a;

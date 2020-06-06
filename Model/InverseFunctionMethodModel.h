@@ -14,7 +14,7 @@
 class InverseFunctionMethodModel : public HypogeomModel{
 
 public:
-    explicit InverseFunctionMethodModel(int a){}
+    explicit InverseFunctionMethodModel(){}
 
      /**
       * Generate random value

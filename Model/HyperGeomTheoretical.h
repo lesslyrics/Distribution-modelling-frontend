@@ -15,8 +15,17 @@
 class HyperGeomTheoretical {
 
 protected:
+    /**
+     * distribution parameter a
+     */
     int a;
+    /**
+     * distribution parameter b
+     */
     int b;
+    /**
+     * distribution parameter k
+     */
     int k;
 
 public:

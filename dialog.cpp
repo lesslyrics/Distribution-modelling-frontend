@@ -10,8 +10,8 @@
  * @param color
  * @param parent
  */
-Dialog::Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Dialog), sample_size(width),  a(a_t), b(b_t), k(k_t){
+Dialog::Dialog(int a_t, int b_t, int k_t, QWidget *parent)
+        : QDialog(parent), ui(new Ui::Dialog), a(a_t), b(b_t), k(k_t){
     ui->setupUi(this);
 
 
@@ -20,13 +20,7 @@ Dialog::Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *pare
     this->ui->lineEdit_B->setText(QString::number(b_t));
     this->ui->lineEdit_K->setText(QString::number(k_t));
 
-
-    if (color == Qt::red)
-        ui->radioButtonBern->setChecked(true);
-    else if (color == Qt::green)
-        ui->radioButtonInverse->setChecked(true);
-    else
-        ui->radioButtonBern->setChecked(true);
+    ui->radioButtonBern->setChecked(true);
 
 }
 

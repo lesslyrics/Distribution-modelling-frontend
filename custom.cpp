@@ -16,8 +16,8 @@ const int MAX = 50;
  * @param color
  * @param parent
  */
-Custom::Custom(int width, QColor color,int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Custom), sample_size_min(width), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at) {
+Custom::Custom(int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
+        : QDialog(parent), ui(new Ui::Custom), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at) {
     ui->setupUi(this);
 
     this->ui->lineEditSize1->setText(QString::number(50));

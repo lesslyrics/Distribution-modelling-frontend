@@ -19,13 +19,15 @@ class Dialog : public QDialog {
 Q_OBJECT
 
 public:
+
     /**
      * Initialize
-     * @param width
-     * @param color
+     * @param a_t
+     * @param b_t
+     * @param k_t
      * @param parent
      */
-    explicit Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *parent = nullptr);
+    explicit Dialog(int a_t, int b_t, int k_t, QWidget *parent = nullptr);
 
 
     /**
@@ -68,17 +70,51 @@ protected:
 private slots:
 
 private:
+    /**
+     * distribution parameter a
+     */
     int a;
+    /**
+       * distribution parameter b
+       */
     int b;
+    /**
+       * distribution parameter k
+       */
     int k;
+
+    /**
+    * expected frequencies
+    */
     std::vector<double> exp_freq;
+    /**
+       * actual frequencies
+       */
     std::vector<double> act_freq;
 
-    double p = 0;
+    /**
+     * chi-squared statistic
+     */
     double chi = 0;
+
+    /**
+     * p-value for chi-statistic
+     */
+    double p = 0;
+
+    /**
+     * number of trials
+     */
     int trials;
+
+    /**
+     * modelling type
+     */
     ModelType modelType;
 
+    /**
+     * sample size
+     */
     int sample_size;
     Ui::Dialog *ui;
 

@@ -15,7 +15,7 @@
 class BernoulliMethodModel : public HypogeomModel {
 
 public:
-    explicit BernoulliMethodModel(int a){}
+    explicit BernoulliMethodModel(){}
 
     /**
      * Generate random value

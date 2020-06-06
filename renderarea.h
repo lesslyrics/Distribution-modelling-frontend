@@ -57,8 +57,6 @@ public:
 
     int &getSampleSize() { return sample_size; }
 
-    int &getLineWidth() { return line_width; }
-
     double &getChi() { return chi; }
 
     double &getP() { return p; }
@@ -67,67 +65,93 @@ public:
 
     PType &getPType() { return p_type; }
 
-    QColor &getRectColor() { return rect_color; }
-
     std::vector<double> &getExpFreq() { return exp_freq; }
 
     std::vector<double> &getActFreq() { return act_freq; }
 
     std::vector<double> &getPDist() { return p_dist; }
 
-    std::vector<double> &getPDistAlt() { return p_dist_alt; }
-
     int &getTrials() { return trials; }
 
     int &getSampleSizeMin() { return sample_size_min; }
-    int &getSampleSizeMed() { return sample_size_med; }
-    int &getSampleSizeMax() { return sample_size_max; }
 
     double &getAlpha() { return alpha; }
     int &getA() { return a; }
     int &getB() { return b; }
     int &getK() { return k; }
-    int &getA_alt() { return a_alt; }
-    int &getB_alt() { return b_alt; }
-    int &getK_alt() { return k_alt; }
 
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
+    /**
+     * menu
+     */
     Menu menu;
-    QColor rect_color = Qt::white;
+    /**
+     * sample size
+     */
     int sample_size = 1;
+    /**
+    * distribution parameter a
+    */
     int a;
+    /**
+    * distribution parameter b
+    */
     int b;
+    /**
+    * distribution parameter k
+    */
     int k;
-    int a_alt;
-    int b_alt;
-    int k_alt;
 
+    /**
+     * sample size for custom task
+     */
     int sample_size_min = 0;
-    int sample_size_med = 100;
-    int sample_size_max = 1000;
 
-    int line_width;
-
+    /**
+     * chi-squared statistic
+     */
     double chi = 0;
 
+    /**
+     * p-value for chi-statistic
+     */
     double p = 0;
 
+    /**
+     * modelling type
+     */
     ModellingType model_type;
 
+    /**
+     * p-values distribution types
+     */
     PType p_type;
 
+    /**
+     * number of trials
+     */
     int trials;
 
+    /**
+     * alpha-level (significance level)
+     */
     double alpha;
-
+    /**
+     * expected frequencies
+     */
     std::vector<double> exp_freq;
+    /**
+       * actual frequencies
+       */
     std::vector<double> act_freq;
+    /**
+       * p-values distribution
+       */
     std::vector<double> p_dist;
-    std::vector<double> p_dist_alt;
 
 
     /**

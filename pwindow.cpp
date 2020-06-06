@@ -16,8 +16,8 @@
  * @param k_at
  * @param parent
  */
-PWindow::PWindow(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
-        : QDialog(parent), ui(new Ui::PWindow), sample_size(width), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at){
+PWindow::PWindow( int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
+        : QDialog(parent), ui(new Ui::PWindow), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at){
     ui->setupUi(this);
 
     this->ui->lineEditTrials->setText(QString::number(10000));

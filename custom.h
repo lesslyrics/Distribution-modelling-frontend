@@ -22,8 +22,6 @@ Q_OBJECT
 public:
     /**
      * Init
-     * @param width
-     * @param color
      * @param a_t
      * @param b_t
      * @param k_t
@@ -32,7 +30,7 @@ public:
      * @param k_at
      * @param parent
      */
-    explicit Custom(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
+    explicit Custom(int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
 
 
     /**
@@ -99,21 +97,66 @@ private slots:
 
 
 private:
+    /**
+     * distribution parameter a
+     */
     int a;
+    /**
+       * distribution parameter b
+       */
     int b;
+    /**
+       * distribution parameter k
+       */
     int k;
-
+    /**
+       * distribution parameter a_alternative (needed for the parameters in dialog memorization only)
+       */
     int a_alt;
+    /**
+     * distribution parameter b_alternative (needed for the parameters in dialog memorization only)
+     */
     int b_alt;
+    /**
+       * distribution parameter k_alternative (needed for the parameters in dialog memorization only)
+       */
     int k_alt;
-    double alpha = 0;
+    /**
+    * expected frequencies
+    */
     std::vector<double> exp_freq;
+    /**
+       * actual frequencies
+       */
     std::vector<double> act_freq;
+    /**
+       * p-values distribution
+       */
+    std::vector<double> p_dist;
 
-    double p = 0;
+    /**
+    * chi-squared statistic
+    */
     double chi = 0;
-    int trials = 10000;
 
+    /**
+     * p-value for chi-statistic
+     */
+    double p = 0;
+
+    /**
+     * trials
+     */
+    int trials = 1000;
+
+    /**
+     * significance level
+     */
+    double alpha = 0;
+
+    /**
+     * minimal sample size
+     */
     int sample_size_min  = 50;
     Ui::Custom *ui;
 

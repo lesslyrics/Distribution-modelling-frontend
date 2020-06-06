@@ -16,9 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::on_actionModel_triggered() {
 
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto modelDialog = new Dialog(width, color, a, b, k,  this);
+    auto modelDialog = new Dialog(a, b, k,  this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
@@ -53,9 +51,7 @@ void MainWindow::on_actionModel_triggered() {
  */
 void MainWindow::on_actionPval_triggered() {
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto pvalDialog = new PWindow(width, color, a, b, k, a_alt, b_alt, k_alt, this);
+    auto pvalDialog = new PWindow(a, b, k, a_alt, b_alt, k_alt, this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
@@ -89,9 +85,7 @@ void MainWindow::on_actionPval_triggered() {
  */
 void MainWindow::on_actionCustom_triggered() {
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto customDialog = new Custom(width, color, a, b, k, a_alt, b_alt, k_alt, this);
+    auto customDialog = new Custom(a, b, k, a_alt, b_alt, k_alt, this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms

@@ -15,12 +15,33 @@
 class ChiSquared {
 
 protected:
+
+    /**
+      * expected frequencies
+      */
     std::vector<double> exp_freq;
+
+    /**
+      * expected frequencies (accumulated)
+      */
     std::vector<double> expected;
+
+    /**
+     * actual frequencies
+     */
     std::vector<double> act_freq;
 
+    /**
+     * chi-squared statistics
+     */
     double chi_sq = 0;
+    /**
+     *  p_value by chi-statistic
+     */
     double p_value = 0;
+    /**
+   *  p_value distribution
+   */
     std::vector<double> p_dist;
 
 public:

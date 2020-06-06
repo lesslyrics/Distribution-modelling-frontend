@@ -22,8 +22,6 @@ class PWindow : public QDialog
 public:
     /**
      * Initialize
-     * @param width
-     * @param color
      * @param a_t
      * @param b_t
      * @param k_t
@@ -32,7 +30,7 @@ public:
      * @param k_at
      * @param parent
      */
-    explicit PWindow(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
+    explicit PWindow(int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
 
     /**
      * Acquire parameters for drawing
@@ -83,22 +81,66 @@ private slots:
 
 
 private:
+    /**
+       * distribution parameter a
+       */
     int a;
+    /**
+       * distribution parameter b
+       */
     int b;
+    /**
+       * distribution parameter k
+       */
     int k;
+    /**
+       * distribution parameter a_alternative (needed for the parameters in dialog memorization only)
+       */
     int a_alt;
+    /**
+     * distribution parameter b_alternative (needed for the parameters in dialog memorization only)
+     */
     int b_alt;
+    /**
+       * distribution parameter k_alternative (needed for the parameters in dialog memorization only)
+       */
     int k_alt;
+    /**
+    * expected frequencies
+    */
     std::vector<double> exp_freq;
+    /**
+       * actual frequencies
+       */
     std::vector<double> act_freq;
+    /**
+       * p-values distribution
+       */
     std::vector<double> p_dist;
 
+    /**
+    * p-values distribution types
+    */
     PType p_type;
 
-    double p = 0;
+    /**
+    * chi-squared statistic
+    */
     double chi = 0;
+
+    /**
+     * p-value for chi-statistic
+     */
+    double p = 0;
+
+    /**
+     * trials
+     */
     int trials;
 
+    /**
+     * sample size
+     */
     int sample_size;
     Ui::PWindow *ui;
 };
