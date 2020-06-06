@@ -1,7 +1,3 @@
-//
-// Created by lesslyrics on 25.02.2020.
-//
-
 #pragma once
 
 
@@ -9,6 +5,13 @@
 #include <iostream>
 #include <iomanip>
 
+/**
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Class for the theoretical distribution generation
+**/
 class HyperGeomTheoretical {
 
 protected:
@@ -17,6 +20,10 @@ protected:
     int k;
 
 public:
+    /**
+     * Getters and setters
+     * @return
+     */
     int getA() const;
 
     void setA(int a);
@@ -31,12 +38,38 @@ public:
 
 
 public:
+
+    /**
+     * Method to compute hypergeometric distribution
+     * @param N
+     * @param K
+     * @param n
+     * @param k
+     * @return
+     */
     double hyperGeomTheor(unsigned long N, unsigned long K, unsigned long n, unsigned long k);
 
+
+    /**
+    * method to compute binomial coefficient
+    * @param n
+    * @param k
+    * @return
+    */
     double computeBinCoef(unsigned long n, unsigned long k);
 
+    /**
+     * Destructor
+     */
     ~HyperGeomTheoretical() = default;
 
+
+    /**
+     * create theoretical distribution
+     * @param nt
+     * @param expected_freq
+     * @param expected
+     */
     void modelTheoreticalDist(int nt, std::vector<double> &expected_freq, std::vector<double> &expected) {
 
         std::vector<double> h(a + 1, 0);

@@ -6,7 +6,11 @@
 #include "Model.h"
 
 
-/** This function finds factorial of large numbers **/
+/**
+ * This function finds factorial of large numbers
+ * @param num
+ * @return
+ */
 long double InverseFunctionMethodModel::findFactorial(int num) {
     long double fact = 1;
     int i;
@@ -26,11 +30,7 @@ int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0;
     int n = a + b;
 
-//    std::cout <<"fac1 " << (long double)(findFactorial(b) * findFactorial(n-k)) <<  std::endl ;
-//    std::cout <<"fac2 " << (long double)(findFactorial(n - a - k)) << std::endl;
-//    std::cout <<"fac3 " << (long double)(findFactorial(n)) <<  std::endl ;
-
-    long double p = (findFactorial(b) * findFactorial(n - k)) / findFactorial(n - a - k) / findFactorial(n);
+    long double p = (findFactorial(b) * findFactorial(n - k)) / findFactorial(b - k) / findFactorial(n);
     long double l = p;
     long double alpha = randomRange(0, 1);
 

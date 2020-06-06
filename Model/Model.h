@@ -18,10 +18,12 @@ class ChiSquared;
  */
 void
 merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1);
+
 /**
- * method to print p-value distribution
+ * method to build p-value distribution
  * @param hist_p
  * @param p
+ * @param trials
  */
 void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials);
 

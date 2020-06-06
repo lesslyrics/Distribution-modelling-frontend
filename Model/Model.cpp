@@ -11,7 +11,6 @@
 /**
  * hyperparameters
  * */
-
 const int FREQ = 5;
 
 /**
@@ -75,9 +74,10 @@ merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<do
 }
 
 /**
- * method to print p-value distribution
+ * method to build p-value distribution
  * @param hist_p
  * @param p
+ * @param trials
  */
 void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
     for (int i = 0; i < trials; ++i) {
@@ -93,9 +93,20 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
 }
 
 
-/**
- * Method to find Chi-Squared statistics
- */
+ /**
+  * Method to get Chi-Squared statistics from Chi-Squared
+  * @param chiStat
+  * @param model
+  * @param chi
+  * @param nt
+  * @param p
+  * @param trials
+  * @param expected_freq
+  * @param expected
+  * @param exp_freq
+  * @param act_freq
+  * @param p_dist
+  */
 void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, int trials, std::vector<double>
 expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist){
 
@@ -110,9 +121,21 @@ expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std:
 }
 
 
-/**
- * Mthod for distribution generation
- */
+
+ /**
+  * Method for distribution generation
+  * @param type
+  * @param trials
+  * @param nt
+  * @param chi
+  * @param exp_freq
+  * @param act_freq
+  * @param p_dist
+  * @param a
+  * @param b
+  * @param k
+  * @return
+  */
 double modelDistribution(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
                          std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                          int k) {
@@ -121,7 +144,6 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
     std::vector<double> expected_freq;
     std::vector<double> expected;
 
-    std::cout << "hello";
     ChiSquared chiStat;
     HypogeomModel *model;
     switch (type) {
@@ -161,8 +183,9 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
     /* for p_value*/
     build_p_dist(hist_p, p, trials);
     p_dist.clear();
-    for (int i = 1; i < hist_p.size(); i++)
+    for (int i = 1; i < hist_p.size(); i++){
         p_dist.push_back(((double) hist_p[i - 1]) / trials);
+    }
 
     chiStat.setPDist(p_dist);
 
@@ -174,6 +197,20 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
 
 /**
  * Method for the p-distriburion modelling
+ * @param trials
+ * @param nt
+ * @param chi
+ * @param exp_freq
+ * @param act_freq
+ * @param p_dist
+ * @param a
+ * @param b
+ * @param k
+ * @param a_alt
+ * @param b_alt
+ * @param k_alt
+ * @param p_type
+ * @return
  */
 double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
                  std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
@@ -223,8 +260,10 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
     /* for p_value*/
     build_p_dist(hist_p, p, trials);
     p_dist.clear();
-    for (int i = 1; i < hist_p.size(); i++)
+    for (int i = 1; i < hist_p.size(); i++){
+//        std::cout << ((double) hist_p[i - 1]) / trials << std::endl;
         p_dist.push_back(((double) hist_p[i - 1]) / trials);
+    }
 
     chiStat.setPDist(p_dist);
 

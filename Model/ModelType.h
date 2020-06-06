@@ -1,12 +1,13 @@
-//
-// Created by lesslyrics on 20.04.2020.
-//
-
 #pragma once
 
 /**
- * Type of the modelling method
- */
+	\brief Enum class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Type of the modelling method
+**/
 enum class ModelType{
     Bern,
     Inv

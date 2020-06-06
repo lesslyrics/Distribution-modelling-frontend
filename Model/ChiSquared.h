@@ -1,13 +1,17 @@
-//
-// Created by lesslyrics on 26.04.2020.
-//
-
 #pragma once
 
 #include <utility>
 #include <vector>
 #include "Model.h"
 
+
+/**
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Class for the Chi-squared statistics
+**/
 class ChiSquared {
 
 protected:
@@ -56,7 +60,6 @@ public:
      * @param trials
      * @param nt
      */
-
     void computeStatistics(int trials, int nt) {
 
         int df = 0;
