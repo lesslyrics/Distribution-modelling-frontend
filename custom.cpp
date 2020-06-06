@@ -31,9 +31,11 @@ Custom::Custom(int width, QColor color,int a_t, int b_t, int k_t, int a_at, int 
     this->ui->lineEdit_K_alt->setText(QString::number(k_alt));
 
 }
-/**
- * parameters setting
- **/
+
+ /**
+  * parameters setting
+  * @param r
+  */
 void Custom::done(int r) {
 
     a = this->ui->lineEdit_A->text().toInt();

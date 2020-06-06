@@ -20,7 +20,6 @@ public:
      */
     explicit Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *parent = nullptr);
 
-    int &getSampleSize() { return sample_size; }
 
     /**
      * Acquire parameters for drawing
@@ -42,6 +41,9 @@ public:
     /**
      * Getters
     **/
+
+    int &getSampleSize() { return sample_size; }
+
     double &getP() { return p;}
 
     double &getChi() { return chi;}

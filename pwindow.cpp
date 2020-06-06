@@ -4,7 +4,18 @@
 #include <QMessageBox>
 #include <iostream>
 
-
+/**
+ * Initialize
+ * @param width
+ * @param color
+ * @param a_t
+ * @param b_t
+ * @param k_t
+ * @param a_at
+ * @param b_at
+ * @param k_at
+ * @param parent
+ */
 PWindow::PWindow(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
         : QDialog(parent), ui(new Ui::PWindow), sample_size(width), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at){
     ui->setupUi(this);
@@ -20,7 +31,10 @@ PWindow::PWindow(int width, QColor color, int a_t, int b_t, int k_t, int a_at, i
 
 }
 
-/* parameters setting */
+/**
+ * parameters setting
+ * @param r
+ */
 void PWindow::done(int r) {
 
     a = this->ui->lineEdit_A->text().toInt();
@@ -84,6 +98,9 @@ void PWindow::done(int r) {
     QDialog::done(r);
 }
 
+/**
+ * Destructor
+ */
 PWindow::~PWindow()
 {
     delete ui;

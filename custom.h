@@ -13,6 +13,18 @@ class Custom : public QDialog {
 Q_OBJECT
 
 public:
+    /**
+     * Init
+     * @param width
+     * @param color
+     * @param a_t
+     * @param b_t
+     * @param k_t
+     * @param a_at
+     * @param b_at
+     * @param k_at
+     * @param parent
+     */
     explicit Custom(int width, QColor color, int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent = nullptr);
 
 

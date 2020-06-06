@@ -18,7 +18,17 @@ class RenderArea : public QWidget {
 Q_OBJECT
 
 public:
+    /**
+     * Initialize
+     * @param parent
+     */
     explicit RenderArea(QWidget *parent = nullptr);
+
+
+    /**
+    * Getters and setters
+    * @param parent
+    */
 
     Menu &getMenu() { return menu; }
 
@@ -97,12 +107,29 @@ private:
     std::vector<double> p_dist_alt;
 
 
+    /**
+     * Rendering: P-values
+     * @param painter
+     * @param p_type
+     */
     void paintEventPval(QPainter &painter, PType p_type);
 
+    /**
+     * Rendering: Model
+     * @param painter
+     */
     void paintEventModel(QPainter &painter);
 
+    /**
+    * Rendering: Custom task
+    * @param painter
+    */
     void paintEventCustom(QPainter &painter);
 
+    /**
+     * Rendering: Hello
+     * @param painter
+     */
     void paintEventHello(QPainter &painter);
 
 

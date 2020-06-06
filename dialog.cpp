@@ -30,9 +30,11 @@ Dialog::Dialog(int width, QColor color, int a_t, int b_t, int k_t, QWidget *pare
 
 }
 
-/**
- * parameters setting
- **/
+
+ /**
+  * parameters setting
+  * @param r
+  */
 void Dialog::done(int r) {
 
     a = this->ui->lineEdit_A->text().toInt();

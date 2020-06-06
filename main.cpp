@@ -7,6 +7,12 @@
 #include <QtWidgets/QMessageBox>
 
 
+/**
+ * Driver fuction
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);

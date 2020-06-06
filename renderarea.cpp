@@ -11,6 +11,10 @@ RenderArea::RenderArea(QWidget *parent)
         : QWidget(parent) {}
 
 
+/**
+* Rendering:Model
+* @param painter
+*/
 void RenderArea::paintEventModel(QPainter &painter) {
 
     auto x = this->width();
@@ -24,7 +28,11 @@ void RenderArea::paintEventModel(QPainter &painter) {
 
 }
 
-
+/**
+ * Rendering: P-vals
+ * @param painter
+ * @param p_type
+ */
 void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
     auto x = this->width();
     auto y = this->height();
@@ -36,7 +44,10 @@ void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
 
 }
 
-/*Color - rectangle drawing*/
+/**
+ *  Rendering: Custom task
+ * @param painter
+ */
 void RenderArea::paintEventCustom(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
@@ -50,6 +61,10 @@ void RenderArea::paintEventCustom(QPainter &painter) {
 
 }
 
+/**
+ *  Rendering: Hello
+ * @param painter
+ */
 void RenderArea::paintEventHello(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
@@ -65,7 +80,10 @@ void RenderArea::paintEventHello(QPainter &painter) {
     }
 }
 
-
+/**
+   * Rendering: Overall
+   * @param event
+   */
 void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
