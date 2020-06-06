@@ -7,7 +7,14 @@
 namespace Ui {
     class Dialog;
 }
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
 
+	Class for the modelling visualization
+**/
 class Dialog : public QDialog {
 Q_OBJECT
 

@@ -6,6 +6,14 @@ namespace Ui {
     class MainWindow;
 }
 
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Main Window class
+**/
 class MainWindow : public QMainWindow {
 Q_OBJECT
 

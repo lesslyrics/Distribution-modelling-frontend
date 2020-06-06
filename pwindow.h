@@ -7,6 +7,14 @@ namespace Ui {
 class PWindow;
 }
 
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Class for the p-values distribution visualization
+**/
 class PWindow : public QDialog
 {
     Q_OBJECT

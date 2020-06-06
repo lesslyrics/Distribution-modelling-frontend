@@ -8,7 +8,14 @@
 namespace Ui {
     class Custom;
 }
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
 
+	Class for the custom task (power by sample size)
+**/
 class Custom : public QDialog {
 Q_OBJECT
 

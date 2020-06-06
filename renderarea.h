@@ -3,17 +3,40 @@
 #include <QWidget>
 #include <Model/PType.h>
 
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Class for the menu elements selection
+**/
 enum class Menu {
     Model,
     Pval,
     Custom
 };
+/**
+	\brief Enum class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
 
+	Class for the modelling type selection
+**/
 enum class ModellingType{
     Bern,
     Inv
 };
 
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Render area class
+**/
 class RenderArea : public QWidget {
 Q_OBJECT
 
