@@ -11,6 +11,15 @@
 #define LIMIT_X 300
 #define MOVE 100
 
+/**
+ * Create plot
+ * @param p_dist
+ * @param win_w
+ * @param win_h
+ * @param painter
+ * @param p_type
+ * @param color
+ */
 void createPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type, QString color){
 
     double *p;
@@ -59,7 +68,16 @@ void createPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &pain
 
 }
 
-
+/**
+ * Create custom plot
+ * @param p_dist
+ * @param win_w
+ * @param win_h
+ * @param painter
+ * @param p_type
+ * @param color
+ * @param sample_size
+ */
 void createCustomPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter &painter, PType p_type, QString color, int sample_size){
 
     double *p;
@@ -96,7 +114,17 @@ void createCustomPlot(std::vector<double> p_dist, int win_w, int win_h, QPainter
 
 
 
-
+/**
+ * Draw minor details for custom
+ * @param i
+ * @param win_w
+ * @param win_h
+ * @param step_x
+ * @param step_y
+ * @param length
+ * @param painter
+ * @param sample_size
+ */
 void drawMinorsCustom(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter, int sample_size){
 
     for (i = 1; i < length + 1; i++) {
@@ -109,6 +137,16 @@ void drawMinorsCustom(int i,int win_w, int win_h, double step_x, double step_y, 
     }
 }
 
+/**
+ * Draw minor details
+ * @param i
+ * @param win_w
+ * @param win_h
+ * @param step_x
+ * @param step_y
+ * @param length
+ * @param painter
+ */
 void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int length, QPainter &painter){
 
     for (i = 1; i < length + 2; i++) {
@@ -121,6 +159,14 @@ void drawMinors(int i,int win_w, int win_h, double step_x, double step_y, int le
     }
 }
 
+/**
+ * Draw parameters
+ * @param sample_size
+ * @param win_w
+ * @param trials
+ * @param painter
+ * @param p_type
+ */
 void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType p_type ){
     //Parameters description
     QPen pen;//
@@ -162,6 +208,17 @@ void drawParams(int sample_size, int win_w, int trials, QPainter &painter, PType
 
 }
 
+/**
+ * Draw specifications for power
+ * @param i
+ * @param win_w
+ * @param win_h
+ * @param step_x
+ * @param step_y
+ * @param length
+ * @param p
+ * @param painter
+ */
 void drawForPower(int i, int win_w, int win_h, double step_x, double step_y, int length, const double* p, QPainter &painter){
     double height = 10 * step_y;
     for (i = 0; i < length - 1; i++){
@@ -171,7 +228,17 @@ void drawForPower(int i, int win_w, int win_h, double step_x, double step_y, int
 
 }
 
-
+/**
+ * Draw specifications for type 1 error
+ * @param i
+ * @param win_w
+ * @param win_h
+ * @param step_x
+ * @param step_y
+ * @param length
+ * @param p
+ * @param painter
+ */
 void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int length, double* p, QPainter &painter){
 
     double height = 10 * step_y;
@@ -186,7 +253,16 @@ void drawForError(int i, int win_w, int win_h, double step_x, double step_y, int
 
 }
 
-
+/**
+ * Draw parameters for custom plot
+ * @param a
+ * @param b
+ * @param k
+ * @param sample_size_min
+ * @param win_w
+ * @param trials
+ * @param painter
+ */
 void drawParamsCustom(int a, int b, int k, int sample_size_min, int win_w, int trials, QPainter &painter){
     //Parameters description
     QPen pen;//
@@ -214,7 +290,13 @@ void drawParamsCustom(int a, int b, int k, int sample_size_min, int win_w, int t
     painter.drawText(2 * win_w / 3 + 80 , 240, QString::number(trials));
 
 }
-
+/**
+ * draw alpha-level
+ * @param alpha
+ * @param win_w
+ * @param win_h
+ * @param painter
+ */
 void drawAlpha(double alpha, double win_w, double win_h, QPainter &painter){
 
     // draw alpha-level
