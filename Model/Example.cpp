@@ -47,7 +47,7 @@ void testModelling() {
     int k = 5;
     int len = a;
     std::vector<double> act_freq;
-    model->createDist(1, a, b, k, nt, len);
+    model->createDist(a, b, k, nt, len);
     act_freq = model->getActualFreq();
 
 }

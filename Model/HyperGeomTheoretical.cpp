@@ -9,11 +9,11 @@
 #define func auto
 
 /**
- * method to compute binomial coefficient
- * @param n
- * @param k
- * @return
- */
+   * method to compute binomial coefficient n!/k!(n-k)!
+   * @param n
+   * @param k
+   * @return binomial coefficient n!/k!(n-k)!
+   */
 double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k) {
 
     if (k > n)
@@ -30,12 +30,12 @@ double HyperGeomTheoretical::computeBinCoef(unsigned long n, unsigned long k) {
 }
 
 /**
- * Method to compute hypergeometric distribution
- * @param N
- * @param K
- * @param n
- * @param k
- * @return
+ * Helper method to compute hypergeometric distribution
+ * @param N - distribution parameter N ( number of objects)
+ * @param K - distribution parameter K (K out of N are "bad")
+ * @param n - distribution parameter n (sample size)
+ * @param k - distribution parameter k (k out of n are "bad")
+ * @return calculated value following hypergeometric distribution
  */
 double HyperGeomTheoretical::hyperGeomTheor(unsigned long N, unsigned long K, unsigned long n, unsigned long k) {
     return computeBinCoef(K, k) * 100 * computeBinCoef(N - K, n - k) / computeBinCoef(N, n);

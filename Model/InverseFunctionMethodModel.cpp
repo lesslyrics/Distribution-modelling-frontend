@@ -7,10 +7,10 @@
 
 
 /**
- * This function finds factorial of large numbers
- * @param num
- * @return
- */
+   *  Find factorial
+   * @param num
+   * @return factorial of the num
+   */
 long double InverseFunctionMethodModel::findFactorial(int num) {
     long double fact = 1;
     int i;
@@ -19,13 +19,14 @@ long double InverseFunctionMethodModel::findFactorial(int num) {
     return fact;
 }
 
+
 /**
- * method to activateModel random values using inverse function method
- * @param a
- * @param b
- * @param k
- * @return
- */
+    * method to generate random values
+    * @param a - number of white balls
+    * @param b - number of black balls
+    * @param k - number of taken balls
+    * @return random number
+    */
 int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0;
     int n = a + b;
@@ -44,20 +45,14 @@ int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
 }
 
 /**
- * Generate distribution
- * @param trials
- * @param a
- * @param b
- * @param k
- * @param nt
- * @param p_fin
- * @param exp_freq
- * @param act_freq
- * @param p_dist
- * @param p_dist_alt
- * @return
- */
-void InverseFunctionMethodModel::createDist(int trials, int a, int b, int k, int nt, int h) {
+  * Generate model with Inverse Function Method
+  * @param a - number of white balls
+  * @param b - number of black balls
+  * @param k - number of taken balls
+  * @param nt - number of trials
+  * @param h - number of columns in histogram
+  */
+void InverseFunctionMethodModel::createDist(int a, int b, int k, int nt, int h) {
 
     int q;
     std::vector<double> hist(h + 1, 0); // histograms

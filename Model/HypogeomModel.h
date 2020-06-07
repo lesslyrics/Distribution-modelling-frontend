@@ -38,16 +38,15 @@ public:
      */
     virtual int generateRandomValue(int a, int b, int k);
 
-      /**
-       * Generate distribution
-       * @param trials
-       * @param a
-       * @param b
-       * @param k
-       * @param nt
-       * @param h
-       */
-    virtual void createDist(int trials, int a, int b, int k, int nt, int h);
+    /**
+      * Generate model
+      * @param a - number of white balls
+      * @param b - number of black balls
+      * @param k - number of taken balls
+      * @param nt - number of trials
+      * @param h - number of columns in histogram
+      */
+    virtual void createDist(int a, int b, int k, int nt, int h);
 
     /**
      * Destructor

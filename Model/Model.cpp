@@ -9,19 +9,18 @@
 #include "PType.h"
 
 /**
- * hyperparameters
+ * hyperparameters for chi-squared assumptions
  * */
 const int FREQ = 5;
 
+
 /**
  * method to perform sample merging based on pivot
- * @param h_freq
- * @param h
- * @param h1
- * @param h2
+ * @param h - expected frequencies in percentage
+ * @param h_freq - expected frequencies
+ * @param h1  - actual frequencies
  */
-void
-merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) {
+void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) {
 
     if (!h_freq.empty()) {
         if (h_freq[0] < FREQ) {
@@ -57,7 +56,6 @@ merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<do
         }
     }
 
-
     //delete irrelevant elements
     int size_temp = h_freq.size();
     int iter = 0;
@@ -75,9 +73,9 @@ merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<do
 
 /**
  * method to build p-value distribution
- * @param hist_p
- * @param p
- * @param trials
+ * @param hist_p - prepared values for the histogram
+ * @param p - p-values
+ * @param trials - number of trials for p-value distribution
  */
 void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) {
     for (int i = 0; i < trials; ++i) {
@@ -92,22 +90,20 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
     }
 }
 
-
- /**
-  * Method to get Chi-Squared statistics from Chi-Squared
-  * @param chiStat
-  * @param model
-  * @param chi
-  * @param nt
-  * @param p
-  * @param trials
-  * @param expected_freq
-  * @param expected
-  * @param exp_freq
-  * @param act_freq
-  * @param p_dist
-  */
-void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, int trials, std::vector<double>
+/**
+ * Method to get Chi-Squared statistics from Chi-Squared class (added for more convenient usage)
+ * @param chiStat  -  chi-statistics
+ * @param model - model
+ * @param chi -  chi-statistics to be assigned
+ * @param nt - number of trials
+ * @param p - p-value
+ * @param expected_freq - expected frequencies
+ * @param expected - expected frequencies in percentage
+ * @param exp_freq - expected frequencies to be assigned
+ * @param act_freq - actual frequencies to be assigned
+ * @param p_dist - p-values distribution
+ */
+void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, std::vector<double>
 expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist){
 
     chiStat.computeStatistics(*model, nt, expected_freq, expected);
@@ -120,22 +116,20 @@ expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std:
 
 }
 
-
-
- /**
-  * Method for distribution generation
-  * @param type
-  * @param trials
-  * @param nt
-  * @param chi
-  * @param exp_freq
-  * @param act_freq
-  * @param p_dist
-  * @param a
-  * @param b
-  * @param k
-  * @return
-  */
+/**
+    * Main method for distribution generation activation
+    * @param type - type of modelling method
+    * @param trials - number of trials for p-values distribution
+    * @param nt - number of trials for distribution
+    * @param chi - chi-squared statistics
+    * @param exp_freq - expected frequencies
+    * @param act_freq - actual frequencies
+    * @param p_dist - p-value
+    * @param a - number of white balls for H_o (used when error 1 mode is selected)
+    * @param b - number of black balls for H_o (used when error 1 mode is selected)
+    * @param k - number of taken balls for H_o (used when error 1 mode is selected)
+    * @return chi-statistics
+*/
 double modelDistribution(ModelType type, int trials, int nt, double &chi, std::vector<double> &exp_freq,
                          std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                          int k) {
@@ -168,13 +162,13 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
         dist.setK(k);
         dist.modelTheoreticalDist(nt, expected_freq, expected);
 
-        model->createDist(trials, a, b, k, nt, len);
+        model->createDist(a, b, k, nt, len);
         std::vector<double> act_freq_temp = model->getActualFreq();
 
         merge_sample(expected_freq, expected, act_freq_temp);
         model->setActualFreq(act_freq_temp);
 
-        findChiStat(chiStat, model, chi, nt, p, 1, expected_freq, expected, exp_freq, act_freq, p_dist);
+        findChiStat(chiStat, model, chi, nt, p, expected_freq, expected, exp_freq, act_freq, p_dist);
 
     }
 
@@ -197,20 +191,20 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
 
 /**
  * Method for the p-distriburion modelling
- * @param trials
- * @param nt
- * @param chi
- * @param exp_freq
- * @param act_freq
- * @param p_dist
- * @param a
- * @param b
- * @param k
- * @param a_alt
- * @param b_alt
- * @param k_alt
- * @param p_type
- * @return
+ * @param trials - number of trials for p-values distribution
+ * @param nt - number of trials for distribution
+ * @param chi - chi-squared statistics
+ * @param exp_freq - expected frequencies
+ * @param act_freq - actual frequencies
+ * @param p_dist - p-values distribution
+ * @param a - number of white balls for H_o (used when error 1 mode is selected)
+ * @param b - number of black balls for H_o (used when error 1 mode is selected)
+ * @param k - number of taken balls for H_o (used when error 1 mode is selected)
+ * @param a_alt - number of white balls for H_1 (used when power mode is selected)
+ * @param b_alt - number of black balls for H_1 (used when power mode is selected)
+ * @param k_alt - number of taken balls for H_1 (used when power mode is selected)
+ * @param p_type - power or error 1 mode
+ * @return chi-statistics
  */
 double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
                  std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
@@ -237,11 +231,11 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
         std::vector<double> act_freq_temp;
 
         if (p_type == PType::Power){
-            model->createDist(trials, a_alt, b_alt, k_alt, nt, len);
+            model->createDist(a_alt, b_alt, k_alt, nt, len);
             act_freq_temp = model->getActualFreq();
         }
         else{
-            model->createDist(trials, a, b, k, nt, len);
+            model->createDist(a, b, k, nt, len);
             act_freq_temp = model->getActualFreq();
         }
 
@@ -250,7 +244,7 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
 
         model->setActualFreq(act_freq_temp);
 
-        findChiStat(chiStat, model, chi, nt, p, 1, expected_freq, expected, exp_freq, act_freq, p_dist);
+        findChiStat(chiStat, model, chi, nt, p, expected_freq, expected, exp_freq, act_freq, p_dist);
 
     }
 

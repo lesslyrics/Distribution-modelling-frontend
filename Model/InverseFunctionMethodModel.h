@@ -16,32 +16,31 @@ class InverseFunctionMethodModel : public HypogeomModel{
 public:
     explicit InverseFunctionMethodModel(){}
 
-     /**
-      * Generate random value
-      * @param a
-      * @param b
-      * @param k
-      * @return
-      */
+    /**
+        * method to generate random values
+        * @param a - number of white balls
+        * @param b - number of black balls
+        * @param k - number of taken balls
+        * @return random number
+        */
     int generateRandomValue(int a, int b, int k) override ;
 
      /**
       *  Find factorial
       * @param num
-      * @return
+      * @return factorial of the num
       */
     static long double findFactorial(int num);
 
-     /**
-      * Generate distribution
-      * @param trials
-      * @param a
-      * @param b
-      * @param k
-      * @param nt
-      * @param h
+    /**
+      * Generate model with Inverse Function Method
+      * @param a - number of white balls
+      * @param b - number of black balls
+      * @param k - number of taken balls
+      * @param nt - number of trials
+      * @param h - number of columns in histogram
       */
-    void createDist(int trials, int a, int b, int k, int nt, int h) override ;
+    void createDist(int a, int b, int k, int nt, int h) override ;
 
     ~InverseFunctionMethodModel() override = default;
 
