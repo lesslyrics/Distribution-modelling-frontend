@@ -5,7 +5,7 @@
 
 
 /**
-	\brief Child class
+	\brief Child class for distribution modelling
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020

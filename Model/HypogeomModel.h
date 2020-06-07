@@ -3,7 +3,7 @@
 #include <cstdint>
 
 /**
-	\brief Parent class
+	\brief Parent class for distribution modelling
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020
