@@ -9,6 +9,7 @@
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020
+    \example Example.cpp
 
 	Class for the theoretical distribution generation
 **/

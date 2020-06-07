@@ -9,6 +9,7 @@
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020
+    \example Example.cpp
 
 	Class for the Chi-squared statistics
 **/
@@ -22,7 +23,7 @@ protected:
     std::vector<double> exp_freq;
 
     /**
-      * expected frequencies (accumulated)
+      * expected frequencies in percentage
       */
     std::vector<double> expected;
 
