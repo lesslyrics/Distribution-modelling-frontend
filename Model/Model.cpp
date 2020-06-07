@@ -110,7 +110,7 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
 void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, int trials, std::vector<double>
 expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist){
 
-    chiStat.computeStatistics(*model, trials, nt, expected_freq, expected);
+    chiStat.computeStatistics(*model, nt, expected_freq, expected);
     p.push_back(chiStat.getPValue());
 
     chi = chiStat.getChiSq();

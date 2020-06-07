@@ -1,15 +1,16 @@
 
-/** \file Example.cpp
- * \brief Example file to test essential methods
-**/
-
 
 #include "BernoulliMethodModel.h"
 #include "HyperGeomTheoretical.h"
 #include "probdist.h"
 #include "ChiSquared.h"
 
-/**
+
+/** \file Example.cpp
+ * \brief Example file to test essential methods
+**/
+
+/*
  *  Create theoretical HyperGeometric distribution with parameters (a, b, k)
  *  expected_freq - expected frequencies
  *  expected - expected frequencies in percentage
@@ -30,7 +31,7 @@ void testDistribution() {
     dist.modelTheoreticalDist(nt, expected_freq, expected);
 }
 
-/**
+/*
  *  Model HyperGeometric distribution with parameters (a, b, k) with Bernoulli/InverseFunction Method
  *  act_freq - actual frequencies
  *  uncomment to run for InverseFunction
@@ -52,7 +53,7 @@ void testModelling() {
 }
 
 
-/**
+/*
  * comute chi-statistics based on the model, distributin and number of troals
  * @param model - model
  * @param trials  - trials for p-value distributin (if not needed - set to 1 as default)
@@ -67,7 +68,7 @@ void testChiStatistics(HypogeomModel model, int trials, int nt, const std::vecto
 
 }
 
-/**
+/*
  *
  * @param p - vector containing calculated p-values
  * @param trials - number of trials for the p-value distribution

@@ -4,17 +4,16 @@
 
 #include "ChiSquared.h"
 
-/**
- * method to calculate chi-square value
- * @param h_freq
- * @param h
- * @param h1
- * @param h2
- * @param df
- * @return
- */
-double ChiSquared::calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt) {
+ /**
+  * calculate chi-statistics
+  * @param h_freq - expected frequencies
+  * @param h1  - actual frequencies
+  * @param df - degrees of freedom
+  * @return chi-squared statistics
+  */
+double ChiSquared::calculate_chi(std::vector<double> &h_freq, std::vector<double> &h1, int &df) {
     double chi_sq = 0;
+    int a = h_freq.size() - 1;
     df = -1;
     for (int i = 0; i != a + 1; ++i) {
         if (h_freq[i] != -1) {
