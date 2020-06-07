@@ -1,6 +1,8 @@
-//
-// Created by lesslyrics on 07.06.2020.
-//
+
+/** \file Example.cpp
+ * \brief Example file to test essential methods
+**/
+
 
 #include "BernoulliMethodModel.h"
 #include "HyperGeomTheoretical.h"

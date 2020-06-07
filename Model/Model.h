@@ -6,13 +6,14 @@
 #include "ChiSquared.h"
 #include "PType.h"
 
-class ChiSquared;
-
-
 /*! \file Model.h
     \brief Driver file, connector between frontend and backend
-    \example Example.cpp
+    @example Example.cpp
 */
+
+
+
+class ChiSquared;
 
 
 /**

@@ -7,7 +7,7 @@
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020
-    \example Example.cpp
+    @example Example.cpp
 
 	Class for the distribution modelling
 **/

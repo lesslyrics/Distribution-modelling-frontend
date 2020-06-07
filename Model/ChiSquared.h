@@ -9,10 +9,11 @@
 	\author @lesslyrics (Alina Boshchenko)
 	\version 2.0
 	\date June 2020
-    \example Example.cpp
+    @example Example.cpp
 
-	Class for the Chi-squared statistics
+	\brief Class for the Chi-squared statistics
 **/
+
 class ChiSquared {
 
 protected:
