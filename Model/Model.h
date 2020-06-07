@@ -16,7 +16,7 @@
 class ChiSquared;
 
 
-/**
+/*
  * method to perform sample merging based on pivot
  * @param h - expected frequencies in percentage
  * @param h_freq - expected frequencies
@@ -24,7 +24,7 @@ class ChiSquared;
  */
 void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1);
 
-/**
+/*
  * method to build p-value distribution
  * @param hist_p - prepared values for the histogram
  * @param p - p-values
@@ -34,7 +34,7 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials);
 
 
 
-/**
+/*
     * Main method for distribution generation activation
     * @param type - type of modelling method
     * @param trials - number of trials for p-values distribution
@@ -52,7 +52,7 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
                          std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                          int k);
 
-/**
+/*
  * Method to get Chi-Squared statistics from Chi-Squared class (added for more convenient usage)
  * @param chiStat  -  chi-statistics
  * @param model - model
@@ -70,7 +70,7 @@ expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std:
 
 
 
-/**
+/*
  * Method for the p-distriburion modelling
  * @param trials - number of trials for p-values distribution
  * @param nt - number of trials for distribution

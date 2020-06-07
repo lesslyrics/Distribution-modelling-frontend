@@ -50,7 +50,7 @@ public:
 
 
 public:
-/**
+/*
  * Helper method to compute hypergeometric distribution
  * @param N - distribution parameter N ( number of objects)
  * @param K - distribution parameter K (K out of N are "bad")
@@ -61,7 +61,7 @@ public:
     double hyperGeomTheor(unsigned long N, unsigned long K, unsigned long n, unsigned long k);
 
 
-    /**
+    /*
      * method to compute binomial coefficient n!/k!(n-k)!
      * @param n
      * @param k
@@ -69,13 +69,13 @@ public:
      */
     double computeBinCoef(unsigned long n, unsigned long k);
 
-    /**
+    /*
      * Destructor
      */
     ~HyperGeomTheoretical() = default;
 
 
-    /**
+    /*
      * create theoretical distribution
      * @param nt - number of trials
      * @param expected_freq - expected frequencies

@@ -17,7 +17,7 @@ class BernoulliMethodModel : public HypogeomModel {
 public:
     explicit BernoulliMethodModel(){}
 
-    /**
+    /*
       * method to generate random values using Bernoulli distribution
       * @param a - number of white balls
       * @param b - number of black balls
@@ -27,7 +27,7 @@ public:
     int generateRandomValue(int a, int b, int k) override;
 
 
-    /**
+    /*
      * Generate model with Bernoulli Method
      * @param a - number of white balls
      * @param b - number of black balls
@@ -37,8 +37,8 @@ public:
      */
     void createDist(int a, int b, int k, int nt, int h) override;
 
-    /**
+    /*
      * Destructor
-     * */
+      */
     ~BernoulliMethodModel() override = default;
 };

@@ -21,7 +21,7 @@ protected:
 
 
 public:
-     /**
+     /*
       * Generate random numbers, high speed
       * @param min
       * @param max
@@ -29,7 +29,7 @@ public:
       */
     double randomRange(int min, int max);
 
-    /**
+    /*
      * Generate value for distribution
      * @param a
      * @param b
@@ -38,7 +38,7 @@ public:
      */
     virtual int generateRandomValue(int a, int b, int k);
 
-    /**
+    /*
       * Generate model
       * @param a - number of white balls
       * @param b - number of black balls
@@ -48,18 +48,18 @@ public:
       */
     virtual void createDist(int a, int b, int k, int nt, int h);
 
-    /**
+    /*
      * Destructor
      */
     virtual ~HypogeomModel() = default;
 
-    /**
+    /*
      * Get actual
      * @return
      */
     const std::vector<double> &getActualFreq();
 
-    /**
+    /*
      * Set actual
      **/
     void setActualFreq(const std::vector<double> &actualFreq);

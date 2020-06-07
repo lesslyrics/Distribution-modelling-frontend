@@ -16,7 +16,7 @@ class InverseFunctionMethodModel : public HypogeomModel{
 public:
     explicit InverseFunctionMethodModel(){}
 
-    /**
+    /*
         * method to generate random values
         * @param a - number of white balls
         * @param b - number of black balls
@@ -25,14 +25,14 @@ public:
         */
     int generateRandomValue(int a, int b, int k) override ;
 
-     /**
+     /*
       *  Find factorial
       * @param num
       * @return factorial of the num
       */
     static long double findFactorial(int num);
 
-    /**
+    /*
       * Generate model with Inverse Function Method
       * @param a - number of white balls
       * @param b - number of black balls

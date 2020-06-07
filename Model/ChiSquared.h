@@ -55,7 +55,7 @@ public:
 public:
 
 
-     /**
+     /*
       * compute statistics based on model and distribution (created for better structure)
       * @param model - model
       * @param nt - number of trials for distribution
@@ -68,7 +68,7 @@ public:
         setExpected(exp);
         computeStatistics();
     }
-    /**
+    /*
     * calculate chi-statistics
     * @param h_freq - expected frequencies
     * @param h1  - actual frequencies
@@ -78,7 +78,7 @@ public:
     double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h1, int &df);
 
 
-    /**
+    /*
      * compute chi-squared statistics and find corresponding p-value
      */
     void computeStatistics() {
@@ -104,7 +104,7 @@ public:
 
     }
 
-    /** getters and setters **/
+    /*getters and setters */
 
     const std::vector<double> &getExpFreq() const;
 
