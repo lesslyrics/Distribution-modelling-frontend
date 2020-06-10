@@ -8,68 +8,6 @@
 #include "ChiSquared.h"
 #include "PType.h"
 
-/**
- * hyperparameters for chi-squared assumptions
- * */
-const int FREQ = 5;
-
-
-/**
- * method to perform sample merging based on pivot
- * @param h - expected frequencies in percentage
- * @param h_freq - expected frequencies
- * @param h1  - actual frequencies
- */
-void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) {
-
-    if (!h_freq.empty()) {
-        if (h_freq[0] < FREQ) {
-            h_freq[1] += h_freq[0];
-            h[1] += h[0];
-            h1[1] += h1[0];
-            h_freq[0] = -1;
-        }
-        size_t i;
-        size_t j;
-        for (i = 1, j = h_freq.size(); j > i; i++, j--) {
-            if (h_freq.size() == static_cast<std::vector<int>::size_type>(j)) {
-                j--;
-            }
-            if (h_freq[j] < FREQ) {
-                h_freq[j - 1] += h_freq[j];
-                h[j - 1] += h[j];
-                h1[j - 1] += h1[j];
-                h_freq[j] = -1;
-            }
-            if (h_freq[i] < FREQ) {
-                h_freq[i + 1] += h_freq[i];
-                h[i + 1] += h[i];
-                h1[i + 1] += h1[i];
-                h_freq[i] = -1;
-            }
-        }
-        if (h_freq[j] < FREQ) {
-            h_freq[j - 1] += h_freq[j];
-            h[j - 1] += h[j];
-            h1[j - 1] += h1[j];
-            h_freq[j] = -1;
-        }
-    }
-
-    //delete irrelevant elements
-    int size_temp = h_freq.size();
-    int iter = 0;
-    while (iter < size_temp) {
-        if (h_freq[iter] == -1) {
-            h_freq.erase(h_freq.begin() + iter);
-            h.erase(h.begin() + iter);
-            h1.erase(h1.begin() + iter);
-            iter--;
-            size_temp--;
-        }
-        iter++;
-    }
-}
 
 /**
  * method to build p-value distribution
@@ -165,9 +103,7 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
         model->createDist(a, b, k, nt, len);
         std::vector<double> act_freq_temp = model->getActualFreq();
 
-        merge_sample(expected_freq, expected, act_freq_temp);
         model->setActualFreq(act_freq_temp);
-
         findChiStat(chiStat, model, chi, nt, p, expected_freq, expected, exp_freq, act_freq, p_dist);
 
     }
@@ -239,8 +175,6 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
             act_freq_temp = model->getActualFreq();
         }
 
-
-        merge_sample(expected_freq, expected, act_freq_temp);
 
         model->setActualFreq(act_freq_temp);
 

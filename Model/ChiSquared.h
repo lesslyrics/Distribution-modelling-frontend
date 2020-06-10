@@ -3,6 +3,9 @@
 #include <utility>
 #include <vector>
 #include "Model.h"
+/**
+ * hyperparameters for chi-squared assumptions
+ * */
 
 
 /**
@@ -54,6 +57,13 @@ public:
 
 public:
 
+    /*
+     * method to perform sample merging based on pivot
+     * @param h - expected frequencies in percentage
+     * @param h_freq - expected frequencies
+     * @param h1  - actual frequencies
+     */
+    void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) ;
 
      /*
       * compute statistics based on model and distribution (created for better structure)
@@ -62,10 +72,15 @@ public:
       * @param expected_freq  -  expected frequencies in percentage
       * @param exp  - expected frequencies in percentage
       */
-    void computeStatistics(HypogeomModel model, int nt, const std::vector<double> &expected_freq, const std::vector<double> &exp) {
-        setExpFreq(expected_freq);
-        setActFreq(model.getActualFreq());
+    void computeStatistics(HypogeomModel model, int nt, std::vector<double> &expected_freq, std::vector<double> &exp) {
+        std::vector<double> actual_freq = model.getActualFreq();
+        merge_sample(expected_freq, exp, actual_freq);
+
         setExpected(exp);
+        setExpFreq(expected_freq);
+        model.setActualFreq(actual_freq);
+        setActFreq(actual_freq);
+
         computeStatistics();
     }
     /*

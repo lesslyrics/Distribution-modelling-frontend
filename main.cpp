@@ -13,7 +13,7 @@
  * @param argv
  * @return
  */
-int main(int argc, char *argv[]) {
+int main_y(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
     try
