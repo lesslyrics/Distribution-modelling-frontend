@@ -79,9 +79,8 @@ public:
      * create theoretical distribution
      * @param nt - number of trials
      * @param expected_freq - expected frequencies
-     * @param expected - expected frequencies in percentage (made for more convenient usage)
      */
-    void modelTheoreticalDist(int nt, std::vector<double> &expected_freq, std::vector<double> &expected) {
+    void modelTheoreticalDist(int nt, std::vector<double> &expected_freq) {
 
         std::vector<double> h(a + 1, 0);
         std::vector<double> h_freq(a + 1, 0);
@@ -92,12 +91,6 @@ public:
         }
 
         expected_freq.clear();
-        expected.clear();
-
-        for (double &i : h)
-                expected.push_back(i);
-
-
         for (double &i : h_freq)
                 expected_freq.push_back(i);
 

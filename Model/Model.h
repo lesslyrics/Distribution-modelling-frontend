@@ -57,16 +57,14 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
  * @param chiStat  -  chi-statistics
  * @param model - model
  * @param chi -  chi-statistics to be assigned
- * @param nt - number of trials
  * @param p - p-value
  * @param expected_freq - expected frequencies
- * @param expected - expected frequencies in percentage
  * @param exp_freq - expected frequencies to be assigned
  * @param act_freq - actual frequencies to be assigned
  * @param p_dist - p-values distribution
  */
-void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, int nt, std::vector<double> &p, std::vector<double>
-expected_freq, std::vector<double> expected, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist);
+void findChiStat(ChiSquared &chiStat, HypogeomModel *model, double &chi, std::vector<double> &p, std::vector<double>
+expected_freq, std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist);
 
 
 

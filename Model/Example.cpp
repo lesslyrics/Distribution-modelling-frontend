@@ -18,8 +18,7 @@ int main(){
     ChiSquared chiStat; // -  chi-statistics class member
 
     int trials = 100; // - number of trials for p-values distribution
-    std::vector<double> p; //- p-values distribution
-
+    std::vector<double> p_dist; //- p_values distribution
 
     //Создаем выборку с гипергеометрическим распределением по методу Бернулли с параметрими (6, 5, 5) и объёма nt = 100
     HypogeomModel *model;
@@ -28,7 +27,6 @@ int main(){
     //model = new InverseFunctionMethodModel();
 
     std::vector<double> expected_freq; //- expected frequencies to be assigned
-    std::vector<double> expected; //- expected frequencies in percentage to be assigned
 
     // столько раз, сколько понадобится для распределения p-values
     for (int l = 0; l < trials; l++) {
@@ -38,29 +36,24 @@ int main(){
         dist.setA(a);
         dist.setB(b);
         dist.setK(k);
-        dist.modelTheoreticalDist(nt, expected_freq, expected);
+        dist.modelTheoreticalDist(nt, expected_freq);
 
         //Моделируем значения выборки
         model->createDist(a, b, k, nt, a);
 
+        // ищем статистику хи-квадрат по модели и распределению
+        chiStat.computeStatistics(*model, expected_freq);
         std::vector<double> act_freq_temp = model->getActualFreq();
-        // "схлопываем" частоты для удовлетворения критериев применимости хи-квадрат
-        // обновляем частоты в класс модели
-        model->setActualFreq(act_freq_temp);
 
         //печатаем ожидаемые и реальные частоты
-        // ищем статистику хи-квадрат по модели и ожидаемым частотам
-        chiStat.computeStatistics(*model, nt, expected_freq, expected);
-
         std::cout << "Num" << std::setw(30) << "Expected frequencies" << std::setw(30) << "Actual frequencies"  << std::endl;
         for (int i = 0; i != a + 1; ++i){
             if (expected_freq[i] != -1 )
                 std::cout  << i << std::setw(30) << expected_freq[i] << std::setw(30) <<  act_freq_temp[i] << '\n';
         }
 
-        p = chiStat.getPDist();
-        p.push_back(chiStat.getPValue());
-
+        p_dist = chiStat.getPDist();
+        p_dist.push_back(chiStat.getPValue());
 
         // печатаем значение статистики хи-квадрат
         std::cout << "Chi-squared: " << chiStat.getChiSq()<< std::endl;
@@ -69,15 +62,15 @@ int main(){
 
     // построим распределение p-values для статистики хи-квадрат, где  trials - число повторов
     auto hist_p = std::vector<int>(11, 0);
-    build_p_dist(hist_p, p, trials);
-    p.clear();
+    build_p_dist(hist_p, p_dist, trials);
+    p_dist.clear();
     for (int i = 1; i < hist_p.size(); i++){
-        p.push_back(((double) hist_p[i - 1]) / trials);
+        p_dist.push_back(((double) hist_p[i - 1]) / trials);
     }
 
     //печатаем распределения p-values
-    for (int i = 1; i < p.size() + 1; i++) {
-        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << p[i - 1]<< std::endl;
+    for (int i = 1; i < p_dist.size() + 1; i++) {
+        std::cout << "[" << (double) (i - 1) / 10 << "," << (double) i / 10 << "] : " << p_dist[i - 1] << std::endl;
     }
 
     delete (model);

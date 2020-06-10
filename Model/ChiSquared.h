@@ -26,10 +26,6 @@ protected:
       */
     std::vector<double> exp_freq;
 
-    /**
-      * expected frequencies in percentage
-      */
-    std::vector<double> expected;
 
     /**
      * actual frequencies
@@ -58,25 +54,22 @@ public:
 public:
 
     /*
-     * method to perform sample merging based on pivot
-     * @param h - expected frequencies in percentage
-     * @param h_freq - expected frequencies
-     * @param h1  - actual frequencies
-     */
-    void merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) ;
+      * method to perform sample merging based on pivot
+      * @param h_expected - expected frequencies
+      * @param h_actual  - actual frequencies
+      */
+    void merge_sample(std::vector<double> &h_expected, std::vector<double> &h_actual);
 
      /*
       * compute statistics based on model and distribution (created for better structure)
       * @param model - model
       * @param nt - number of trials for distribution
       * @param expected_freq  -  expected frequencies in percentage
-      * @param exp  - expected frequencies in percentage
       */
-    void computeStatistics(HypogeomModel model, int nt, std::vector<double> &expected_freq, std::vector<double> &exp) {
+    void computeStatistics(HypogeomModel model, std::vector<double> &expected_freq) {
         std::vector<double> actual_freq = model.getActualFreq();
-        merge_sample(expected_freq, exp, actual_freq);
+        merge_sample(expected_freq,  actual_freq);
 
-        setExpected(exp);
         setExpFreq(expected_freq);
         model.setActualFreq(actual_freq);
         setActFreq(actual_freq);
@@ -85,12 +78,12 @@ public:
     }
     /*
     * calculate chi-statistics
-    * @param h_freq - expected frequencies
-    * @param h1  - actual frequencies
+    * @param h_expected - expected frequencies
+    * @param h_actual  - actual frequencies
     * @param df - degrees of freedom
     * @return chi-squared statistics
     */
-    double calculate_chi(std::vector<double> &h_freq, std::vector<double> &h1, int &df);
+    double calculate_chi(std::vector<double> &h_expected, std::vector<double> &h_actual, int &df);
 
 
     /*
@@ -102,7 +95,6 @@ public:
         double p_val = 0;
 
         std::vector<double> exp_freq_temp = getExpFreq();
-        std::vector<double> exp_temp = getExpected();
         std::vector<double> act_freq_temp = getActFreq();
 
         setChiSq(calculate_chi(exp_freq_temp, act_freq_temp, df));
@@ -113,7 +105,6 @@ public:
         p_dist.push_back(p_val);
 
         std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
-        std::fill(exp_temp.begin(), exp_temp.end(), 0);
         std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
 
 
@@ -125,9 +116,6 @@ public:
 
     void setExpFreq(const std::vector<double> &expFreq);
 
-    const std::vector<double> &getExpected() const;
-
-    void setExpected(const std::vector<double> &expected);
 
     const std::vector<double> &getActFreq() const;
 

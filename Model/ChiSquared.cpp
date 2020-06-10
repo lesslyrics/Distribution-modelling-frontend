@@ -6,18 +6,18 @@ const int FREQ = 5;
 
  /**
   * calculate chi-statistics
-  * @param h_freq - expected frequencies
-  * @param h1  - actual frequencies
+  * @param h_expected - expected frequencies
+  * @param h_actual  - actual frequencies
   * @param df - degrees of freedom
   * @return chi-squared statistics
   */
-double ChiSquared::calculate_chi(std::vector<double> &h_freq, std::vector<double> &h1, int &df) {
+double ChiSquared::calculate_chi(std::vector<double> &h_expected, std::vector<double> &h_actual, int &df) {
     double chi_sq = 0;
-    int a = h_freq.size() - 1;
+    int a = h_expected.size() - 1;
     df = -1;
     for (int i = 0; i != a + 1; ++i) {
-        if (h_freq[i] != -1) {
-            chi_sq += (h1[i] - h_freq[i]) * (h1[i] - h_freq[i]) / h_freq[i];
+        if (h_expected[i] != -1) {
+            chi_sq += (h_actual[i] - h_expected[i]) * (h_actual[i] - h_expected[i]) / h_expected[i];
             df++;
         }
 
@@ -28,54 +28,48 @@ double ChiSquared::calculate_chi(std::vector<double> &h_freq, std::vector<double
 
 /**
  * method to perform sample merging based on pivot
- * @param h - expected frequencies in percentage
- * @param h_freq - expected frequencies
- * @param h1  - actual frequencies
+ * @param h_expected - expected frequencies
+ * @param h_actual  - actual frequencies
  */
-void ChiSquared::merge_sample(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1) {
+void ChiSquared::merge_sample(std::vector<double> &h_expected, std::vector<double> &h_actual) {
 
-    if (!h_freq.empty()) {
-        if (h_freq[0] < FREQ) {
-            h_freq[1] += h_freq[0];
-            h[1] += h[0];
-            h1[1] += h1[0];
-            h_freq[0] = -1;
+    if (!h_expected.empty()) {
+        if (h_expected[0] < FREQ) {
+            h_expected[1] += h_expected[0];
+            h_actual[1] += h_actual[0];
+            h_expected[0] = -1;
         }
         size_t i;
         size_t j;
-        for (i = 1, j = h_freq.size(); j > i; i++, j--) {
-            if (h_freq.size() == static_cast<std::vector<int>::size_type>(j)) {
+        for (i = 1, j = h_expected.size(); j > i; i++, j--) {
+            if (h_expected.size() == static_cast<std::vector<int>::size_type>(j)) {
                 j--;
             }
-            if (h_freq[j] < FREQ) {
-                h_freq[j - 1] += h_freq[j];
-                h[j - 1] += h[j];
-                h1[j - 1] += h1[j];
-                h_freq[j] = -1;
+            if (h_expected[j] < FREQ) {
+                h_expected[j - 1] += h_expected[j];
+                h_actual[j - 1] += h_actual[j];
+                h_expected[j] = -1;
             }
-            if (h_freq[i] < FREQ) {
-                h_freq[i + 1] += h_freq[i];
-                h[i + 1] += h[i];
-                h1[i + 1] += h1[i];
-                h_freq[i] = -1;
+            if (h_expected[i] < FREQ) {
+                h_expected[i + 1] += h_expected[i];
+                h_actual[i + 1] += h_actual[i];
+                h_expected[i] = -1;
             }
         }
-        if (h_freq[j] < FREQ) {
-            h_freq[j - 1] += h_freq[j];
-            h[j - 1] += h[j];
-            h1[j - 1] += h1[j];
-            h_freq[j] = -1;
+        if (h_expected[j] < FREQ) {
+            h_expected[j - 1] += h_expected[j];
+            h_actual[j - 1] += h_actual[j];
+            h_expected[j] = -1;
         }
     }
 
     //delete irrelevant elements
-    int size_temp = h_freq.size();
+    int size_temp = h_expected.size();
     int iter = 0;
     while (iter < size_temp) {
-        if (h_freq[iter] == -1) {
-            h_freq.erase(h_freq.begin() + iter);
-            h.erase(h.begin() + iter);
-            h1.erase(h1.begin() + iter);
+        if (h_expected[iter] == -1) {
+            h_expected.erase(h_expected.begin() + iter);
+            h_actual.erase(h_actual.begin() + iter);
             iter--;
             size_temp--;
         }
@@ -91,13 +85,6 @@ void ChiSquared::setExpFreq(const  std::vector<double> &expFreq) {
     exp_freq = expFreq;
 }
 
-const  std::vector<double> &ChiSquared::getExpected() const {
-    return expected;
-}
-
-void ChiSquared::setExpected(const  std::vector<double> &expected) {
-    ChiSquared::expected = expected;
-}
 
 const std::vector<double> &ChiSquared::getActFreq() const {
     return act_freq;
