@@ -64,15 +64,18 @@ public:
       * compute statistics based on model and distribution (created for better structure)
       * @param model - model
       * @param nt - number of trials for distribution
-      * @param expected_freq  -  expected frequencies in percentage
+      * @param dist  -  distribution
       */
-    void computeStatistics(HypogeomModel model, std::vector<double> &expected_freq) {
+    void computeStatistics(HypogeomModel model, HyperGeomTheoretical &dist, int nt) {
         std::vector<double> actual_freq = model.getActualFreq();
+        std::vector<double> expected_freq;
+        dist.modelTheoreticalDist(nt, expected_freq);
+
         merge_sample(expected_freq,  actual_freq);
 
         setExpFreq(expected_freq);
-        model.setActualFreq(actual_freq);
         setActFreq(actual_freq);
+        model.setActualFreq(actual_freq);
 
         computeStatistics();
     }

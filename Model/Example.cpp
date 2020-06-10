@@ -26,8 +26,6 @@ int main(){
     //Создаем выборку с гипергеометрическим распределением по методу обратных функций с параметрими (6, 5, 5) и объёма nt = 100
     //model = new InverseFunctionMethodModel();
 
-    std::vector<double> expected_freq; //- expected frequencies to be assigned
-
     // столько раз, сколько понадобится для распределения p-values
     for (int l = 0; l < trials; l++) {
 
@@ -36,20 +34,21 @@ int main(){
         dist.setA(a);
         dist.setB(b);
         dist.setK(k);
-        dist.modelTheoreticalDist(nt, expected_freq);
 
         //Моделируем значения выборки
         model->createDist(a, b, k, nt, a);
 
         // ищем статистику хи-квадрат по модели и распределению
-        chiStat.computeStatistics(*model, expected_freq);
-        std::vector<double> act_freq_temp = model->getActualFreq();
+        chiStat.computeStatistics(*model, dist, nt);
+
+        // реальная и ожидаемая  частоты
+        std::vector<double> actual_freq = chiStat.getActFreq();
+        std::vector<double> expected_freq = chiStat.getExpFreq();
 
         //печатаем ожидаемые и реальные частоты
         std::cout << "Num" << std::setw(30) << "Expected frequencies" << std::setw(30) << "Actual frequencies"  << std::endl;
-        for (int i = 0; i != a + 1; ++i){
-            if (expected_freq[i] != -1 )
-                std::cout  << i << std::setw(30) << expected_freq[i] << std::setw(30) <<  act_freq_temp[i] << '\n';
+        for (int i = 0; i < expected_freq.size(); ++i){
+                std::cout << i << std::setw(30) << expected_freq[i] << std::setw(30) << actual_freq[i] << '\n';
         }
 
         p_dist = chiStat.getPDist();

@@ -31,17 +31,17 @@ void build_p_dist(std::vector<int> &hist_p, std::vector<double> &p, int trials) 
 /**
  * Method to get Chi-Squared statistics from Chi-Squared class (added for more convenient usage)
  * @param chiStat  -  chi-statistics
+ * @param dist  - ditribution
  * @param model - model
  * @param nt - number of trials
- * @param expected_freq - expected frequencies
  * @param exp_freq - expected frequencies to be assigned
  * @param act_freq - actual frequencies to be assigned
  * @param p_dist - p-values distribution
  */
-void findChiStat(ChiSquared &chiStat, HypogeomModel *model, std::vector<double>
-expected_freq,  std::vector<double> &exp_freq, std::vector<double> &act_freq, std::vector<double> &p_dist){
+void findChiStat(ChiSquared &chiStat, HyperGeomTheoretical &dist,  HypogeomModel *model, std::vector<double> &exp_freq,
+        std::vector<double> &act_freq, std::vector<double> &p_dist, int nt){
 
-    chiStat.computeStatistics(*model, expected_freq);
+    chiStat.computeStatistics(*model, dist, nt);
     p_dist.push_back(chiStat.getPValue());
     exp_freq = chiStat.getExpFreq();
     act_freq = chiStat.getActFreq();
@@ -65,8 +65,6 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
                          std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                          int k) {
 
-    std::vector<double> expected_freq;
-
     ChiSquared chiStat;
     HypogeomModel *model;
     switch (type) {
@@ -85,17 +83,14 @@ double modelDistribution(ModelType type, int trials, int nt, double &chi, std::v
     int len = a;
     for (int l = 0; l < trials; l++) {
         HyperGeomTheoretical dist;
-
         dist.setA(a);
         dist.setB(b);
         dist.setK(k);
-        dist.modelTheoreticalDist(nt, expected_freq);
 
         model->createDist(a, b, k, nt, len);
         std::vector<double> act_freq_temp = model->getActualFreq();
-        findChiStat(chiStat, model, expected_freq, exp_freq, act_freq, p_dist);
+        findChiStat(chiStat, dist, model, exp_freq, act_freq, p_dist, nt);
         chi = chiStat.getChiSq();
-
 
     }
 
@@ -137,9 +132,6 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
                  std::vector<double> &act_freq, std::vector<double> &p_dist, int a, int b,
                  int k, int a_alt, int b_alt, int k_alt, PType p_type) {
 
-    std::vector<double> expected_freq;
-
-
     HypogeomModel *model;
     ChiSquared chiStat;
     model = new BernoulliMethodModel();
@@ -151,7 +143,6 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
         dist.setA(a);
         dist.setB(b);
         dist.setK(k);
-        dist.modelTheoreticalDist(nt, expected_freq);
         std::vector<double> act_freq_temp;
 
         if (p_type == PType::Power){
@@ -163,8 +154,8 @@ double modelPVal(int trials, int nt, double &chi, std::vector<double> &exp_freq,
             act_freq_temp = model->getActualFreq();
         }
 
+        findChiStat(chiStat, dist, model, exp_freq, act_freq, p_dist, nt);
 
-        findChiStat(chiStat, model, expected_freq, exp_freq, act_freq, p_dist);
         chi = chiStat.getChiSq();
 
 
