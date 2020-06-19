@@ -1,7 +1,3 @@
-//
-// Created by lesslyrics on 25.02.2020.
-//
-
 #pragma once
 
 
@@ -9,16 +5,37 @@
 #include <iostream>
 #include <iomanip>
 
+/**
+	\brief Class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+    @example Example.cpp
+
+
+	Class for the theoretical distribution generation
+**/
 class HyperGeomTheoretical {
 
 protected:
+    /**
+     * distribution parameter a
+     */
     int a;
+    /**
+     * distribution parameter b
+     */
     int b;
+    /**
+     * distribution parameter k
+     */
     int k;
-    std::vector<double> expected_freq;
-    std::vector<double> expected;
 
 public:
+    /**
+     * Getters and setters
+     * @return
+     */
     int getA() const;
 
     void setA(int a);
@@ -31,23 +48,39 @@ public:
 
     void setK(int k);
 
-    const std::vector<double> &getExpectedFreq() const;
-
-    void setExpectedFreq(const  std::vector<double> &expectedFreq);
-
-    const  std::vector<double> &getExpected() const;
-
-    void setExpected(const  std::vector<double> &expect);
-
 
 public:
+/*
+ * Helper method to compute hypergeometric distribution
+ * @param N - distribution parameter N ( number of objects)
+ * @param K - distribution parameter K (K out of N are "bad")
+ * @param n - distribution parameter n (sample size)
+ * @param k - distribution parameter k (k out of n are "bad")
+ * @return calculated value following hypergeometric distribution
+ */
     double hyperGeomTheor(unsigned long N, unsigned long K, unsigned long n, unsigned long k);
 
+
+    /*
+     * method to compute binomial coefficient n!/k!(n-k)!
+     * @param n
+     * @param k
+     * @return binomial coefficient n!/k!(n-k)!
+     */
     double computeBinCoef(unsigned long n, unsigned long k);
 
+    /*
+     * Destructor
+     */
     ~HyperGeomTheoretical() = default;
 
-    void modelTheoreticalDist(int nt) {
+
+    /*
+     * create theoretical distribution
+     * @param nt - number of trials
+     * @param expected_freq - expected frequencies
+     */
+    void modelTheoreticalDist(int nt, std::vector<double> &expected_freq) {
 
         std::vector<double> h(a + 1, 0);
         std::vector<double> h_freq(a + 1, 0);
@@ -58,12 +91,6 @@ public:
         }
 
         expected_freq.clear();
-        expected.clear();
-
-        for (double &i : h)
-                expected.push_back(i);
-
-
         for (double &i : h_freq)
                 expected_freq.push_back(i);
 

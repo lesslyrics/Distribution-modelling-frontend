@@ -10,34 +10,26 @@
  * @param color
  * @param parent
  */
-Dialog::Dialog(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::Dialog), sample_size(width), rect_color(color) {
+Dialog::Dialog(int a_t, int b_t, int k_t, QWidget *parent)
+        : QDialog(parent), ui(new Ui::Dialog), a(a_t), b(b_t), k(k_t){
     ui->setupUi(this);
 
 
-    this->ui->lineEditSize->setText(QString::number(100));
-    this->ui->lineEdit_A->setText(QString::number(30));
-    this->ui->lineEdit_B->setText(QString::number(25));
-    this->ui->lineEdit_K->setText(QString::number(20));
+//    this->ui->lineEditSize->setText(QString::number(100));
+    this->ui->lineEdit_A->setText(QString::number(a_t));
+    this->ui->lineEdit_B->setText(QString::number(b_t));
+    this->ui->lineEdit_K->setText(QString::number(k_t));
 
-
-    if (color == Qt::red)
-        ui->radioButtonBern->setChecked(true);
-    else if (color == Qt::green)
-        ui->radioButtonInverse->setChecked(true);
-    else
-        ui->radioButtonBern->setChecked(true);
+    ui->radioButtonBern->setChecked(true);
 
 }
 
-/**
- * parameters setting
- **/
+
+ /**
+  * parameters setting
+  * @param r
+  */
 void Dialog::done(int r) {
-    if (ui->radioButtonBern->isChecked())
-        rect_color = Qt::red;
-    else if (ui->radioButtonInverse->isChecked())
-        rect_color = Qt::green;
 
     a = this->ui->lineEdit_A->text().toInt();
     if (a <= 0){

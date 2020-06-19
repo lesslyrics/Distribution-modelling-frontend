@@ -6,6 +6,14 @@ namespace Ui {
     class MainWindow;
 }
 
+/**
+	\brief Ui class
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+
+	Main Window class
+**/
 class MainWindow : public QMainWindow {
 Q_OBJECT
 
@@ -44,5 +52,31 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    /**
+     * distribution parameter a
+     */
+    int a = 30;
+    /**
+   * distribution parameter b
+   */
+    int b = 25;
+    /**
+   * distribution parameter k
+   */
+    int k = 25;
+
+    /**
+     * distribution parameter a_alternative
+     */
+    int a_alt = 29;
+    /**
+      * distribution parameter b_alternative
+      */
+    int b_alt = 19;
+    /**
+      * distribution parameter k_alternative
+      */
+    int k_alt = 24;
 };
 

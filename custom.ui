@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>564</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>250</y>
+     <x>200</x>
+     <y>310</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -34,8 +34,8 @@
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>391</width>
-     <height>241</height>
+     <width>531</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="title">
@@ -46,7 +46,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>171</width>
+      <width>251</width>
       <height>20</height>
      </rect>
     </property>
@@ -59,13 +59,13 @@
      </font>
     </property>
     <property name="text">
-     <string>Enter sample size range:  </string>
+     <string>Enter min sample size:  </string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditSize1">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>30</y>
       <width>71</width>
       <height>31</height>
@@ -98,7 +98,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>130</y>
       <width>221</width>
       <height>17</height>
      </rect>
@@ -110,14 +110,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Enter alternative  parameters:</string>
+     <string>Enter parameters:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>160</y>
       <width>181</width>
       <height>17</height>
      </rect>
@@ -130,7 +130,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>180</y>
+      <y>190</y>
       <width>181</width>
       <height>17</height>
      </rect>
@@ -143,7 +143,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>210</y>
+      <y>220</y>
       <width>181</width>
       <height>17</height>
      </rect>
@@ -156,7 +156,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>140</y>
+      <y>160</y>
       <width>51</width>
       <height>25</height>
      </rect>
@@ -169,7 +169,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>170</y>
+      <y>190</y>
       <width>51</width>
       <height>25</height>
      </rect>
@@ -182,46 +182,13 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>200</y>
+      <y>220</y>
       <width>51</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>4</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditSize2">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>30</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>100</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>30</y>
-      <width>16</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>22</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>-</string>
     </property>
    </widget>
    <widget class="QSlider" name="sliderAlpha">
@@ -318,6 +285,103 @@
     </property>
     <property name="text">
      <string>0.25</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>220</y>
+      <width>181</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Number of balls taken (k):</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_B_alt">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>190</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>160</y>
+      <width>181</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Number of white balls (a):</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_A_alt">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>160</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_K_alt">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>220</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>190</y>
+      <width>181</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Number of black balls (b):</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>130</y>
+      <width>221</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Enter alternative  parameters:</string>
     </property>
    </widget>
   </widget>

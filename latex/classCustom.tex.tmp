@@ -1,0 +1,163 @@
+\hypertarget{classCustom}{}\doxysection{Custom Class Reference}
+\label{classCustom}\index{Custom@{Custom}}
+
+
+Ui class.  
+
+
+
+
+{\ttfamily \#include $<$custom.\+h$>$}
+
+
+
+Inheritance diagram for Custom\+:
+% FIG 0
+
+
+Collaboration diagram for Custom\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCustom_ae12ab9c888353f56ec59e987aa7d4001}{Custom}} (int width, Q\+Color color, int a\+\_\+t, int b\+\_\+t, int k\+\_\+t, int a\+\_\+at, int b\+\_\+at, int k\+\_\+at, Q\+Widget $\ast$parent=nullptr)
+\item 
+void \mbox{\hyperlink{classCustom_a3aa6dd38f3b21967928c9a2e60c486a3}{activate\+Model}} (double \&chi\+\_\+tmp, std\+::vector$<$ double $>$ \&expr\+\_\+freq, std\+::vector$<$ double $>$ \&actu\+\_\+freq, std\+::vector$<$ double $>$ \&p\+\_\+distr, P\+Type p\+\_\+type, int \&a\+\_\+tmp, int \&b\+\_\+tmp, int \&k\+\_\+tmp, int \&a\+\_\+tmp\+\_\+alt, int \&b\+\_\+tmp\+\_\+alt, int \&k\+\_\+tmp\+\_\+alt)
+\item 
+int \& \mbox{\hyperlink{classCustom_a87fae758896347b1e893b63d81de9004}{get\+Sample\+Size\+Min}} ()
+\item 
+\mbox{\Hypertarget{classCustom_a57f21ef8212bb8e5c90279e6e31f199a}\label{classCustom_a57f21ef8212bb8e5c90279e6e31f199a}} 
+double \& {\bfseries get\+Alpha} ()
+\item 
+\mbox{\Hypertarget{classCustom_ab3a06407fa548e28bb0601f8bcc0c744}\label{classCustom_ab3a06407fa548e28bb0601f8bcc0c744}} 
+double \& {\bfseries getP} ()
+\item 
+\mbox{\Hypertarget{classCustom_a5c9b58846ca00343af2c4da3bd2ef25f}\label{classCustom_a5c9b58846ca00343af2c4da3bd2ef25f}} 
+int \& {\bfseries getA} ()
+\item 
+\mbox{\Hypertarget{classCustom_adf2e667cd4b43fa9607fd78d3bcbe48e}\label{classCustom_adf2e667cd4b43fa9607fd78d3bcbe48e}} 
+int \& {\bfseries getB} ()
+\item 
+\mbox{\Hypertarget{classCustom_a034eb7f0dcb75855fa1f855e58995bb9}\label{classCustom_a034eb7f0dcb75855fa1f855e58995bb9}} 
+int \& {\bfseries getK} ()
+\item 
+\mbox{\Hypertarget{classCustom_a4824fc6fd37768edfe92b720e4c5cfa8}\label{classCustom_a4824fc6fd37768edfe92b720e4c5cfa8}} 
+int \& {\bfseries get\+A\+\_\+alt} ()
+\item 
+\mbox{\Hypertarget{classCustom_aa9e718f554c3bc213452a8f46c3e8399}\label{classCustom_aa9e718f554c3bc213452a8f46c3e8399}} 
+int \& {\bfseries get\+B\+\_\+alt} ()
+\item 
+\mbox{\Hypertarget{classCustom_a353643e79525ee21db0bad2e87f5c6b6}\label{classCustom_a353643e79525ee21db0bad2e87f5c6b6}} 
+int \& {\bfseries get\+K\+\_\+alt} ()
+\item 
+\mbox{\Hypertarget{classCustom_a2c3f746bf8bd51f4327e60d6f37e88ba}\label{classCustom_a2c3f746bf8bd51f4327e60d6f37e88ba}} 
+double \& {\bfseries get\+Chi} ()
+\item 
+\mbox{\hyperlink{classCustom_a7e649363f16d1607a4c62d9bb3747b07}{$\sim$\+Custom}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCustom_aca89e31b95c9e19d1d959b05d3487d1d}{done}} (int r) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ui class. 
+
+\begin{DoxyAuthor}{Author}
+@lesslyrics (Alina Boshchenko) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+June 2020
+\end{DoxyDate}
+Class for the custom task (power by sample size) 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCustom_ae12ab9c888353f56ec59e987aa7d4001}\label{classCustom_ae12ab9c888353f56ec59e987aa7d4001}} 
+\index{Custom@{Custom}!Custom@{Custom}}
+\index{Custom@{Custom}!Custom@{Custom}}
+\doxysubsubsection{\texorpdfstring{Custom()}{Custom()}}
+{\footnotesize\ttfamily Custom\+::\+Custom (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{Q\+Color}]{color,  }\item[{int}]{a\+\_\+t,  }\item[{int}]{b\+\_\+t,  }\item[{int}]{k\+\_\+t,  }\item[{int}]{a\+\_\+at,  }\item[{int}]{b\+\_\+at,  }\item[{int}]{k\+\_\+at,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Init 
+\begin{DoxyParams}{Parameters}
+{\em width} & \\
+\hline
+{\em color} & \\
+\hline
+{\em a\+\_\+t} & \\
+\hline
+{\em b\+\_\+t} & \\
+\hline
+{\em k\+\_\+t} & \\
+\hline
+{\em a\+\_\+at} & \\
+\hline
+{\em b\+\_\+at} & \\
+\hline
+{\em k\+\_\+at} & \\
+\hline
+{\em parent} & Initialize \\
+\hline
+{\em width} & \\
+\hline
+{\em color} & \\
+\hline
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCustom_a7e649363f16d1607a4c62d9bb3747b07}\label{classCustom_a7e649363f16d1607a4c62d9bb3747b07}} 
+\index{Custom@{Custom}!````~Custom@{$\sim$Custom}}
+\index{````~Custom@{$\sim$Custom}!Custom@{Custom}}
+\doxysubsubsection{\texorpdfstring{$\sim$Custom()}{~Custom()}}
+{\footnotesize\ttfamily Custom\+::$\sim$\+Custom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCustom_a3aa6dd38f3b21967928c9a2e60c486a3}\label{classCustom_a3aa6dd38f3b21967928c9a2e60c486a3}} 
+\index{Custom@{Custom}!activateModel@{activateModel}}
+\index{activateModel@{activateModel}!Custom@{Custom}}
+\doxysubsubsection{\texorpdfstring{activateModel()}{activateModel()}}
+{\footnotesize\ttfamily void Custom\+::activate\+Model (\begin{DoxyParamCaption}\item[{double \&}]{chi\+\_\+tmp,  }\item[{std\+::vector$<$ double $>$ \&}]{expr\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{actu\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{p\+\_\+distr,  }\item[{P\+Type}]{p\+\_\+type,  }\item[{int \&}]{a\+\_\+tmp,  }\item[{int \&}]{b\+\_\+tmp,  }\item[{int \&}]{k\+\_\+tmp,  }\item[{int \&}]{a\+\_\+tmp\+\_\+alt,  }\item[{int \&}]{b\+\_\+tmp\+\_\+alt,  }\item[{int \&}]{k\+\_\+tmp\+\_\+alt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Acquire parameters for drawing 
+\begin{DoxyParams}{Parameters}
+{\em chi\+\_\+tmp} & \\
+\hline
+{\em expr\+\_\+freq} & \\
+\hline
+{\em actu\+\_\+freq} & \\
+\hline
+{\em p\+\_\+dist} & \\
+\hline
+{\em p\+\_\+dist\+\_\+alt} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCustom_aca89e31b95c9e19d1d959b05d3487d1d}\label{classCustom_aca89e31b95c9e19d1d959b05d3487d1d}} 
+\index{Custom@{Custom}!done@{done}}
+\index{done@{done}!Custom@{Custom}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily void Custom\+::done (\begin{DoxyParamCaption}\item[{int}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+parameters setting 
+\begin{DoxyParams}{Parameters}
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCustom_a87fae758896347b1e893b63d81de9004}\label{classCustom_a87fae758896347b1e893b63d81de9004}} 
+\index{Custom@{Custom}!getSampleSizeMin@{getSampleSizeMin}}
+\index{getSampleSizeMin@{getSampleSizeMin}!Custom@{Custom}}
+\doxysubsubsection{\texorpdfstring{getSampleSizeMin()}{getSampleSizeMin()}}
+{\footnotesize\ttfamily int\& Custom\+::get\+Sample\+Size\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getters 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+custom.\+h\item 
+custom.\+cpp\end{DoxyCompactItemize}

@@ -1,143 +1,137 @@
-//
-// Created by lesslyrics on 26.04.2020.
-//
-
 #pragma once
 
 #include <utility>
 #include <vector>
 #include "Model.h"
+/**
+ * hyperparameters for chi-squared assumptions
+ * */
+
+
+/**
+	\author @lesslyrics (Alina Boshchenko)
+	\version 2.0
+	\date June 2020
+	\brief Class for the Chi-squared statistics
+     @example Example.cpp
+
+**/
 
 class ChiSquared {
 
 protected:
+
+    /**
+      * expected frequencies
+      */
     std::vector<double> exp_freq;
-    std::vector<double> expected;
 
+
+    /**
+     * actual frequencies
+     */
     std::vector<double> act_freq;
-    std::vector<double> act_alt_freq;
 
-    double chi_sq;
-    double chi_sq_alt;
-
-    double p_value;
-    double p_value_alt;
+    /**
+     * chi-squared statistics
+     */
+    double chi_sq = 0;
+    /**
+     *  p_value by chi-statistic
+     */
+    double p_value = 0;
+    /**
+   *  p_value distribution
+   */
+    std::vector<double> p_dist;
 
 public:
+    /** getter **/
     double getPValue() const;
-
+    /**  setter**/
     void setPValue(double pValue);
 
-protected:
-
-    std::vector<double> p_dist;
-    std::vector<double> p_dist_alt;
-public:
-    double getPValueAlt() const;
-
-    void setPValueAlt(double pValueAlt);
-
-
 public:
 
-    /**
-     * compute statistics based on model and distribution
-     * @param model
-     * @param dist
-     * @param trials
-     * @param nt
-     */
-    void computeStatistics(HypogeomModel model, HyperGeomTheoretical dist, int trials, int nt) {
-        setExpFreq(dist.getExpectedFreq());
-        setActFreq(model.getActualFreq());
-        setExpected(dist.getExpected());
-        setActAltFreq(model.getActualAltFreq());
-        computeStatistics(trials, nt);
+    /*
+      * method to perform sample merging based on pivot
+      * @param h_expected - expected frequencies
+      * @param h_actual  - actual frequencies
+      */
+    void merge_sample(std::vector<double> &h_expected, std::vector<double> &h_actual);
+
+     /*
+      * compute statistics based on model and distribution (created for better structure)
+      * @param model - model
+      * @param nt - number of trials for distribution
+      * @param dist  -  distribution
+      */
+    void computeStatistics(HypogeomModel model, HyperGeomTheoretical &dist, int nt) {
+        std::vector<double> actual_freq = model.getActualFreq();
+        std::vector<double> expected_freq;
+        dist.modelTheoreticalDist(nt, expected_freq);
+
+        merge_sample(expected_freq,  actual_freq);
+
+        setExpFreq(expected_freq);
+        setActFreq(actual_freq);
+        model.setActualFreq(actual_freq);
+
+        computeStatistics();
     }
+    /*
+    * calculate chi-statistics
+    * @param h_expected - expected frequencies
+    * @param h_actual  - actual frequencies
+    * @param df - degrees of freedom
+    * @return chi-squared statistics
+    */
+    double calculate_chi(std::vector<double> &h_expected, std::vector<double> &h_actual, int &df);
 
-    /**
-     * method to calculate chi-square value
-     * @param h_freq
-     * @param h
-     * @param h1
-     * @param h2
-     * @param df
-     * @return
+
+    /*
+     * compute chi-squared statistics and find corresponding p-value
      */
-    double
-    calculate_chi(std::vector<double> &h_freq, std::vector<double> &h, std::vector<double> &h1, int &df, int a, int nt);
-
-
-    /**
-     * compute statistics
-     * @param trials
-     * @param nt
-     */
-    void computeStatistics(int trials, int nt) {
+    void computeStatistics() {
 
         int df = 0;
         double p_val = 0;
 
         std::vector<double> exp_freq_temp = getExpFreq();
-        std::vector<double> exp_temp = getExpected();
         std::vector<double> act_freq_temp = getActFreq();
-        std::vector<double> act_alt_temp = getActAltFreq();
 
-
-        setChiSq(calculate_chi(exp_freq_temp, exp_temp, act_freq_temp, df, exp_freq_temp.size() - 1, nt));
-        setChiSqAlt(calculate_chi(exp_freq_temp, exp_temp, act_alt_temp, df, exp_freq_temp.size() - 1, nt));
+        setChiSq(calculate_chi(exp_freq_temp, act_freq_temp, df));
 
         CHI(1, df, chi_sq, p_val);
         setPValue(p_val);
 
         p_dist.push_back(p_val);
 
-        p_val = 0;
-        CHI(1, df, chi_sq_alt, p_val);
-        setPValueAlt(p_val);
-
-        p_dist_alt.push_back(p_val);
-
         std::fill(exp_freq_temp.begin(), exp_freq_temp.end(), 0);
-        std::fill(exp_temp.begin(), exp_temp.end(), 0);
         std::fill(act_freq_temp.begin(), act_freq_temp.end(), 0);
-        std::fill(act_alt_temp.begin(), act_alt_temp.end(), 0);
 
 
     }
 
-    /** getters and setters **/
+    /*getters and setters */
 
     const std::vector<double> &getExpFreq() const;
 
     void setExpFreq(const std::vector<double> &expFreq);
 
-    const std::vector<double> &getExpected() const;
-
-    void setExpected(const std::vector<double> &expected);
 
     const std::vector<double> &getActFreq() const;
 
     void setActFreq(const std::vector<double> &actFreq);
 
-    const std::vector<double> &getActAltFreq() const;
-
-    void setActAltFreq(const std::vector<double> &actAltFreq);
-
     double getChiSq() const;
 
     void setChiSq(double chiSq);
-
-    double getChiSqAlt() const;
-
-    void setChiSqAlt(double chiSqAlt);
 
     const std::vector<double> &getPDist() const;
 
     void setPDist(const std::vector<double> &pDist);
 
-    const std::vector<double> &getPDistAlt() const;
 
-    void setPDistAlt(const std::vector<double> &pDistAlt);
 
 };

@@ -4,20 +4,37 @@
 #include <QMessageBox>
 #include <iostream>
 
-
-PWindow::PWindow(int width, QColor color, QWidget *parent)
-        : QDialog(parent), ui(new Ui::PWindow), sample_size(width), rect_color(color) {
+/**
+ * Initialize
+ * @param width
+ * @param color
+ * @param a_t
+ * @param b_t
+ * @param k_t
+ * @param a_at
+ * @param b_at
+ * @param k_at
+ * @param parent
+ */
+PWindow::PWindow( int a_t, int b_t, int k_t, int a_at, int b_at, int k_at, QWidget *parent)
+        : QDialog(parent), ui(new Ui::PWindow), a(a_t), b(b_t), k(k_t), a_alt(a_at),b_alt(b_at), k_alt(k_at){
     ui->setupUi(this);
 
     this->ui->lineEditTrials->setText(QString::number(10000));
     this->ui->lineEditSize->setText(QString::number(50));
-    this->ui->lineEdit_A->setText(QString::number(6));
-    this->ui->lineEdit_B->setText(QString::number(5));
-    this->ui->lineEdit_K->setText(QString::number(4));
+    this->ui->lineEdit_A->setText(QString::number(a));
+    this->ui->lineEdit_B->setText(QString::number(b));
+    this->ui->lineEdit_K->setText(QString::number(k));
+    this->ui->lineEdit_A_alt->setText(QString::number(a_alt));
+    this->ui->lineEdit_B_alt->setText(QString::number(b_alt));
+    this->ui->lineEdit_K_alt->setText(QString::number(k_alt));
 
 }
 
-/* parameters setting */
+/**
+ * parameters setting
+ * @param r
+ */
 void PWindow::done(int r) {
 
     a = this->ui->lineEdit_A->text().toInt();
@@ -34,6 +51,24 @@ void PWindow::done(int r) {
 
     k = this->ui->lineEdit_K->text().toInt();
     if (k <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    a_alt = this->ui->lineEdit_A_alt->text().toInt();
+    if (a_alt <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    b_alt = this->ui->lineEdit_B_alt->text().toInt();
+    if (b_alt <= 0){
+        QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
+        return;
+    }
+
+    k_alt = this->ui->lineEdit_K_alt->text().toInt();
+    if (k_alt <= 0){
         QMessageBox::warning(this, tr(""), tr("Invalid parameter"), QMessageBox::Ok);
         return;
     }
@@ -63,6 +98,9 @@ void PWindow::done(int r) {
     QDialog::done(r);
 }
 
+/**
+ * Destructor
+ */
 PWindow::~PWindow()
 {
     delete ui;

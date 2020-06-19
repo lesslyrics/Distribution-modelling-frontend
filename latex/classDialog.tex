@@ -1,0 +1,127 @@
+\hypertarget{classDialog}{}\doxysection{Dialog Class Reference}
+\label{classDialog}\index{Dialog@{Dialog}}
+
+
+Ui class.  
+
+
+
+
+{\ttfamily \#include $<$dialog.\+h$>$}
+
+
+
+Inheritance diagram for Dialog\+:
+% FIG 0
+
+
+Collaboration diagram for Dialog\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDialog_a76f34303d40873b161dcebdec930f8f5}{Dialog}} (int width, Q\+Color color, int a\+\_\+t, int b\+\_\+t, int k\+\_\+t, Q\+Widget $\ast$parent=nullptr)
+\item 
+void \mbox{\hyperlink{classDialog_aea165601c023ec39619d673e146bf73c}{activate\+Model}} (double \&chi\+\_\+tmp, std\+::vector$<$ double $>$ \&expr\+\_\+freq, std\+::vector$<$ double $>$ \&actu\+\_\+freq, std\+::vector$<$ double $>$ \&p\+\_\+dist, int \&a\+\_\+tmp, int \&b\+\_\+tmp, int \&k\+\_\+tmp)
+\item 
+int \& \mbox{\hyperlink{classDialog_a7d051a25b2d16f82f1ed130c57da36f7}{get\+Sample\+Size}} ()
+\item 
+\mbox{\Hypertarget{classDialog_af73d6f8fcc612278e2833b8bfe0b3ac1}\label{classDialog_af73d6f8fcc612278e2833b8bfe0b3ac1}} 
+double \& {\bfseries getP} ()
+\item 
+\mbox{\Hypertarget{classDialog_afb9dcabb0627072fd0d690ac6028e35c}\label{classDialog_afb9dcabb0627072fd0d690ac6028e35c}} 
+double \& {\bfseries get\+Chi} ()
+\item 
+\mbox{\Hypertarget{classDialog_a6c39d23dfca6e4cd3d09c891ff8de2ee}\label{classDialog_a6c39d23dfca6e4cd3d09c891ff8de2ee}} 
+Model\+Type \& {\bfseries get\+Model\+Type} ()
+\item 
+\mbox{\hyperlink{classDialog_a2a1fe6ef28513eed13bfcd3a4da83ccb}{$\sim$\+Dialog}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDialog_a2cf0665b6dea24666d7c636ab26b1cb8}{done}} (int r) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ui class. 
+
+\begin{DoxyAuthor}{Author}
+@lesslyrics (Alina Boshchenko) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+June 2020
+\end{DoxyDate}
+Class for the modelling visualization 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDialog_a76f34303d40873b161dcebdec930f8f5}\label{classDialog_a76f34303d40873b161dcebdec930f8f5}} 
+\index{Dialog@{Dialog}!Dialog@{Dialog}}
+\index{Dialog@{Dialog}!Dialog@{Dialog}}
+\doxysubsubsection{\texorpdfstring{Dialog()}{Dialog()}}
+{\footnotesize\ttfamily Dialog\+::\+Dialog (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{Q\+Color}]{color,  }\item[{int}]{a\+\_\+t,  }\item[{int}]{b\+\_\+t,  }\item[{int}]{k\+\_\+t,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Initialize 
+\begin{DoxyParams}{Parameters}
+{\em width} & \\
+\hline
+{\em color} & \\
+\hline
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDialog_a2a1fe6ef28513eed13bfcd3a4da83ccb}\label{classDialog_a2a1fe6ef28513eed13bfcd3a4da83ccb}} 
+\index{Dialog@{Dialog}!````~Dialog@{$\sim$Dialog}}
+\index{````~Dialog@{$\sim$Dialog}!Dialog@{Dialog}}
+\doxysubsubsection{\texorpdfstring{$\sim$Dialog()}{~Dialog()}}
+{\footnotesize\ttfamily Dialog\+::$\sim$\+Dialog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDialog_aea165601c023ec39619d673e146bf73c}\label{classDialog_aea165601c023ec39619d673e146bf73c}} 
+\index{Dialog@{Dialog}!activateModel@{activateModel}}
+\index{activateModel@{activateModel}!Dialog@{Dialog}}
+\doxysubsubsection{\texorpdfstring{activateModel()}{activateModel()}}
+{\footnotesize\ttfamily void Dialog\+::activate\+Model (\begin{DoxyParamCaption}\item[{double \&}]{chi\+\_\+tmp,  }\item[{std\+::vector$<$ double $>$ \&}]{expr\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{actu\+\_\+freq,  }\item[{std\+::vector$<$ double $>$ \&}]{p\+\_\+dist,  }\item[{int \&}]{a\+\_\+tmp,  }\item[{int \&}]{b\+\_\+tmp,  }\item[{int \&}]{k\+\_\+tmp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Acquire parameters for drawing 
+\begin{DoxyParams}{Parameters}
+{\em chi\+\_\+tmp} & \\
+\hline
+{\em expr\+\_\+freq} & \\
+\hline
+{\em actu\+\_\+freq} & \\
+\hline
+{\em p\+\_\+dist} & \\
+\hline
+{\em p\+\_\+dist\+\_\+alt} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDialog_a2cf0665b6dea24666d7c636ab26b1cb8}\label{classDialog_a2cf0665b6dea24666d7c636ab26b1cb8}} 
+\index{Dialog@{Dialog}!done@{done}}
+\index{done@{done}!Dialog@{Dialog}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily void Dialog\+::done (\begin{DoxyParamCaption}\item[{int}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+parameters setting 
+\begin{DoxyParams}{Parameters}
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDialog_a7d051a25b2d16f82f1ed130c57da36f7}\label{classDialog_a7d051a25b2d16f82f1ed130c57da36f7}} 
+\index{Dialog@{Dialog}!getSampleSize@{getSampleSize}}
+\index{getSampleSize@{getSampleSize}!Dialog@{Dialog}}
+\doxysubsubsection{\texorpdfstring{getSampleSize()}{getSampleSize()}}
+{\footnotesize\ttfamily int\& Dialog\+::get\+Sample\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getters 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dialog.\+h\item 
+dialog.\+cpp\end{DoxyCompactItemize}

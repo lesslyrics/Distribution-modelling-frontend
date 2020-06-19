@@ -3,7 +3,10 @@
 #include <QIntValidator>
 
 
-
+/**
+ * Initialize
+ * @param parent
+ */
 Intro::Intro(QWidget* parent)
   : QDialog(parent)
   , ui(new Ui::Intro)

@@ -13,6 +13,18 @@ using namespace std;
 #define LIMIT_X 300
 #define MOVE 100
 
+/**
+ * UI: Function to draw histogram for the distribution
+ * @param sample_size
+ * @param type
+ * @param win_w
+ * @param win_h
+ * @param chi
+ * @param p
+ * @param exp_freq
+ * @param act_freq
+ * @param painter
+ */
 void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, double chi, double p,
                      std::vector<double> &exp_freq, std::vector<double> &act_freq, QPainter &painter) {
 
@@ -102,6 +114,15 @@ void createHistogram(int sample_size, ModellingType type, int win_w, int win_h, 
 
 }
 
+/**
+ * UI: Draw histogram box
+ * @param x
+ * @param y
+ * @param width
+ * @param height
+ * @param painter
+ * @param color
+ */
 void createBox(float x, float y, float width, float height, QPainter &painter, QColor color) {
     QPen pen;
     pen.setColor(color);
@@ -112,7 +133,15 @@ void createBox(float x, float y, float width, float height, QPainter &painter, Q
 }
 
 /**
- * Draw histogram parameters
+ * UI: Draw histogram parameters
+ * @param sample_size
+ * @param type
+ * @param win_w
+ * @param chi
+ * @param p
+ * @param exp_freq
+ * @param act_freq
+ * @param painter
  */
 void printHistParams(int sample_size, ModellingType type, int win_w, double chi, double p,
                      std::vector<double> &exp_freq, std::vector<double> &act_freq, QPainter &painter){

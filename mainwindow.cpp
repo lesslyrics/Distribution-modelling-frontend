@@ -16,14 +16,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::on_actionModel_triggered() {
 
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto modelDialog = new Dialog(width, color, this);
+    auto modelDialog = new Dialog(a, b, k,  this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
 
 
     modelDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
@@ -31,10 +28,9 @@ void MainWindow::on_actionModel_triggered() {
 
     if (modelDialog->exec() == QDialog::Accepted) {
 
-        modelDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+        modelDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, a, b, k);
         ui->renderarea->getMenu() = Menu::Model;
         ui->renderarea->getSampleSize() = modelDialog->getSampleSize();
-        ui->renderarea->getRectColor() = modelDialog->getRectColor();
         ui->renderarea->getChi() = modelDialog->getChi();
 
         ModelType temp  =modelDialog->getModelType();
@@ -55,25 +51,22 @@ void MainWindow::on_actionModel_triggered() {
  */
 void MainWindow::on_actionPval_triggered() {
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto pvalDialog = new PWindow(width, color, this);
+    auto pvalDialog = new PWindow(a, b, k, a_alt, b_alt, k_alt, this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
 
 
     pvalDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
 
 
     if (pvalDialog->exec() == QDialog::Accepted) {
-        pvalDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
+        ui->renderarea->getPType() = pvalDialog->getPType();
+        pvalDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist,ui->renderarea->getPType(), a, b, k, a_alt, b_alt, k_alt);
 
         ui->renderarea->getMenu() = Menu::Pval;
         ui->renderarea->getSampleSize() = pvalDialog->getSampleSize();
-        ui->renderarea->getRectColor() = pvalDialog->getRectColor();
         ui->renderarea->getChi() = pvalDialog->getChi();
         ui->renderarea->getTrials() = pvalDialog->getTrials();
 
@@ -81,10 +74,6 @@ void MainWindow::on_actionPval_triggered() {
         ui->renderarea->getExpFreq() =  exp_freq;
         ui->renderarea->getActFreq() =  act_freq;
         ui->renderarea->getPDist() =  p_dist;
-        ui->renderarea->getPDistAlt() =  p_dist_alt;
-
-        ui->renderarea->getPType() =   pvalDialog->getPType();
-
 
     }
 }
@@ -96,43 +85,37 @@ void MainWindow::on_actionPval_triggered() {
  */
 void MainWindow::on_actionCustom_triggered() {
 
-    auto width = this->ui->renderarea->getLineWidth();
-    auto color = this->ui->renderarea->getRectColor();
-    auto customDialog = new Custom(width, color, this);
+    auto customDialog = new Custom(a, b, k, a_alt, b_alt, k_alt, this);
     double chi_tmp = 0;
     auto exp_freq = std::vector<double>(0, 0); // histograms
     auto act_freq = std::vector<double>(0, 0); // histograms
     auto p_dist = std::vector<double>(0, 0); // histograms
-    auto p_dist_alt = std::vector<double>(0, 0); // histograms
-
 
     customDialog->setStyleSheet("background-color: rgb(26, 26, 29);");
 
-
     if (customDialog->exec() == QDialog::Accepted) {
-        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, p_dist_alt);
-
+        customDialog->activateModel(chi_tmp, exp_freq, act_freq, p_dist, PType::Power, a, b, k, a_alt, b_alt, k_alt);
         ui->renderarea->getMenu() = Menu::Custom;
-        ui->renderarea->getRectColor() = customDialog->getRectColor();
         ui->renderarea->getChi() = customDialog->getChi();
 
         ui->renderarea->getP() =    customDialog->getP();
         ui->renderarea->getExpFreq() =  exp_freq;
         ui->renderarea->getActFreq() =  act_freq;
         ui->renderarea->getPDist() =  p_dist;
-        ui->renderarea->getPDistAlt() =  p_dist_alt;
 
         ui->renderarea->getTrials() = 10000;
         ui->renderarea->getPType() =  PType::Power;
         ui->renderarea->getAlpha() = customDialog->getAlpha();
 
         ui->renderarea->getSampleSizeMin() = customDialog->getSampleSizeMin();
-        ui->renderarea->getSampleSizeMed() = customDialog->getSampleSizeMed();
-        ui->renderarea->getSampleSizeMax() = customDialog->getSampleSizeMax();
 
         ui->renderarea->getA() = customDialog->getA();
         ui->renderarea->getB() = customDialog->getB();
         ui->renderarea->getK() = customDialog->getK();
+
+        ui->renderarea->getA() = customDialog->getA_alt();
+        ui->renderarea->getB() = customDialog->getB_alt();
+        ui->renderarea->getK() = customDialog->getK_alt();
 
 
     }

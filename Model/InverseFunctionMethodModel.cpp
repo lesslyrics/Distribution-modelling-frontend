@@ -2,47 +2,46 @@
 // Created by lesslyrics on 23.02.2020.
 //
 
-#include <iostream>
-#include <iomanip>
 #include "InverseFunctionMethodModel.h"
-#include "HyperGeomTheoretical.h"
 #include "Model.h"
 
-const int a_alt = 5;
-const int b_alt = 5;
-const int k_alt = 4;
+#include <random>
 
-/** This function finds factorial of large numbers **/
-long long int InverseFunctionMethodModel::findFactorial(int num) {
-    int fact = 1, i;
+extern std::mt19937 gen;
+
+/**
+   *  Find factorial
+   * @param num
+   * @return factorial of the num
+   */
+long double InverseFunctionMethodModel::findFactorial(int num) {
+    long double fact = 1;
+    int i;
     for (i = 1; i <= num; i++)
-        fact = fact * i;
+        fact = fact * (long double)i;
     return fact;
 }
 
+
 /**
- * method to activateModel random values using inverse function method
- * @param a
- * @param b
- * @param k
- * @return
- */
+    * method to generate random values
+    * @param a - number of white balls
+    * @param b - number of black balls
+    * @param k - number of taken balls
+    * @return random number
+    */
 int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0;
     int n = a + b;
 
-//    std::cout <<"fac1 " << (long double)(findFactorial(b) * findFactorial(n-k)) <<  std::endl ;
-//    std::cout <<"fac2 " << (long double)(findFactorial(n - a - k)) << std::endl;
-//    std::cout <<"fac3 " << (long double)(findFactorial(n)) <<  std::endl ;
-
-    long double p =
-            (long double) (findFactorial(b) * findFactorial(n - k)) / findFactorial(n - a - k) / findFactorial(n);
+    long double p = (findFactorial(b) * findFactorial(n - k)) / findFactorial(b - k) / findFactorial(n);
     long double l = p;
-    long double alpha = randomRange(0, 1);
+    std::uniform_real_distribution<> dis(0., 1.);
+    double alpha = dis(gen);
 
 
     while (alpha >= l) {
-        p = p * (a - i) * (k - i) / ((i + 1) * (n - a - k + i + 1));
+        p = (long double)p * (long double)(a - i) * (long double)(k - i) / ((i + 1) * (long double)(n - a - k + i + 1));
         l += p;
         i++;
     }
@@ -50,42 +49,25 @@ int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
 }
 
 /**
- * Generate distribution
- * @param trials
- * @param a
- * @param b
- * @param k
- * @param nt
- * @param p_fin
- * @param exp_freq
- * @param act_freq
- * @param p_dist
- * @param p_dist_alt
- * @return
- */
-void InverseFunctionMethodModel::createDist(int trials, int a, int b, int k, int nt) {
+  * Generate model with Inverse Function Method
+  * @param a - number of white balls
+  * @param b - number of black balls
+  * @param k - number of taken balls
+  * @param nt - number of trials
+  * @param h - number of columns in histogram
+  */
+void InverseFunctionMethodModel::createDist(int a, int b, int k, int nt, int h) {
 
-    int q1, q2;
-
-    std::vector<double> h1(a + 1, 0); // histograms
-    std::vector<double> h2(a + 1, 0); // histograms
-
-
+    int q;
+    std::vector<double> hist(h + 1, 0); // histograms
     for (int j = 0; j != nt; ++j) {
-        q1 = generateRandomValue(a, b, k);
-        q2 = generateRandomValue(a_alt, b_alt, k_alt);
-        h1[q1]++;
-        h2[q2]++;
+        q = generateRandomValue(a, b, k);
+        hist[q]++;
     }
 
     actual_freq.clear();
-    actual_alt_freq.clear();
 
-    for (int i = 0; i != a + 1; i++)
-        actual_freq.push_back(h1[i]);
-
-
-    for (int i = 0; i != a + 1; i++)
-        actual_alt_freq.push_back(h2[i]);
+    for (int i = 0; i != h + 1; i++)
+        actual_freq.push_back(hist[i]);
 
 }

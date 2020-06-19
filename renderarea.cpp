@@ -11,6 +11,10 @@ RenderArea::RenderArea(QWidget *parent)
         : QWidget(parent) {}
 
 
+/**
+* Rendering:Model
+* @param painter
+*/
 void RenderArea::paintEventModel(QPainter &painter) {
 
     auto x = this->width();
@@ -24,29 +28,43 @@ void RenderArea::paintEventModel(QPainter &painter) {
 
 }
 
-
+/**
+ * Rendering: P-vals
+ * @param painter
+ * @param p_type
+ */
 void RenderArea::paintEventPval(QPainter &painter, PType p_type) {
     auto x = this->width();
     auto y = this->height();
     QString color = "palegreen";
 
     drawParams(sample_size, x, trials, painter, p_type );
-    createPlot(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+    createPlot(p_dist, x, y, painter, p_type, color);
+
 
 }
 
-/*Color - rectangle drawing*/
+/**
+ *  Rendering: Custom task
+ * @param painter
+ */
 void RenderArea::paintEventCustom(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
-    QString color = "palegreen";
     sample_size = sample_size_min;
-    drawParamsCustom(a, b, k, sample_size_min, sample_size_med, sample_size_max, x, trials, painter);
-    createCustom(sample_size, p_dist, p_dist_alt, x, y, trials, painter, p_type, color);
+    QString color = "palegreen";
+    drawParamsCustom(a, b, k, sample_size_min, x, trials, painter);
+//    createCustom(p_dist, x, y, painter, p_type);
+    createCustomPlot(p_dist, x, y, painter, p_type, color, sample_size_min);
+
     drawAlpha(alpha, x, y, painter);
 
 }
 
+/**
+ *  Rendering: Hello
+ * @param painter
+ */
 void RenderArea::paintEventHello(QPainter &painter) {
     auto x = this->width();
     auto y = this->height();
@@ -62,7 +80,10 @@ void RenderArea::paintEventHello(QPainter &painter) {
     }
 }
 
-
+/**
+   * Rendering: Overall
+   * @param event
+   */
 void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);

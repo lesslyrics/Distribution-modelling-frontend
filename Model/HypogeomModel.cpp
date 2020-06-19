@@ -6,26 +6,20 @@
 #include <random>
 #include "HypogeomModel.h"
 #include "time.h"
+#include <random>
 
 
-/**
- * Version for random numbers, high speed
- * **/
-double HypogeomModel::randomRange(int min, int max) {
+std::random_device rd;
+std::mt19937 gen(rd());
 
-    return double(rand()) / RAND_MAX * (max - min) + min;
-}
+
 
 /**
- * preferred version for more accurate random numbers, but with lower speed **/
-
-//    std::random_device rd;  //Will be used to obtain a seed for the random number engine
-//    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-//    std::uniform_real_distribution<> dis(min, max);
-//    return dis(gen);
-
-/**
- * Generate random value
+ * method to generate random values for model
+ * @param a - number of white balls
+ * @param b - number of black balls
+ * @param k - number of taken balls
+ * @return random number
  */
 int HypogeomModel::generateRandomValue(int a, int b, int k) {
     return 0;
@@ -33,8 +27,13 @@ int HypogeomModel::generateRandomValue(int a, int b, int k) {
 
 /**
  * Generate distribution
+ * @param a - number of white balls
+ * @param b - number of black balls
+ * @param k - number of taken balls
+ * @param nt - number of trials
+ * @param h - number of columns in histogram
  */
-void HypogeomModel::createDist(int trials, int a, int b, int k, int nt){
+void HypogeomModel::createDist(int a, int b, int k, int nt, int h){
     return;
 }
 
@@ -44,13 +43,5 @@ const std::vector<double> &HypogeomModel::getActualFreq(){
 
 void HypogeomModel::setActualFreq(const std::vector<double> &actualFreq) {
     actual_freq = actualFreq;
-}
-
-const std::vector<double> &HypogeomModel::getActualAltFreq(){
-    return actual_alt_freq;
-}
-
-void HypogeomModel::setActualAltFreq(const std::vector<double> &actualAltFreq) {
-    actual_alt_freq = actualAltFreq;
 }
 
