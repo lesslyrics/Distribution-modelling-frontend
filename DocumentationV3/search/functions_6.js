@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['generaterandomvalue_773',['generateRandomValue',['../classBernoulliMethodModel.html#ae11e1df96c7fc952232d3f7df2fd99f0',1,'BernoulliMethodModel::generateRandomValue()'],['../classHypogeomModel.html#aed5f0127bf707d45cecdebcf8fd5df3f',1,'HypogeomModel::generateRandomValue()'],['../classInverseFunctionMethodModel.html#a5e1f1212de7c8ba4f160549d8ce4c68c',1,'InverseFunctionMethodModel::generateRandomValue()']]],
+  ['geta_774',['getA',['../classCustom.html#a5c9b58846ca00343af2c4da3bd2ef25f',1,'Custom::getA()'],['../classHyperGeomTheoretical.html#a2d85443f3cf9de4edaa684afd56a9a9d',1,'HyperGeomTheoretical::getA()'],['../classRenderArea.html#a1553cf2c0d681d2a4cd6e349d8f625f1',1,'RenderArea::getA()']]],
+  ['geta_5falt_775',['getA_alt',['../classCustom.html#a4824fc6fd37768edfe92b720e4c5cfa8',1,'Custom']]],
+  ['getactfreq_776',['getActFreq',['../classChiSquared.html#a59629e747bb42521884846f1f019cd51',1,'ChiSquared::getActFreq()'],['../classRenderArea.html#af1cc040f52e0d7b729083340ea656602',1,'RenderArea::getActFreq()']]],
+  ['getactualfreq_777',['getActualFreq',['../classHypogeomModel.html#a9a82c7ac956d1343c431853302fb8373',1,'HypogeomModel']]],
+  ['getalpha_778',['getAlpha',['../classCustom.html#a57f21ef8212bb8e5c90279e6e31f199a',1,'Custom::getAlpha()'],['../classRenderArea.html#a37bf5177d132502c09c6966e21cc350b',1,'RenderArea::getAlpha()']]],
+  ['getb_779',['getB',['../classCustom.html#adf2e667cd4b43fa9607fd78d3bcbe48e',1,'Custom::getB()'],['../classHyperGeomTheoretical.html#a2a0374a42ff6a803594cf7000f8798b4',1,'HyperGeomTheoretical::getB()'],['../classRenderArea.html#a0801008bfd20c8942651d090be814e91',1,'RenderArea::getB()']]],
+  ['getb_5falt_780',['getB_alt',['../classCustom.html#aa9e718f554c3bc213452a8f46c3e8399',1,'Custom']]],
+  ['getchi_781',['getChi',['../classCustom.html#a2c3f746bf8bd51f4327e60d6f37e88ba',1,'Custom::getChi()'],['../classDialog.html#afb9dcabb0627072fd0d690ac6028e35c',1,'Dialog::getChi()'],['../classPWindow.html#a740252bd0dd7c3d8b2c69abcbcc2939d',1,'PWindow::getChi()'],['../classRenderArea.html#aae695b393aca2c515fdead70aa4d2ef9',1,'RenderArea::getChi()']]],
+  ['getchisq_782',['getChiSq',['../classChiSquared.html#a81164687698f19bb3d1d9e2d9cf479b5',1,'ChiSquared']]],
+  ['getexpfreq_783',['getExpFreq',['../classChiSquared.html#a5bccc5ef30ebf3fd52139fa4621d4c73',1,'ChiSquared::getExpFreq()'],['../classRenderArea.html#ae179e951a183c5bf419292bd31c103a7',1,'RenderArea::getExpFreq()']]],
+  ['getk_784',['getK',['../classCustom.html#a034eb7f0dcb75855fa1f855e58995bb9',1,'Custom::getK()'],['../classHyperGeomTheoretical.html#afaebac46e3b1393f035f2753637d0e9a',1,'HyperGeomTheoretical::getK()'],['../classRenderArea.html#ab04dacb46dc7a8bb199236d6c544f208',1,'RenderArea::getK()']]],
+  ['getk_5falt_785',['getK_alt',['../classCustom.html#a353643e79525ee21db0bad2e87f5c6b6',1,'Custom']]],
+  ['getmenu_786',['getMenu',['../classRenderArea.html#a0b99a9f6f639828038cf39ccedae8a63',1,'RenderArea']]],
+  ['getmodeltype_787',['getModelType',['../classDialog.html#a6c39d23dfca6e4cd3d09c891ff8de2ee',1,'Dialog::getModelType()'],['../classRenderArea.html#abc9f7b04db7dd52af623eef4faa0ad72',1,'RenderArea::getModelType()']]],
+  ['getp_788',['getP',['../classCustom.html#ab3a06407fa548e28bb0601f8bcc0c744',1,'Custom::getP()'],['../classDialog.html#af73d6f8fcc612278e2833b8bfe0b3ac1',1,'Dialog::getP()'],['../classPWindow.html#ac7c23d494c35ce6f0791b582e4e23cdb',1,'PWindow::getP()'],['../classRenderArea.html#a72839f069339058a4af2a73ca064d52c',1,'RenderArea::getP()']]],
+  ['getpdist_789',['getPDist',['../classChiSquared.html#a663f643613c2ba753cff7182606a6a68',1,'ChiSquared::getPDist()'],['../classRenderArea.html#a3e88243fc1369aaadc9b234d5f9e7285',1,'RenderArea::getPDist()']]],
+  ['getptype_790',['getPType',['../classPWindow.html#af5c4864a31a128a8ce4dcc21d96321a5',1,'PWindow::getPType()'],['../classRenderArea.html#a8d169640c664de891c0b7c6f37cf0064',1,'RenderArea::getPType()']]],
+  ['getpvalue_791',['getPValue',['../classChiSquared.html#a85ca5affd87aabbc959960bbe758d9cf',1,'ChiSquared']]],
+  ['getsamplesize_792',['getSampleSize',['../classDialog.html#a7d051a25b2d16f82f1ed130c57da36f7',1,'Dialog::getSampleSize()'],['../classPWindow.html#a34c587323df553e8801329a80b7b9efa',1,'PWindow::getSampleSize()'],['../classRenderArea.html#ad01cee3aacc4b4399760ed7a827d6308',1,'RenderArea::getSampleSize()']]],
+  ['getsamplesizemin_793',['getSampleSizeMin',['../classCustom.html#a87fae758896347b1e893b63d81de9004',1,'Custom::getSampleSizeMin()'],['../classRenderArea.html#aa4329db38c098b652c36104b57799459',1,'RenderArea::getSampleSizeMin()']]],
+  ['gettrials_794',['getTrials',['../classPWindow.html#a821c4d955cf3b5ccad171c93ed97c74b',1,'PWindow::getTrials()'],['../classRenderArea.html#acf9ed452ede55ce0b364bd915c6e0d0c',1,'RenderArea::getTrials()']]]
+];

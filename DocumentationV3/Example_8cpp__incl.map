@@ -1,0 +1,17 @@
+<map id="dialogs/Model/Example.cpp" name="dialogs/Model/Example.cpp">
+<area shape="rect" id="node1" title="Example file to test essential methods." alt="" coords="492,5,693,32"/>
+<area shape="rect" id="node2" href="$BernoulliMethodModel_8h.html" title=" " alt="" coords="741,229,922,256"/>
+<area shape="rect" id="node6" href="$HyperGeomTheoretical_8h.html" title=" " alt="" coords="5,229,191,256"/>
+<area shape="rect" id="node9" href="$probdist_8h.html" title=" " alt="" coords="947,229,1033,256"/>
+<area shape="rect" id="node10" href="$ChiSquared_8h.html" title=" " alt="" coords="459,80,567,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="355,304,417,331"/>
+<area shape="rect" id="node4" href="$HypogeomModel_8h.html" title=" " alt="" coords="492,304,637,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="531,379,598,405"/>
+<area shape="rect" id="node7" title=" " alt="" coords="109,304,189,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="10,304,85,331"/>
+<area shape="rect" id="node11" title=" " alt="" coords="575,155,635,181"/>
+<area shape="rect" id="node12" href="$Model_8h.html" title="Driver file, connector between frontend and backend." alt="" coords="475,155,550,181"/>
+<area shape="rect" id="node13" href="$InverseFunctionMethodModel_8h.html" title=" " alt="" coords="362,229,589,256"/>
+<area shape="rect" id="node14" href="$ModelType_8h.html" title=" " alt="" coords="613,229,717,256"/>
+<area shape="rect" id="node15" href="$PType_8h.html" title=" " alt="" coords="266,229,338,256"/>
+</map>
