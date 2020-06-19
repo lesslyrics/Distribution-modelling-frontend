@@ -8,7 +8,7 @@
  * \brief Example file to test essential methods
 **/
 
-int main(){
+int mafin(){
 
     int nt = 100; //- number of trials for distribution/model
     int a = 6; // - number of white balls

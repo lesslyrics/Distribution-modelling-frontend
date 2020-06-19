@@ -5,6 +5,9 @@
 #include "InverseFunctionMethodModel.h"
 #include "Model.h"
 
+#include <random>
+
+extern std::mt19937 gen;
 
 /**
    *  Find factorial
@@ -33,7 +36,8 @@ int InverseFunctionMethodModel::generateRandomValue(int a, int b, int k) {
 
     long double p = (findFactorial(b) * findFactorial(n - k)) / findFactorial(b - k) / findFactorial(n);
     long double l = p;
-    long double alpha = randomRange(0, 1);
+    std::uniform_real_distribution<> dis(0., 1.);
+    double alpha = dis(gen);
 
 
     while (alpha >= l) {

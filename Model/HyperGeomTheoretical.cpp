@@ -6,8 +6,6 @@
 #include <cstdint>
 #include <cmath>
 
-#define func auto
-
 /**
    * method to compute binomial coefficient n!/k!(n-k)!
    * @param n

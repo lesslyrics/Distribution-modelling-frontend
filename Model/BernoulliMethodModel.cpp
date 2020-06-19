@@ -6,7 +6,9 @@
 #include "BernoulliMethodModel.h"
 #include "probdist.h"
 #include "Model.h"
+#include <random>
 
+extern std::mt19937 gen;
 
 /**
  * method to generate random values using Bernoulli distribution
@@ -19,7 +21,9 @@ int BernoulliMethodModel::generateRandomValue(int a, int b, int k) {
     int i = 0, j = 0;
     int n = a + b;
     do {
-        double alpha = randomRange(0, 1);
+       std::uniform_real_distribution<> dis(0., 1.);
+       double alpha = dis(gen);
+
         double pivot = double(a - j) / (n - i);
         if (alpha < pivot)
             j++;

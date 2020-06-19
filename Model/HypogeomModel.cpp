@@ -6,18 +6,13 @@
 #include <random>
 #include "HypogeomModel.h"
 #include "time.h"
+#include <random>
 
 
- /**
-  * generate random number from the selected range
-  * @param min - left edge
-  * @param max - right edge
-  * @return
-  */
-double HypogeomModel::randomRange(int min, int max) {
+std::random_device rd;
+std::mt19937 gen(rd());
 
-    return double(rand()) / RAND_MAX * (max - min) + min;
-}
+
 
 /**
  * method to generate random values for model
